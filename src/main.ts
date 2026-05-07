@@ -3,7 +3,7 @@
  *
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
-
+import Matter from 'matter-js' // Import the plugin
 // Composables
 import { createApp } from 'vue'
 
@@ -19,6 +19,8 @@ import './styles/tailwind.css'
 import './styles/main.scss'
 
 const app = createApp(App)
+
+app.config.globalProperties.$Matter = Matter
 
 registerPlugins(app)
 

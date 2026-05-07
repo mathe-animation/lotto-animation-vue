@@ -2,6 +2,7 @@
   <v-app>
     <v-main>
       <HelloWorld />
+      <Animation />
       <v-btn
         class="m-2"
         icon="mdi-theme-light-dark"
@@ -15,4 +16,5 @@
 
 <script lang="ts" setup>
   import HelloWorld from '@/components/HelloWorld.vue'
+  import Animation from '@/components/Animation.vue'
 </script>
