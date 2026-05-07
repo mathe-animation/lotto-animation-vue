@@ -1,13 +1,9 @@
 <template>
   <v-card style="margin: auto" width="400">
-    <v-responsive
-      :style="{ background: `rgb(${red}, ${green}, ${blue})` }"
-      height="300px"
-    ></v-responsive>
 
     <v-card-text>
       <v-slider
-        v-model="red"
+        v-model="k_slider"
         :max="255"
         :step="1"
         class="ma-4"
@@ -16,7 +12,7 @@
       >
         <template v-slot:append>
           <v-text-field
-            v-model="red"
+            v-model="k_slider"
             density="compact"
             style="width: 80px"
             type="number"
@@ -27,7 +23,7 @@
       </v-slider>
 
       <v-slider
-        v-model="green"
+        v-model="n_slider"
         :max="255"
         :step="1"
         class="ma-4"
@@ -36,7 +32,7 @@
       >
         <template v-slot:append>
           <v-text-field
-            v-model="green"
+            v-model="n_slider"
             density="compact"
             style="width: 80px"
             type="number"
@@ -47,7 +43,7 @@
       </v-slider>
 
       <v-slider
-        v-model="blue"
+        v-model="count_trials"
         :max="255"
         :step="1"
         class="ma-4"
@@ -56,7 +52,7 @@
       >
         <template v-slot:append>
           <v-text-field
-            v-model="blue"
+            v-model="count_trials"
             density="compact"
             style="width: 80px"
             type="number"
@@ -72,9 +68,9 @@
 <script setup lang="ts">
   import { ref } from 'vue'
 
-  const red = ref(64)
-  const green = ref(128)
-  const blue = ref(10)
+  const k_slider = ref(64)
+  const n_slider = ref(128)
+  const count_trials = ref(10)
 </script>
 
 <style scoped>
