@@ -1,20 +1,21 @@
 <template>
-  <v-card style="margin: auto" width="400">
+  <v-card style="margin: auto" width="600">
 
     <v-card-text>
       <v-slider
         v-model="k_slider"
-        :max="255"
+        :min="1"
+        :max="30"
         :step="1"
         class="ma-4"
-        label="R"
+        label="k: Anzahl de gezogenen Kugeln"
         hide-details
       >
         <template v-slot:append>
           <v-text-field
             v-model="k_slider"
             density="compact"
-            style="width: 80px"
+            style="width: 120px"
             type="number"
             variant="outlined"
             hide-details
@@ -24,17 +25,18 @@
 
       <v-slider
         v-model="n_slider"
-        :max="255"
+        :min="1"
+        :max="100"
         :step="1"
         class="ma-4"
-        label="G"
+        label="n: Anzahl der Kugeln insgesamt"
         hide-details
       >
         <template v-slot:append>
           <v-text-field
             v-model="n_slider"
             density="compact"
-            style="width: 80px"
+            style="width: 120px"
             type="number"
             variant="outlined"
             hide-details
@@ -44,17 +46,18 @@
 
       <v-slider
         v-model="count_trials"
-        :max="255"
-        :step="1"
+        :min="1000"
+        :max="500000000"
+        :step="1000"
         class="ma-4"
-        label="B"
+        label="Anzahl der gekauften LOTTO-Scheine"
         hide-details
       >
         <template v-slot:append>
           <v-text-field
             v-model="count_trials"
             density="compact"
-            style="width: 80px"
+            style="width: 120px"
             type="number"
             variant="outlined"
             hide-details
@@ -68,9 +71,9 @@
 <script setup lang="ts">
   import { ref } from 'vue'
 
-  const k_slider = ref(64)
-  const n_slider = ref(128)
-  const count_trials = ref(10)
+  const k_slider = ref(6)
+  const n_slider = ref(49)
+  const count_trials = ref(10000)
 </script>
 
 <style scoped>
