@@ -14,7 +14,7 @@
     <v-card class="card-simulation-status">{{ status_text }}</v-card>
 </template>
 
-<script>
+<script lang="ts">
     import SvgIcon from '@jamescoyle/vue-icon'
     import { mdiRestart } from '@mdi/js'
     import { mdiPlayCircleOutline } from '@mdi/js';
@@ -42,9 +42,12 @@
                 status_text
             }
         }
-    }
+    } 
+    function lotto_experiment(k, n, number_trials) {
+        console.log(k + n + number_trials)
+    }    
 </script>
-<script setup>
+<script setup lang="ts">
     import { ref } from 'vue'
 
     let simulation_running = false
@@ -60,6 +63,7 @@
     }
     if (simulation_running == false) {
         console.log(simulation_running)
+        this.$root.$emit('need_config_variables')
         simulation_running = true
         start_stop_text.value = "Simulation stoppen"
         status_text.value = "Status: Simulation läuft..."

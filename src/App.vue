@@ -4,6 +4,7 @@
       <LottoAnimation />
       <SimulationConfiguration />
       <StartStop />
+      <TrialCounter />
       <v-btn
         class="m-2"
         icon="mdi-theme-light-dark"
@@ -19,4 +20,5 @@
   import SimulationConfiguration from '@/components/SimulationConfiguration.vue'
   import LottoAnimation from '@/components/LottoAnimation.vue'
   import StartStop from '@/components/StartStop.vue'
+import TrialCounter from './components/TrialCounter.vue';
 </script>

@@ -35,8 +35,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { store } from './store.js'
 
-const k_slider = ref(6)
+const k_slider = ref(store.k)
 const n_slider = ref(49)
 const count_trials = ref(10000)
 </script>
