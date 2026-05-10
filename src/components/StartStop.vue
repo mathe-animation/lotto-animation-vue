@@ -59,11 +59,22 @@
         alert(event.target.tagName)
     }
     if (simulation_running == false) {
+        console.log(simulation_running)
         simulation_running = true
         start_stop_text.value = "Simulation stoppen"
         status_text.value = "Status: Simulation läuft..."
         playIsHidden.value = true
         stopIsHidden.value = false
+    } else if (simulation_running == true) {
+        console.log(simulation_running)
+        simulation_running = false
+        start_stop_text.value = "Simulation starten"
+        status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
+        playIsHidden.value = false
+        stopIsHidden.value = true
+    } else {
+        alert("Etwas ist schiefgelaufen. Die Webseite wird nun automatisch neu geladen...")
+        location.reload();
     }
 
 
