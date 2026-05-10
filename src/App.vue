@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld />
+      <Calculations />
       <Animation />
+      <Configuration />
+      <StartStop />
       <v-btn
         class="m-2"
         icon="mdi-theme-light-dark"
@@ -15,6 +17,8 @@
 </template>
 
 <script lang="ts" setup>
-  import HelloWorld from '@/components/HelloWorld.vue'
+  import Calculations from '@/components/Calculations.vue'
+  import Configuration from '@/components/Configuration.vue'
+  import StartStop from '@/components/StartStop.vue'
   import Animation from '@/components/Animation.vue'
 </script>
