@@ -4,20 +4,21 @@
         Simulation stoppen und neustarten
     </v-btn>-->
     <v-btn
-    @click="greet"
+    @click="start_stop_animation"
     :class="{ 'not-running': isNotRunning, 'running': isRunning, 'error-text' : hasError}"
     rounded="0">
-        <svg-icon type="mdi" :path="pathStart"></svg-icon>
-        Simulation starten
+        <svg-icon type="mdi" :path="pathStart" :class="{ hidden: playIsHidden }"></svg-icon>
+        <svg-icon type="mdi" :path="pathStop" class="" :class="{ hidden: stopIsHidden }"></svg-icon>
+        {{ start_stop_text }}
     </v-btn>
-    <v-card class="card-simulation-status" text="Status: Die Simulation wurde noch nicht gestartet..."></v-card>
+    <v-card class="card-simulation-status">{{ status_text }}</v-card>
 </template>
 
 <script>
-
     import SvgIcon from '@jamescoyle/vue-icon'
     import { mdiRestart } from '@mdi/js'
     import { mdiPlayCircleOutline } from '@mdi/js';
+    import { mdiStopCircleOutline } from '@mdi/js';
 
     export default {
         name: "my-cool-component",
@@ -30,23 +31,61 @@
             return {
                 pathRestart: mdiRestart,
                 pathStart: mdiPlayCircleOutline,
+                pathStop: mdiStopCircleOutline,
+            }
+        },
+        // `setup` is a special hook dedicated for the Composition API.
+        setup() {
+
+            // expose the ref to the template
+            return {
+                status_text
             }
         }
     }
 </script>
 <script setup>
     import { ref } from 'vue'
+
+    let simulation_running = false
+    let currently_simulating = false
+
     const name = ref('Vue.js')
 
-    function greet(event) {
-    alert(`Hello ${name.value}!`)
+    function start_stop_animation(event) {
+    //alert(`Hello ${name.value}!`)
     // `event` is the native DOM event
     if (event) {
         alert(event.target.tagName)
     }
+    if (simulation_running == false) {
+        simulation_running = true
+        start_stop_text.value = "Simulation stoppen"
+        status_text.value = "Status: Simulation läuft..."
+        playIsHidden.value = true
+        stopIsHidden.value = false
+    }
+
+
     }
 
     const isNotRunning = ref(true)
     const isRunning = ref(false)
     const hasError = ref(false)
+
+    const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
+    const start_stop_text = ref("Simulation starten")
+
+    const stopIsHidden = ref(true)
+    const playIsHidden = ref(false)
+
+
 </script>
+
+<style lang="css" scoped>
+
+.hidden {
+    display: none;
+}
+
+</style>
