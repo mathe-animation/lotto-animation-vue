@@ -1,9 +1,8 @@
 <template>
   <v-app>
     <v-main>
-      <Calculations />
-      <Animation />
-      <Configuration />
+      <LottoAnimation />
+      <SimulationConfiguration />
       <StartStop />
       <v-btn
         class="m-2"
@@ -17,8 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-  import Calculations from '@/components/Calculations.vue'
-  import Configuration from '@/components/Configuration.vue'
+  import SimulationConfiguration from '@/components/SimulationConfiguration.vue'
+  import LottoAnimation from '@/components/LottoAnimation.vue'
   import StartStop from '@/components/StartStop.vue'
-  import Animation from '@/components/Animation.vue'
 </script>
