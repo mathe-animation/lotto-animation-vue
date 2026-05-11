@@ -3,10 +3,7 @@
         <svg-icon type="mdi" :path="pathRestart"></svg-icon>
         Simulation stoppen und neustarten
     </v-btn>-->
-    <v-btn
-    @click="start_stop_animation"
-    :class="{ 'not-running': isNotRunning, 'running': isRunning, 'error-text' : hasError}"
-    rounded="0">
+    <v-btn v-on:click="sendNeedSimVars" @click="start_stop_animation" :class="{ 'not-running': isNotRunning, 'running': isRunning, 'error-text' : hasError}" rounded="0">
         <svg-icon type="mdi" :path="pathStart" :class="{ hidden: playIsHidden }"></svg-icon>
         <svg-icon type="mdi" :path="pathStop" class="" :class="{ hidden: stopIsHidden }"></svg-icon>
         {{ start_stop_text }}
@@ -19,6 +16,7 @@
     import { mdiRestart } from '@mdi/js'
     import { mdiPlayCircleOutline } from '@mdi/js';
     import { mdiStopCircleOutline } from '@mdi/js';
+    
 
     export default {
         name: "my-cool-component",
@@ -41,14 +39,20 @@
             return {
                 status_text
             }
-        }
-    } 
-    function lotto_experiment(k, n, number_trials) {
-        console.log(k + n + number_trials)
-    }    
+        },
+
+        methods: {
+            sendNeedSimVars() {
+            this.emitter.emit("increment", { msg: "needSimVars" });
+            },
+        },
+        };   
 </script>
 <script setup lang="ts">
     import { ref } from 'vue'
+    import { store } from './store.js'
+
+    console.log(store.k)
 
     let simulation_running = false
     let currently_simulating = false
@@ -58,12 +62,14 @@
     function start_stop_animation(event) {
     //alert(`Hello ${name.value}!`)
     // `event` is the native DOM event
-    if (event) {
-        alert(event.target.tagName)
-    }
+    //if (event) {
+    //    alert(event.target.tagName)
+    //}
+    console.log(store.k)
+    console.log(store.n)
+    console.log(store.number_trials)
     if (simulation_running == false) {
         console.log(simulation_running)
-        this.$root.$emit('need_config_variables')
         simulation_running = true
         start_stop_text.value = "Simulation stoppen"
         status_text.value = "Status: Simulation läuft..."

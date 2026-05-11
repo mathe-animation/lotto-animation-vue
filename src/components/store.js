@@ -1,5 +1,7 @@
 import { reactive } from 'vue'
 
-export const store = reactive({
-  count: 0
+export let store = reactive({
+  k: 6,
+  n: 49,
+  number_trials: 10000,
 })
