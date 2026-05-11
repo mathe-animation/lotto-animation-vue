@@ -29,7 +29,7 @@ function Prob(n, k) {
    return y;
 }
 
-export function LottoExperiment(n, k, number_trials) {
+function LottoExperiment(n, k, number_trials) {
    const prob = Prob(n, k)
    let count_wins = 0
    for (let i = 0; i < number_trials; i++) {

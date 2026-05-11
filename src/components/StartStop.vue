@@ -90,17 +90,11 @@
 
     }
 
-    const isNotRunning = ref(true)
-    const isRunning = ref(false)
-    const hasError = ref(false)
-
     const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
     const start_stop_text = ref("Simulation starten")
 
     const stopIsHidden = ref(true)
     const playIsHidden = ref(false)
-
-
 </script>
 
 <style lang="css" scoped>
