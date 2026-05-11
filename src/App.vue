@@ -3,7 +3,6 @@
     <v-main>
       <LottoAnimation />
       <SimulationConfiguration />
-      <TrialCounter />
       <v-btn
         class="m-2"
         icon="mdi-theme-light-dark"

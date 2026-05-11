@@ -41,6 +41,9 @@
     {{ start_stop_text }}
   </v-btn>
   <v-card class="card-simulation-status">{{ status_text }}</v-card>
+
+  <v-card class="card-simulation-status">Anzahl der Versuche</v-card>
+  <v-card class="card-simulation-status">{{ trial_counter_value }}</v-card>
 </template>
 
 <script lang="ts" >
@@ -69,10 +72,13 @@ export default {
 
 <script setup lang="ts">
 import { ref } from 'vue'
+//import { LottoExperiment } from './calc.js';
 
 let k_slider = ref(6)
 let n_slider = ref(49)
 let count_trials = ref(10000)
+
+const trial_counter_value = ref(0)
 
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 const start_stop_text = ref("Simulation starten")
@@ -107,7 +113,8 @@ function start_stop_animation(event) {
     status_text.value = "Status: Simulation läuft..."
     playIsHidden.value = true
     stopIsHidden.value = false
-  } else if (simulation_running == true) {
+    const count_wins = LottoExperiment(n_slider,k_slider,count_trials)
+  } else (simulation_running == true) {
     console.log(simulation_running)
     simulation_running = false
     start_stop_text.value = "Simulation starten"
@@ -120,6 +127,42 @@ function start_stop_animation(event) {
   }
 
 
+}
+
+
+
+
+
+function factorial(n) {
+// n!
+   var fac = 1;
+   for (i = 1; i <= n; i++) fac = fac*i;
+   return fac;
+}
+
+function binomial(n, k) {
+// Binomialkoeffizient von n über k
+   var bin = factorial(n)/(factorial(k)*factorial(n-k));
+   return bin;
+}
+
+function Prob(n, k) {
+// Wahrscheinlichkeit für genau r Richtige bei einem Lottofeld
+   var N = binomial(n, k);
+   var y = 1/N
+   return y;
+}
+
+function LottoExperiment(n, k, number_trials) {
+   const prob = Prob(n, k)
+   let count_wins = 0
+   for (let i = 0; i < number_trials; i++) {
+      random_number = random.float((min = 0), (max = 1))
+      if (random_number <= prob) {
+         count_wins++
+      }
+   }
+   return count_wins
 }
 
 </script>
