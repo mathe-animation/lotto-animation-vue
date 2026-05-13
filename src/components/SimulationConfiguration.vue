@@ -2,8 +2,8 @@
     <div className='grid grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
 
 
-      <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px]' />
-      <div className='bg-teal-500 rounded-lg shadow-xl min-h-[50px]'>
+      <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
+      <div className='bg-teal-500 rounded-lg shadow-xl min-h-[50px] row-span-2'>
 
 <v-card style="margin: auto">
     <h1
@@ -80,8 +80,11 @@
   </v-card>
 
       </div>
-      <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px]' />
+      <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
+<div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-4 col-span-1'>
 
+  <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
+        </div>
       <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1'>
 
       <v-btn @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
@@ -95,10 +98,7 @@
         </div>
 
 
-              <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-4 col-span-1'>
-
-  <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
-        </div>
+              
 
       <div className='bg-indigo-500 rounded-lg shadow-xl min-h-[50px]' />
       <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]' />
