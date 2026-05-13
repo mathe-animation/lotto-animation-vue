@@ -6,39 +6,33 @@
 		</div>
 		<div class="mb-2" v-if='displayTitle'>
 			<p class='text-2xl cursor-pointer group' @click='rename'>
-				{{ displayTitle }}
-				<span class='text-base hidden group-hover:inline'><Icon icon="clarity:pencil-solid" :inline="true" /></span>
+			    	{{ displayTitle }}
+				<span class='text-base hidden group-hover:inline'></span>
 			</p>
 		</div>
 		<div class="display mb-4">
 			<p class='text-xl cursor-pointer group' :class="{ 'timer-blinking': isBlinking }" @click='retime'>
 				<span class='text-6xl'>{{ display }}</span><span class='text-xl text-gray-500'>.{{ displayMs }}</span>
-				<span class='text-xl hidden group-hover:inline ml-1'><Icon icon="clarity:pencil-solid" :inline="true" /></span>
+				<span class='text-xl hidden group-hover:inline ml-1'></span>
 			</p>
 		</div>
 		<div class="controls">
 			<button class='bg-green-600 hover:bg-green-700 text-white focus:ring-2 focus:ring-green-200 transition ease-in-out rounded p-2 text-sm font-semibold mr-1' type='button' @click='start' v-if='!isStarted'>
-				<Icon icon="clarity:play-solid" :inline="true" />
 				Start
 			</button>
 			<button class='bg-yellow-600 hover:bg-yellow-700 text-white focus:ring-2 focus:ring-yellow-200 transition ease-in-out rounded p-2 text-sm font-semibold mr-1' type='button' @click='pause' v-else>
-				<Icon icon="clarity:pause-solid" :inline="true" />
 				Pause
 			</button>
 			<button class='bg-red-600 hover:bg-red-700 text-white focus:ring-2 focus:ring-red-200 transition ease-in-out rounded p-2 text-sm font-semibold mr-1' type='button' @click='stop' v-if='!isStopped'>
-				<Icon icon="clarity:stop-solid" :inline="true" />
 				Stop
 			</button>
 			<button class='bg-blue-700 hover:bg-blue-800 text-white focus:ring-2 focus:ring-blue-200 transition ease-in-out rounded p-2 text-sm font-semibold mr-1' type='button' @click='countup' v-if='!countingUp'>
-				<Icon icon="clarity:plus-circle-solid" :inline="true" />
 				Count Up
 			</button>
 			<button class='bg-blue-700 hover:bg-blue-800 text-white focus:ring-2 focus:ring-blue-200 transition ease-in-out rounded p-2 text-sm font-semibold mr-1 disabled:bg-blue-700 disabled:opacity-50' type='button' @click='countdown' v-else :disabled="isStopped && defaultSeconds === 0">
-				<Icon icon="clarity:minus-circle-solid" :inline="true" />
 				Count Down
 			</button>
 			<button class='bg-red-700 hover:bg-red-800 text-white focus:ring-2 focus:ring-red-200 transition ease-in-out rounded p-2 text-sm font-semibold' type='button' @click='remove'>
-				<Icon icon="clarity:trash-solid" :inline="true" />
 				Remove
 			</button>	
 		</div>

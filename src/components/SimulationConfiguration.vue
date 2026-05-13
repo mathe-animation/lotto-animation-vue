@@ -6,7 +6,7 @@
     <div className='rounded-lg shadow-xl min-h-[50px] row-span-2'>
 
         <h1
-          class="relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-6xl font-extrabold text-center select-auto">
+          class="relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
           {{ "LOTTO: " + k_slider + " aus " + n_slider }}
         </h1>
         <v-card-text>
@@ -43,9 +43,9 @@
 
       <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
-    <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1' @click="start_simulation" :class="{ hidden: playIsHidden }">
+    <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1'>
 
-      <v-btn block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
+      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
@@ -57,7 +57,9 @@
     <div className='bg-indigo-500 rounded-lg shadow-xl min-h-[50px]'>
         <p class="card-simulation-status">{{ status_text }}</p>
         </div>
-    <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]' />
+    <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]'>
+<LottoAnimation />
+      </div>
     <div className='bg-pink-500 rounded-lg shadow-xl min-h-[50px]' />
     <div className='bg-slate-500 rounded-lg shadow-xl min-h-[50px]' />
   </div>
@@ -106,6 +108,7 @@ import { useStopwatch } from "vue-timer-hook"
 //import Timer from "vue-timer-hook"
 
 import Timer from '@/components/Timer.vue'
+import LottoAnimation from '@/components/LottoAnimation.vue'
 
 
 import { useTimer } from 'vue-timer-hook'
@@ -230,5 +233,9 @@ function LottoExperiment(n, k, number_trials) {
 
 .hidden {
   display: none;
+}
+
+#btn-start-sim {
+  height: 100%;
 }
 </style>

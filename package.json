@@ -18,6 +18,7 @@
     "@fontsource/roboto": "^5.2.10",
     "@fontsource/roboto-mono": "^5.2.8",
     "@jamescoyle/vue-icon": "^0.1.2",
+    "@matter/main": "^0.16.11",
     "@mdi/font": "7.4.47",
     "@mdi/js": "^7.4.47",
     "@primeuix/themes": "^2.0.3",

@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-main>
-      <LottoAnimation />
       <SimulationConfiguration />
       <v-btn
         class="m-2"
@@ -16,5 +15,4 @@
 
 <script lang="ts" setup>
   import SimulationConfiguration from '@/components/SimulationConfiguration.vue'
-  import LottoAnimation from '@/components/LottoAnimation.vue'
 </script>
