@@ -146,7 +146,7 @@ async function start_simulation() {
     const count_wins = await LottoExperiment(
       n_slider.value,
       k_slider.value, 
-      count_trials.value*50000)
+      count_trials.value)
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     playIsHidden.value = false
@@ -188,14 +188,19 @@ function LottoExperiment(n, k, number_trials) {
   console.log("prob is " + String(prob))
   let count_wins = 0
   trial_counter_value.value = 0
+  console.log("n ist " + String(n))
+  console.log("k ist " + String(k))
+  console.log("number_trials ist " + String(number_trials))
   for (let i = 0; i < number_trials; i++) {
+    //console.log(i)
     let random_number = Math.random()
     if (random_number <= prob) {
-      count_wins = count_wins++
-      trial_counter_value.value = i + 1
+      count_wins = count_wins + 1
+      console.log("win")
       if (i % 1000 == 0) {
-        print("another 1000 done")
+        console.log("another 1000 done")
       }
+    trial_counter_value.value = i + 1
     }
   }
   trial_counter_value.value = 0
