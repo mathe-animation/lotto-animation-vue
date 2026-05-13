@@ -45,7 +45,7 @@ svg[style*="vertical-align"] {
 }
 </style>
 
-<script setup>
+<script setup lang="js">
 import { ref } from 'vue'
 import Swal from 'sweetalert'
 

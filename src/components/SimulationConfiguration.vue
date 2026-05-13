@@ -39,9 +39,9 @@
 
     </div>
     <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
-    <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-4 col-span-1'>
+    <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-6 col-span-1'>
 
-      <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
+      <v-data-table density="compact" :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
     <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1'>
 
@@ -85,7 +85,6 @@ export default {
   name: "my-cool-component",
 
   components: {
-    SvgIcon,
   },
   data() {
     return {
@@ -125,7 +124,7 @@ let simulation_running = false
 
 let experiments = ref([])
 
-const itemsPerPage = ref(3)
+const itemsPerPage = ref(6)
 
 function start_simulation() {
   if (simulation_running == false) {
@@ -152,7 +151,7 @@ async function stop_simulation() {
   stopIsHidden.value = true
 }
 
-function factorial(n) {
+function factorial(n : number) {
   // n!
   var fac = 1
   for (let i = 1; i <= n; i++) {
@@ -161,20 +160,20 @@ function factorial(n) {
   return fac
 }
 
-function binomial(n, k) {
+function binomial(n : number, k : number) {
   // Binomialkoeffizient von n über k
   var bin = factorial(n) / (factorial(k) * factorial(n - k))
   return bin
 }
 
-function Prob(n, k) {
+function Prob(n : number, k : number) {
   // Wahrscheinlichkeit für genau r Richtige bei einem Lottofeld
   var N = binomial(n, k)
   var y = 1 / N
   return y
 }
 
-function LottoExperiment(n, k, number_trials) {
+function LottoExperiment(n : number, k : number, number_trials : number) {
   const prob = Prob(n, k)
   console.log("prob is " + String(prob))
   count_wins.value = 0
