@@ -41,7 +41,7 @@
     <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
     <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-6 col-span-1'>
 
-      <v-data-table density="compact" :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
+      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
     <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1'>
 
@@ -58,6 +58,9 @@
         <p class="card-simulation-status">{{ status_text }}</p>
         </div>
     <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]'>
+      <p>
+        {{ count_wins_text_field }}
+      </p>
       </div>
     <div className='bg-pink-500 rounded-lg shadow-xl min-h-[50px]' />
     <div className='bg-slate-500 rounded-lg shadow-xl min-h-[50px]' />
@@ -77,8 +80,9 @@
 </template>
 
 <script lang="js">
+import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiRestart } from "@mdi/js"
-import { mdiPlayCircleOutline } from "@mdi/js"
+import { mdiPlayBox } from "@mdi/js"
 import { mdiStopCircleOutline } from "@mdi/js"
 
 export default {
@@ -89,7 +93,7 @@ export default {
   data() {
     return {
       pathRestart: mdiRestart,
-      pathStart: mdiPlayCircleOutline,
+      pathStart: mdiPlayBox,
       pathStop: mdiStopCircleOutline,
     }
   },
@@ -112,6 +116,7 @@ let count_trials = ref(10000)
 
 //let trial_counter_value = ref(0)
 let count_wins = ref(0)
+let count_wins_text_field = ref("")
 
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 const start_text = "Simulation starten"
@@ -125,6 +130,7 @@ let simulation_running = false
 let experiments = ref([])
 
 const itemsPerPage = ref(6)
+const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
 
 function start_simulation() {
   if (simulation_running == false) {
@@ -137,6 +143,7 @@ function start_simulation() {
       n_slider.value,
       k_slider.value,
       count_trials.value)
+    playWinCounterAnimation(count_wins.value)
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     playIsHidden.value = false
@@ -149,6 +156,10 @@ async function stop_simulation() {
   status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
   playIsHidden.value = false
   stopIsHidden.value = true
+}
+
+function playWinCounterAnimation(count_wins_arg) {
+  count_wins_text_field.value = count_wins_arg
 }
 
 function factorial(n) {
