@@ -19,7 +19,7 @@
           <v-text-field
             v-model="k_slider"
             density="compact"
-            style="width: 120px"
+            style="width: 150px"
             type="number"
             variant="outlined"
             hide-details
@@ -40,7 +40,7 @@
           <v-text-field
             v-model="n_slider"
             density="compact"
-            style="width: 120px"
+            style="width: 150px"
             type="number"
             variant="outlined"
             hide-details
@@ -51,7 +51,7 @@
       <v-slider
         v-model="count_trials"
         :min="1000"
-        :max="500000000"
+        :max="5000000000"
         :step="1000"
         class="ma-4"
         label="Anzahl der gekauften LOTTO-Scheine"
@@ -61,7 +61,7 @@
           <v-text-field
             v-model="count_trials"
             density="compact"
-            style="width: 120px"
+            style="width: 150px"
             type="number"
             variant="outlined"
             hide-details
@@ -90,8 +90,33 @@
     {{ stop_text }}
   </v-btn>
   <v-card class="card-simulation-status">{{ status_text }}</v-card>
-  <v-card class="card-simulation-status">Anzahl der Versuche</v-card>
-  <v-card class="card-simulation-status">{{ trial_counter_value }}</v-card>
+  <v-card class="card-simulation-status">{{String(k_slider.value) + "dfgd"}}</v-card>
+  <v-card class="card-simulation-status">{{ count_wins }}</v-card>
+
+  <DataTable :value="experiments" tableStyle="min-width: 50rem" stripedRows>
+    <Column field="index" header="Experiment"></Column>
+    <Column field="k" header="k"></Column>
+    <Column field="n" header="n"></Column>
+    <Column field="count_trials" header="Versuchsanzahl"></Column>
+    <Column field="count_wins" header="Gewinnanzahl"></Column>
+</DataTable>
+
+
+  <div>
+    <h1>vue-timer-hook</h1>
+    <p>Timer Demo</p>
+    <div>
+      <span>{{timer.days}}</span>:<span>{{timer.hours}}</span>:<span>{{timer.minutes}}</span>:<span
+        >{{timer.seconds}}</span
+      >
+    </div>
+    <p>{{timer.isRunning ? 'Running' : 'Not running'}}</p>
+    <button @click="timer.start()">Start</button>
+    <button @click="timer.pause()">Pause</button>
+    <button @click="timer.resume()">Resume</button>
+    <button @click="restartFive()">Restart</button>
+  </div>
+
 </template>
 
 <script lang="ts">
@@ -119,13 +144,22 @@ export default {
 
 <script setup lang="ts">
 import { ref } from "vue"
-import random from 'random'
+
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';                   // optional
+
+import { watchEffect, onMounted } from 'vue'
+import { useStopwatch } from 'vue-timer-hook'
+
 
 let k_slider = ref(6)
 let n_slider = ref(49)
 let count_trials = ref(10000)
 
-const trial_counter_value = ref(0)
+//let trial_counter_value = ref(0)
+let count_wins
 
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 const start_text = "Simulation starten"
@@ -187,7 +221,6 @@ function LottoExperiment(n, k, number_trials) {
   const prob = Prob(n, k)
   console.log("prob is " + String(prob))
   let count_wins = 0
-  trial_counter_value.value = 0
   console.log("n ist " + String(n))
   console.log("k ist " + String(k))
   console.log("number_trials ist " + String(number_trials))
@@ -200,13 +233,31 @@ function LottoExperiment(n, k, number_trials) {
       if (i % 1000 == 0) {
         console.log("another 1000 done")
       }
-    trial_counter_value.value = i + 1
     }
   }
-  trial_counter_value.value = 0
   console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins))
   return count_wins
 }
+
+
+
+
+  const time = new Date()
+  time.setSeconds(time.getSeconds() + 600) // 10 minutes timer
+  const timer = useStopwatch(time)
+  const restartFive = () => {
+    // Restarts to 5 minutes timer
+    const time = new Date()
+    time.setSeconds(time.getSeconds() + 300)
+    timer.restart(time)
+  }
+  onMounted(() => {
+    watchEffect(async () => {
+      if (timer.isExpired.value) {
+        console.warn('IsExpired')
+      }
+    })
+  })
 </script>
 
 <style scoped>
