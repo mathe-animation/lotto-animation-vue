@@ -80,34 +80,11 @@
       :path="pathStart"
     ></svg-icon>
     {{ start_text }}
-  </v-btn>
-    <v-btn @click="stop_simulation" rounded="0">
-    <svg-icon
-      type="mdi"
-      :path="pathStop"
-      class=""
-    ></svg-icon>
-    {{ stop_text }}
-  </v-btn>
+</v-btn>
+
   <v-card class="card-simulation-status">{{ status_text }}</v-card>
-  <v-card class="card-simulation-status">{{String(k_slider.value) + "dfgd"}}</v-card>
+  <v-card class="card-simulation-status">{{k_slider + " Richtige"}}</v-card>
   <v-card class="card-simulation-status">{{ count_wins }}</v-card>
-
-
-
-  <div>
-    <h1>vue-timer-hook</h1>
-    <p>Stopwatch Demo</p>
-    <div>
-      <span>{{stopwatch.days}}</span>:<span>{{stopwatch.hours}}</span>:<span>{{stopwatch.minutes}}</span>:<span
-        >{{stopwatch.seconds}}</span
-      >
-    </div>
-    <p>{{stopwatch.isRunning ? 'Running' : 'Not running'}}</p>
-    <button @click="stopwatch.start()">Start</button>
-    <button @click="stopwatch.pause()">Pause</button>
-    <button @click="stopwatch.reset()">Reset</button>
-  </div>
 
   <v-data-table :items="experiments"></v-data-table>
 
@@ -139,8 +116,11 @@ export default {
 <script setup lang="ts">
 import { ref } from "vue"
 
-import { defineComponent } from 'vue'
-import { useStopwatch } from 'vue-timer-hook'
+import { useStopwatch } from "vue-timer-hook"
+//import CodeBlock from './CodeBlock.vue'
+//import Timer from "vue-timer-hook"
+
+import { useTimer } from 'vue-timer-hook'
 
 let count_completed_experiments = 0
 
@@ -149,7 +129,7 @@ let n_slider = ref(49)
 let count_trials = ref(10000)
 
 //let trial_counter_value = ref(0)
-let count_wins
+let count_wins = ref(0)
 
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 const start_text = "Simulation starten"
@@ -170,14 +150,14 @@ let experiments = ref([
   // ... more items
 ])
 
-async function start_simulation() {
+function start_simulation() {
   if (simulation_running == false) {
     console.log(simulation_running)
     simulation_running = true
     status_text.value = "Status: Simulation läuft..."
     playIsHidden.value = true
     stopIsHidden.value = false
-    const count_wins = await LottoExperiment(
+    count_wins.value = LottoExperiment(
       n_slider.value,
       k_slider.value, 
       count_trials.value)
@@ -220,22 +200,21 @@ function Prob(n, k) {
 function LottoExperiment(n, k, number_trials) {
   const prob = Prob(n, k)
   console.log("prob is " + String(prob))
-  let count_wins = 0
+  count_wins.value = 0
   console.log("n ist " + String(n))
   console.log("k ist " + String(k))
   console.log("number_trials ist " + String(number_trials))
   for (let i = 0; i < number_trials; i++) {
-    //console.log(i)
     let random_number = Math.random()
     if (random_number <= prob) {
-      count_wins = count_wins + 1
+      count_wins.value = count_wins.value + 1
       console.log("win")
       if (i % 1000 == 0) {
         console.log("another 1000 done")
       }
     }
   }
-  console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins))
+  console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins.value))
   count_completed_experiments = count_completed_experiments + 1
   experiments.value.push(
     {
@@ -243,17 +222,12 @@ function LottoExperiment(n, k, number_trials) {
       "k" : String(k),
       "n" : String(n),
       "Versuchsanzahl" : String(number_trials),
-      "Gewinnanzahl" : String(count_wins)
+      "Gewinnanzahl" : String(count_wins.value)
     }
   )
-  return count_wins
+  return count_wins.value
 }
 
-
-
-
-  //const autoStart = false
-  const stopwatch = useStopwatch()
 </script>
 
 <style scoped>
