@@ -17,5 +17,4 @@
 <script lang="ts" setup>
   import SimulationConfiguration from '@/components/SimulationConfiguration.vue'
   import LottoAnimation from '@/components/LottoAnimation.vue'
-import TrialCounter from './components/TrialCounter.vue';
 </script>

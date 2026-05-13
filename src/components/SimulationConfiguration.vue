@@ -1,5 +1,11 @@
 <template>
-  <v-card style="margin: auto" width="600">
+    <div className='grid grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
+
+
+      <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px]' />
+      <div className='bg-teal-500 rounded-lg shadow-xl min-h-[50px]'>
+
+<v-card style="margin: auto">
     <h1
       class="relative top-0 w-fit py-4 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-6xl font-extrabold text-transparent text-center select-auto"
     >
@@ -69,12 +75,16 @@
         </template>
       </v-slider>
     </v-card-text>
+
+
   </v-card>
-  <!---<v-btn rounded="0">
-        <svg-icon type="mdi" :path="pathRestart"></svg-icon>
-        Simulation stoppen und neustarten
-    </v-btn>-->
-  <v-btn @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
+
+      </div>
+      <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px]' />
+
+      <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1'>
+
+      <v-btn @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
     <svg-icon
       type="mdi"
       :path="pathStart"
@@ -82,11 +92,30 @@
     {{ start_text }}
 </v-btn>
 
+        </div>
+
+
+              <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-4 col-span-1'>
+
+  <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
+        </div>
+
+      <div className='bg-indigo-500 rounded-lg shadow-xl min-h-[50px]' />
+      <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]' />
+      <div className='bg-pink-500 rounded-lg shadow-xl min-h-[50px]' />
+      <div className='bg-slate-500 rounded-lg shadow-xl min-h-[50px]' />
+    </div>
+  
+  <!---<v-btn rounded="0">
+        <svg-icon type="mdi" :path="pathRestart"></svg-icon>
+        Simulation stoppen und neustarten
+    </v-btn>-->
+
+
   <v-card class="card-simulation-status">{{ status_text }}</v-card>
   <v-card class="card-simulation-status">{{k_slider + " Richtige"}}</v-card>
   <v-card class="card-simulation-status">{{ count_wins }}</v-card>
 
-  <v-data-table :items="experiments"></v-data-table>
 
 </template>
 
@@ -149,6 +178,8 @@ let experiments = ref([
   },*/
   // ... more items
 ])
+
+const itemsPerPage = ref(3)
 
 function start_simulation() {
   if (simulation_running == false) {
