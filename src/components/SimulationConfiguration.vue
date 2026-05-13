@@ -77,7 +77,6 @@
 </template>
 
 <script lang="ts">
-import SvgIcon from "@jamescoyle/vue-icon"
 import { mdiRestart } from "@mdi/js"
 import { mdiPlayCircleOutline } from "@mdi/js"
 import { mdiStopCircleOutline } from "@mdi/js"
@@ -102,15 +101,9 @@ export default {
 <script setup lang="ts">
 import { ref } from "vue"
 
-import { useStopwatch } from "vue-timer-hook"
-//import CodeBlock from './CodeBlock.vue'
-//import Timer from "vue-timer-hook"
+
 
 import Timer from '@/components/Timer.vue'
-import LottoAnimation from '@/components/LottoAnimation.vue'
-
-
-import { useTimer } from 'vue-timer-hook'
 
 let count_completed_experiments = 0
 
@@ -200,15 +193,14 @@ function LottoExperiment(n, k, number_trials) {
   }
   console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins.value))
   count_completed_experiments = count_completed_experiments + 1
-  experiments.value.push(
-    {
+  let new_experiment_list_item = {
       "Experiment Nr.": String(count_completed_experiments),
       "k": String(k),
       "n": String(n),
       "Versuchsanzahl": String(number_trials),
       "Gewinnanzahl": String(count_wins.value)
     }
-  )
+  experiments.value.push(new_experiment_list_item)
   return count_wins.value
 }
 

@@ -8,7 +8,7 @@
 
 
 
-let ballRadius = 10;
+/*let ballRadius = 10;
 let pegCount = 16;
 let pegSize = 50;
 let maximumBalls = 200;
@@ -125,6 +125,6 @@ function draw() {
 
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
-}
+}*/
 
 </script>
