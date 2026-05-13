@@ -1,121 +1,75 @@
 <template>
-    <div className='grid grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
-
-
-      <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-1'>
-<Timer />
-        </div>
-      <div className='bg-teal-500 rounded-lg shadow-xl min-h-[50px] row-span-2'>
-
-<v-card style="margin: auto">
-    <h1
-      class="relative top-0 w-fit py-4 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-6xl font-extrabold text-transparent text-center select-auto"
-    >
-      {{"LOTTO: " + k_slider + " aus " + n_slider}}
-    </h1>
-    <v-card-text>
-      <v-slider
-        v-model="k_slider"
-        :min="1"
-        :max="30"
-        :step="1"
-        class="ma-4"
-        label="k: Anzahl der gezogenen Kugeln"
-        hide-details
-      >
-        <template v-slot:append>
-          <v-text-field
-            v-model="k_slider"
-            density="compact"
-            style="width: 150px"
-            type="number"
-            variant="outlined"
-            hide-details
-          ></v-text-field>
-        </template>
-      </v-slider>
-
-      <v-slider
-        v-model="n_slider"
-        :min="1"
-        :max="100"
-        :step="1"
-        class="ma-4"
-        label="n: Anzahl der Kugeln insgesamt"
-        hide-details
-      >
-        <template v-slot:append>
-          <v-text-field
-            v-model="n_slider"
-            density="compact"
-            style="width: 150px"
-            type="number"
-            variant="outlined"
-            hide-details
-          ></v-text-field>
-        </template>
-      </v-slider>
-
-      <v-slider
-        v-model="count_trials"
-        :min="1000"
-        :max="5000000000"
-        :step="1000"
-        class="ma-4"
-        label="Anzahl der gekauften LOTTO-Scheine"
-        hide-details
-      >
-        <template v-slot:append>
-          <v-text-field
-            v-model="count_trials"
-            density="compact"
-            style="width: 150px"
-            type="number"
-            variant="outlined"
-            hide-details
-          ></v-text-field>
-        </template>
-      </v-slider>
-    </v-card-text>
-
-
-  </v-card>
-
-      </div>
-      <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
-<div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-4 col-span-1'>
-
-  <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
-        </div>
-      <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1'>
-
-      <v-btn @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
-    <svg-icon
-      type="mdi"
-      :path="pathStart"
-    ></svg-icon>
-    {{ start_text }}
-</v-btn>
-
-        </div>
-
-
-              
-
-      <div className='bg-indigo-500 rounded-lg shadow-xl min-h-[50px]' />
-      <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]' />
-      <div className='bg-pink-500 rounded-lg shadow-xl min-h-[50px]' />
-      <div className='bg-slate-500 rounded-lg shadow-xl min-h-[50px]' />
+  <div className='grid grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
+    <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-1'>
+      <Timer />
     </div>
-  
+    <div className='rounded-lg shadow-xl min-h-[50px] row-span-2'>
+
+        <h1
+          class="relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-6xl font-extrabold text-center select-auto">
+          {{ "LOTTO: " + k_slider + " aus " + n_slider }}
+        </h1>
+        <v-card-text>
+          <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" label="k: Anzahl der gezogenen Kugeln"
+            hide-details>
+            <template v-slot:append>
+              <v-text-field v-model="k_slider" density="compact" style="width: 150px" type="number" variant="outlined"
+                hide-details></v-text-field>
+            </template>
+          </v-slider>
+
+          <v-slider v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4" label="n: Anzahl der Kugeln insgesamt"
+            hide-details>
+            <template v-slot:append>
+              <v-text-field v-model="n_slider" density="compact" style="width: 150px" type="number" variant="outlined"
+                hide-details></v-text-field>
+            </template>
+          </v-slider>
+
+          <v-slider v-model="count_trials" :min="1000" :max="5000000000" :step="1000" class="ma-4"
+            label="Anzahl der gekauften LOTTO-Scheine" hide-details>
+            <template v-slot:append>
+              <v-text-field v-model="count_trials" density="compact" style="width: 150px" type="number"
+                variant="outlined" hide-details></v-text-field>
+            </template>
+          </v-slider>
+        </v-card-text>
+
+
+
+    </div>
+    <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
+    <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-4 col-span-1'>
+
+      <v-data-table :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
+    </div>
+    <div className='bg-orange-500 rounded-lg shadow-xl min-h-[50px] col-span-1' @click="start_simulation" :class="{ hidden: playIsHidden }">
+
+      <v-btn block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
+        <svg-icon type="mdi" :path="pathStart"></svg-icon>
+        {{ start_text }}
+      </v-btn>
+    </div>
+
+
+
+
+    <div className='bg-indigo-500 rounded-lg shadow-xl min-h-[50px]'>
+        <p class="card-simulation-status">{{ status_text }}</p>
+        </div>
+    <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]' />
+    <div className='bg-pink-500 rounded-lg shadow-xl min-h-[50px]' />
+    <div className='bg-slate-500 rounded-lg shadow-xl min-h-[50px]' />
+  </div>
+
   <!---<v-btn rounded="0">
         <svg-icon type="mdi" :path="pathRestart"></svg-icon>
         Simulation stoppen und neustarten
     </v-btn>-->
 
 
-  <v-card class="card-simulation-status">{{ status_text }}</v-card>
-  <v-card class="card-simulation-status">{{k_slider + " Richtige"}}</v-card>
+
+  <v-card class="card-simulation-status">{{ k_slider + " Richtige" }}</v-card>
   <v-card class="card-simulation-status">{{ count_wins }}</v-card>
 
 
@@ -174,15 +128,7 @@ const playIsHidden = ref(false)
 
 let simulation_running = false
 
-let experiments = ref([
-  /*{
-    name: 'African Elephant',
-    species: 'Loxodonta africana',
-    diet: 'Herbivore',
-    habitat: 'Savanna, Forests',
-  },*/
-  // ... more items
-])
+let experiments = ref([])
 
 const itemsPerPage = ref(3)
 
@@ -195,14 +141,14 @@ function start_simulation() {
     stopIsHidden.value = false
     count_wins.value = LottoExperiment(
       n_slider.value,
-      k_slider.value, 
+      k_slider.value,
       count_trials.value)
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     playIsHidden.value = false
     stopIsHidden.value = true
   }
-}      
+}
 async function stop_simulation() {
   console.log(simulation_running)
   simulation_running = false
@@ -254,11 +200,11 @@ function LottoExperiment(n, k, number_trials) {
   count_completed_experiments = count_completed_experiments + 1
   experiments.value.push(
     {
-      "Experiment Nr." : String(count_completed_experiments),
-      "k" : String(k),
-      "n" : String(n),
-      "Versuchsanzahl" : String(number_trials),
-      "Gewinnanzahl" : String(count_wins.value)
+      "Experiment Nr.": String(count_completed_experiments),
+      "k": String(k),
+      "n": String(n),
+      "Versuchsanzahl": String(number_trials),
+      "Gewinnanzahl": String(count_wins.value)
     }
   )
   return count_wins.value
