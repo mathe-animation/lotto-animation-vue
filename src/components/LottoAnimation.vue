@@ -3,8 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import {Matter} from "@matter/main"
-import {Bodies} from "@matter/main"
+//import Bodies from "../matter.js"
+//import Engine from "../matter.js"
+
 
 
 let ballRadius = 10;

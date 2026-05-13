@@ -20,13 +20,10 @@ import 'unfonts.css'
 import './styles/tailwind.css'
 import './styles/main.scss'
 
-const emitter = mitt()
-
 const app = createApp(App)
 
 app.config.globalProperties.$Matter = Matter
 
 registerPlugins(app)
 
-app.config.globalProperties.emitter = emitter
 app.mount('#app')

@@ -58,7 +58,6 @@
         <p class="card-simulation-status">{{ status_text }}</p>
         </div>
     <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]'>
-<LottoAnimation />
       </div>
     <div className='bg-pink-500 rounded-lg shadow-xl min-h-[50px]' />
     <div className='bg-slate-500 rounded-lg shadow-xl min-h-[50px]' />
