@@ -2,6 +2,6 @@
       <SimulationConfiguration />
 </template>
 
-<script lang="ts" setup>
+<script lang="js" setup>
   import SimulationConfiguration from '@/components/SimulationConfiguration.vue'
 </script>

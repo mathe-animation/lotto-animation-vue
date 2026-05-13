@@ -76,7 +76,7 @@
 
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { mdiRestart } from "@mdi/js"
 import { mdiPlayCircleOutline } from "@mdi/js"
 import { mdiStopCircleOutline } from "@mdi/js"
@@ -97,7 +97,7 @@ export default {
 // `setup` is a special hook dedicated for the Composition API.
 </script>
 
-<script setup lang="ts">
+<script setup lang="js">
 import { ref } from "vue"
 
 
@@ -151,7 +151,7 @@ async function stop_simulation() {
   stopIsHidden.value = true
 }
 
-function factorial(n : number) {
+function factorial(n) {
   // n!
   var fac = 1
   for (let i = 1; i <= n; i++) {
@@ -160,20 +160,20 @@ function factorial(n : number) {
   return fac
 }
 
-function binomial(n : number, k : number) {
+function binomial(n, k) {
   // Binomialkoeffizient von n über k
   var bin = factorial(n) / (factorial(k) * factorial(n - k))
   return bin
 }
 
-function Prob(n : number, k : number) {
+function Prob(n, k) {
   // Wahrscheinlichkeit für genau r Richtige bei einem Lottofeld
   var N = binomial(n, k)
   var y = 1 / N
   return y
 }
 
-function LottoExperiment(n : number, k : number, number_trials : number) {
+function LottoExperiment(n, k, number_trials) {
   const prob = Prob(n, k)
   console.log("prob is " + String(prob))
   count_wins.value = 0
@@ -206,20 +206,20 @@ function LottoExperiment(n : number, k : number, number_trials : number) {
 </script>
 
 <style scoped>
-@reference "../styles/tailwind.css"
+/*@reference "../styles/tailwind.css"*/
 
 /*
   1. mixing helper classes and @apply for demonstration purposes only
   2. the classes below are NOT wrapped in any CSS layer, so they "win" over everything else
 */
-.hero-card {
+/*.hero-card {
   @apply py-3 md:pr-[120px] w-full transition-none;
-}
+}*/
 
-:deep(.v-card) {
+/*:deep(.v-card) {
   @apply bg-gray-200;
   @apply dark:bg-black dark:bg-linear-to-r dark:from-primary/50 dark:to-primary/30 dark:text-white/80;
-}
+}*/
 
 .hidden {
   display: none;
