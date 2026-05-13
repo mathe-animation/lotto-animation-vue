@@ -29,6 +29,7 @@
     "random": "^5.4.1",
     "sweetalert": "^2.1.2",
     "vue": "^3.5.30",
+    "vue-cli-service": "^5.0.10",
     "vue-timer-hook": "^1.0.86",
     "vuetify": "^4.0.2"
   },
