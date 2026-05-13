@@ -57,7 +57,7 @@
     <div className='bg-indigo-500 rounded-lg shadow-xl min-h-[50px]'>
         <p class="card-simulation-status">{{ status_text }}</p>
         </div>
-    <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px]'>
+    <div className='bg-purple-500 rounded-lg shadow-xl min-h-[50px] row-span-1'>
       <p>
         {{ count_wins_text_field }}
       </p>
@@ -159,7 +159,7 @@ async function stop_simulation() {
 }
 
 function playWinCounterAnimation(count_wins_arg) {
-  count_wins_text_field.value = count_wins_arg
+  count_wins_text_field.value = "Gewinnanzahl: " + count_wins_arg
 }
 
 function factorial(n) {
