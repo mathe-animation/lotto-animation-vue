@@ -93,29 +93,23 @@
   <v-card class="card-simulation-status">{{String(k_slider.value) + "dfgd"}}</v-card>
   <v-card class="card-simulation-status">{{ count_wins }}</v-card>
 
-  <DataTable :value="experiments" tableStyle="min-width: 50rem" stripedRows>
-    <Column field="index" header="Experiment"></Column>
-    <Column field="k" header="k"></Column>
-    <Column field="n" header="n"></Column>
-    <Column field="count_trials" header="Versuchsanzahl"></Column>
-    <Column field="count_wins" header="Gewinnanzahl"></Column>
-</DataTable>
 
 
   <div>
     <h1>vue-timer-hook</h1>
-    <p>Timer Demo</p>
+    <p>Stopwatch Demo</p>
     <div>
-      <span>{{timer.days}}</span>:<span>{{timer.hours}}</span>:<span>{{timer.minutes}}</span>:<span
-        >{{timer.seconds}}</span
+      <span>{{stopwatch.days}}</span>:<span>{{stopwatch.hours}}</span>:<span>{{stopwatch.minutes}}</span>:<span
+        >{{stopwatch.seconds}}</span
       >
     </div>
-    <p>{{timer.isRunning ? 'Running' : 'Not running'}}</p>
-    <button @click="timer.start()">Start</button>
-    <button @click="timer.pause()">Pause</button>
-    <button @click="timer.resume()">Resume</button>
-    <button @click="restartFive()">Restart</button>
+    <p>{{stopwatch.isRunning ? 'Running' : 'Not running'}}</p>
+    <button @click="stopwatch.start()">Start</button>
+    <button @click="stopwatch.pause()">Pause</button>
+    <button @click="stopwatch.reset()">Reset</button>
   </div>
+
+  <v-data-table :items="experiments"></v-data-table>
 
 </template>
 
@@ -145,14 +139,10 @@ export default {
 <script setup lang="ts">
 import { ref } from "vue"
 
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';   // optional
-import Row from 'primevue/row';                   // optional
-
-import { watchEffect, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import { useStopwatch } from 'vue-timer-hook'
 
+let count_completed_experiments = 0
 
 let k_slider = ref(6)
 let n_slider = ref(49)
@@ -169,6 +159,16 @@ const stopIsHidden = ref(true)
 const playIsHidden = ref(false)
 
 let simulation_running = false
+
+let experiments = ref([
+  /*{
+    name: 'African Elephant',
+    species: 'Loxodonta africana',
+    diet: 'Herbivore',
+    habitat: 'Savanna, Forests',
+  },*/
+  // ... more items
+])
 
 async function start_simulation() {
   if (simulation_running == false) {
@@ -236,28 +236,24 @@ function LottoExperiment(n, k, number_trials) {
     }
   }
   console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins))
+  count_completed_experiments = count_completed_experiments + 1
+  experiments.value.push(
+    {
+      "Experiment Nr." : String(count_completed_experiments),
+      "k" : String(k),
+      "n" : String(n),
+      "Versuchsanzahl" : String(number_trials),
+      "Gewinnanzahl" : String(count_wins)
+    }
+  )
   return count_wins
 }
 
 
 
 
-  const time = new Date()
-  time.setSeconds(time.getSeconds() + 600) // 10 minutes timer
-  const timer = useStopwatch(time)
-  const restartFive = () => {
-    // Restarts to 5 minutes timer
-    const time = new Date()
-    time.setSeconds(time.getSeconds() + 300)
-    timer.restart(time)
-  }
-  onMounted(() => {
-    watchEffect(async () => {
-      if (timer.isExpired.value) {
-        console.warn('IsExpired')
-      }
-    })
-  })
+  //const autoStart = false
+  const stopwatch = useStopwatch()
 </script>
 
 <style scoped>
