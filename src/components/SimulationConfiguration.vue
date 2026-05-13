@@ -2,7 +2,9 @@
     <div className='grid grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
 
 
-      <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
+      <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-1'>
+<Timer />
+        </div>
       <div className='bg-teal-500 rounded-lg shadow-xl min-h-[50px] row-span-2'>
 
 <v-card style="margin: auto">
@@ -148,6 +150,9 @@ import { ref } from "vue"
 import { useStopwatch } from "vue-timer-hook"
 //import CodeBlock from './CodeBlock.vue'
 //import Timer from "vue-timer-hook"
+
+import Timer from '@/components/Timer.vue'
+
 
 import { useTimer } from 'vue-timer-hook'
 
