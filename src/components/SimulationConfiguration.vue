@@ -11,7 +11,7 @@
     <h1
       class="relative top-0 w-fit py-4 justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-6xl font-extrabold text-transparent text-center select-auto"
     >
-      LOTTO: 6 aus 49
+      {{"LOTTO: " + k_slider + " aus " + n_slider}}
     </h1>
     <v-card-text>
       <v-slider
