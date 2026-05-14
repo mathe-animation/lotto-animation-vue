@@ -1,33 +1,39 @@
 <template>
-  <div className='grid grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
-    <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-1'>
-      <Timer />
+  <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-3 grid-flow-row-dense'>
+    <div className='bg-green-500 rounded-lg shadow-xl min-h-[50px] row-span-2'>
     </div>
-    <div className='rounded-lg shadow-xl min-h-[50px] row-span-2'>
+    <div className='rounded-lg shadow-xl min-h-[50px] row-span-2' id="div_slider">
 
         <h1
           class="relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
           {{ "LOTTO: " + k_slider + " aus " + n_slider }}
         </h1>
         <v-card-text>
-          <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" label="k: Anzahl der gezogenen Kugeln"
+                <div class="text-body-small lg">
+        Show thumb when using slider
+      </div>
+          <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" lglabel="k: Anzahl der gezogenen Kugeln"
             hide-details>
             <template v-slot:append>
               <v-text-field v-model="k_slider" density="compact" style="width: 150px" type="number" variant="outlined"
                 hide-details></v-text-field>
             </template>
           </v-slider>
-
-          <v-slider v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4" label="n: Anzahl der Kugeln insgesamt"
+                <div class="text-body-small">
+        Show thumb when using slider
+      </div>
+          <v-slider v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4" lglabel="n: Anzahl der Kugeln insgesamt"
             hide-details>
             <template v-slot:append>
               <v-text-field v-model="n_slider" density="compact" style="width: 150px" type="number" variant="outlined"
                 hide-details></v-text-field>
             </template>
           </v-slider>
-
+                <div class="text-body-small">
+        Show thumb when using slider
+      </div>
           <v-slider v-model="count_trials" :min="1000" :max="5000000000" :step="1000" class="ma-4"
-            label="Anzahl der gekauften LOTTO-Scheine" hide-details>
+            lglabel="Anzahl der gekauften LOTTO-Scheine" hide-details>
             <template v-slot:append>
               <v-text-field v-model="count_trials" density="compact" style="width: 150px" type="number"
                 variant="outlined" hide-details></v-text-field>
@@ -38,7 +44,7 @@
 
 
     </div>
-    <div className='bg-blue-500 rounded-lg shadow-xl min-h-[50px] row-span-1' />
+    
     <div className='bg-yellow-500 rounded-lg shadow-xl min-h-[50px] row-span-6 col-span-1'>
 
       <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" v-model:items-per-page="itemsPerPage"></v-data-table>
@@ -104,9 +110,10 @@ export default {
 <script setup lang="js">
 import { ref } from "vue"
 
+const worker = new Worker("../worker.js");
 
 
-import Timer from '@/components/Timer.vue'
+
 
 let count_completed_experiments = 0
 
@@ -139,10 +146,11 @@ function start_simulation() {
     status_text.value = "Status: Simulation läuft..."
     playIsHidden.value = true
     stopIsHidden.value = false
-    count_wins.value = LottoExperiment(
+    /*count_wins.value = LottoExperiment(
       n_slider.value,
       k_slider.value,
-      count_trials.value)
+      count_trials.value)*/
+    worker.postMessage("hello,woker")
     playWinCounterAnimation(count_wins.value)
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
@@ -232,11 +240,23 @@ function LottoExperiment(n, k, number_trials) {
   @apply dark:bg-black dark:bg-linear-to-r dark:from-primary/50 dark:to-primary/30 dark:text-white/80;
 }*/
 
+div {
+  --my-grid-cols: 2;
+}
+
 .hidden {
   display: none;
 }
 
+.shown {
+  display: block;
+}
+
 #btn-start-sim {
   height: 100%;
+}
+
+#div_slider {
+  display: block;
 }
 </style>
