@@ -38,7 +38,6 @@
       </v-slider>
     </v-card-text>
 </div>
-<div class="box" style="grid-area: box2;"></div>
 <div class="box" style="grid-area: box5;">
     <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
       v-model:items-per-page="itemsPerPage"></v-data-table>
@@ -64,6 +63,9 @@
   <span class="card-simulation-status">{{ count_wins }}</span>
 </div>
   </div>
+  <div class="box" style="grid-area: box2;">
+  <LottoAnimation />
+</div>
 </template>
 
 <script lang="js">
@@ -71,6 +73,7 @@ import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiRestart } from "@mdi/js"
 import { mdiPlayBox } from "@mdi/js"
 import { mdiStopCircleOutline } from "@mdi/js"
+import LottoAnimation from "./LottoAnimation.vue";
 
 export default {
   name: "my-cool-component",

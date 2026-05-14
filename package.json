@@ -26,6 +26,7 @@
     "matter-js": "^0.20.0",
     "mitt": "^3.0.1",
     "planck": "^1.5.0",
+    "poly-decomp": "^0.3.0",
     "primevue": "^4.5.5",
     "random": "^5.4.1",
     "sweetalert": "^2.1.2",
