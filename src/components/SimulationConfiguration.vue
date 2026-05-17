@@ -3,11 +3,12 @@
 
   <div class="box" style="grid-area: box2;">
   <LottoAnimation />
+  <img src="../assets/lotto-wheel.jpg" alt="Italian Trulli">
 </div>
 
     <div class="box" style="grid-area: box1;">
     <h1
-      class="relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
+      class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
       {{ "LOTTO: " + k_slider + " aus " + n_slider }}
     </h1>
     <v-card-text>
@@ -47,7 +48,7 @@
     <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
       v-model:items-per-page="itemsPerPage"></v-data-table>
 </div>
-<div class="box" style="grid-area: box3;">
+<div class="box box-sim-start" style="grid-area: box3;">
     <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
       <svg-icon type="mdi" :path="pathStart"></svg-icon>
       {{ start_text }}
@@ -62,10 +63,11 @@
     </p>
 </div>
 
-
-<div class="box" style="grid-area: box6;">
-  <span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>
-  <span class="card-simulation-status">{{ count_wins }}</span>
+<div class="box class-box6" style="grid-area: box6;">
+  <!--<span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>-->
+  <span class="count-wins-title">{{  "Gewinnanzahl:"}}</span>
+  <br>
+  <span class="count-wins-number">{{  count_wins }}</span>
 </div>
 </div>
 </template>
@@ -122,7 +124,7 @@ let simulation_running = false
 
 let experiments = ref([])
 
-const itemsPerPage = ref(6)
+const itemsPerPage = ref(5)
 const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
 
 function start_simulation() {
@@ -132,12 +134,12 @@ function start_simulation() {
     status_text.value = "Status: Simulation läuft..."
     playIsHidden.value = true
     stopIsHidden.value = false
+    status_text.value = "Status: Die Simulation läuft. Bitte warten..."
     count_wins.value = LottoExperiment(
       n_slider.value,
       k_slider.value,
       count_trials.value)
     //worker.postMessage("hello,woker")
-    playWinCounterAnimation(count_wins.value)
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     playIsHidden.value = false
@@ -150,10 +152,6 @@ async function stop_simulation() {
   status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
   playIsHidden.value = false
   stopIsHidden.value = true
-}
-
-function playWinCounterAnimation(count_wins_arg) {
-  count_wins_text_field.value = "Gewinnanzahl: " + count_wins_arg
 }
 
 function factorial(n) {
@@ -247,11 +245,13 @@ div {
 }
 
 .grid-container {
+  height: 100svh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 1em;
+  gap: 0.5em;
   grid-template-areas: 
+  "box1 box2"
   "box1 box2"
   "box1 box2"
   "box1 box2"
@@ -264,8 +264,49 @@ div {
   "box5 box6"
   "box5 box6"
   "box5 box6"
-  "box5 box6"
   "box5 box6";
   
+}
+
+        img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+        }
+
+.box {
+  padding: 0.6em;
+}
+
+.box-sim-start {
+  padding: 0.3em;
+}
+
+div.v-card-text {
+  padding: 0;
+}
+
+        .class-box6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  text-align: center;
+}
+
+.count-wins-title, .count-wins-number {
+  flex: 0 0 100px;
+  font-size: 1em;
+}
+
+.count-wins-number {
+  font-size: 4em;
+}
+
+* /deep/ .v-list-item__subtitle {
+  white-space: normal;
+}
+
+.title-font-size {
+  font-size: 4em;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="content">
     <div id="testLabel">Testing</div>
     <div id="drawhere"></div>
-    debug:{{JSON.stringify(debug)}}
+    <!--debug:{{JSON.stringify(debug)}}-->
   </div>
 </template>
 
