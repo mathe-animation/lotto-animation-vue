@@ -2,7 +2,7 @@
   <div class="grid-container">
 
   
-  <LottoAnimation />
+  <LottoAnimation :key="n_slider"/>
 
 
     <div class="box" style="grid-area: box1;">
@@ -24,7 +24,7 @@
       <div class="text-body-small">
         Show thumb when using slider
       </div>
-      <v-slider v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4" lglabel="n: Anzahl der Kugeln insgesamt"
+      <v-slider @change="update_animation" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4" lglabel="n: Anzahl der Kugeln insgesamt"
         hide-details>
         <template v-slot:append>
           <v-text-field v-model="n_slider" density="compact" style="width: 150px" type="number" variant="outlined"
@@ -126,6 +126,8 @@ let experiments = ref([])
 const itemsPerPage = ref(5)
 const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
 
+const renderComponent = ref(true);
+
 function start_simulation() {
   if (simulation_running == false) {
     console.log(simulation_running)
@@ -201,6 +203,11 @@ function LottoExperiment(n, k, number_trials) {
   }
   experiments.value.push(new_experiment_list_item)
   return count_wins.value
+}
+
+function update_animation() {
+  renderComponent.value = false;
+  renderComponent.value = true;
 }
 
 </script>

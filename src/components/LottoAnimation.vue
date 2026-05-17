@@ -1,23 +1,31 @@
 <template>
-  <div class="content">
-    <div id="drawhere"></div>
-    <!--debug:{{JSON.stringify(debug)}}-->
-  </div>
-  <div id="box2" class="box" style="grid-area: box2;">
+
+  <div id="app" class="box" style="grid-area: box2;">
 </div>
 
 </template>
 
 <script setup lang="js">
+import { ref } from "vue"
+
+const counter_bubbles = ref(0);
 
 let { Engine, Render, World, Bodies, Body, Events, Runner} = Matter;
 let engine = Engine.create();
 let wheel;
 let runner = Runner.create();
 
+// Will execute myCallback every 0.5 seconds 
+var intervalID = window.setInterval(myCallback, 500);
+
+function myCallback() {
+ // Your code here
+}
+
+
 function setup () {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const width = window.innerWidth/10;
+  const height = window.innerHeight/10;
   // create an engine
 
   // create a renderer
@@ -97,11 +105,11 @@ function setup () {
 
   draw();
 
-  for (let i = 0; i < 10; ++i) {
+  for (let i = 0; i < 49; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5,
-      r: 18,
+      r: 5,
       options: {
         mass: 1 + i * 2,
         friction: 0,
@@ -119,7 +127,7 @@ function setup () {
     });
   }
 
-  for (let i = 15; i < 25; ++i) {
+  /*for (let i = 15; i < 25; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5,
@@ -136,7 +144,7 @@ function setup () {
         }
       }
     });
-  }
+  }*/
   
 
   // add all of the bodies to the world
@@ -158,6 +166,7 @@ function addBody (...bodies) {
 function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
   let body = Bodies.circle(x, y, r, options);
   addBody(body);
+  counter_bubbles.value = counter_bubbles.value + 1;
   return body;
 }
 
