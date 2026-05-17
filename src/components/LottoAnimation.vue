@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app" class="box" style="grid-area: box2;">
+  <div id="box2" class="box" style="grid-area: box2;">
 </div>
 
 </template>
@@ -8,12 +8,14 @@
 <script setup lang="js">
 import { ref } from "vue"
 
-const counter_bubbles = ref(0);
 
 let { Engine, Render, World, Bodies, Body, Events, Runner} = Matter;
 let engine = Engine.create();
 let wheel;
 let runner = Runner.create();
+
+const counter_bubbles = ref(0);
+const circles = [];
 
 // Will execute myCallback every 0.5 seconds 
 var intervalID = window.setInterval(myCallback, 2000);
@@ -47,9 +49,9 @@ function myCallback() {
  }
 
  if (k_slider.value < counter_bubbles) {
-	let number = k_slider.value - counter_bubbles;
-	if (number_missing > 0) {
-		for (let i = 0; i < number_missing; ++i) {
+	let number_too_much = counter_bubbles - k_slider.value;
+	if (number_too_much > 0) {
+		for (let i = 0; i < number_too_much; ++i) {
 			addCircle({
 			x: width / 2 + i * 1.5,
 			y: height / 2 + i * 1.5,
@@ -76,7 +78,7 @@ function myCallback() {
 
 
 function setup () {
-  const width = window.innerWidth/4;
+  const width = window.innerWidth/2;
   const height = window.innerHeight/2;
   // create an engine
 
@@ -216,10 +218,12 @@ function addBody (...bodies) {
 }
 
 function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
-  let body = Bodies.circle(x, y, r, options);
-  addBody(body);
+  //let body = Bodies.circle(x, y, r, options);
+  //addBody(body);
+  circles.push(Matter.Bodies.circle(200, 50, 5));
   counter_bubbles.value = counter_bubbles.value + 1;
-  return body;
+  //return body;
+  return Matter.Bodies.circle(200, 50, 5);
 }
 
 function draw () {
