@@ -1,5 +1,10 @@
 <template>
   <div class="grid-container">
+
+  <div class="box" style="grid-area: box2;">
+  <LottoAnimation />
+</div>
+
     <div class="box" style="grid-area: box1;">
     <h1
       class="relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
@@ -62,9 +67,6 @@
   <span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>
   <span class="card-simulation-status">{{ count_wins }}</span>
 </div>
-  </div>
-  <div class="box" style="grid-area: box2;">
-  <LottoAnimation />
 </div>
 </template>
 
