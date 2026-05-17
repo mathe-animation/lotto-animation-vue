@@ -16,16 +16,68 @@ let wheel;
 let runner = Runner.create();
 
 // Will execute myCallback every 0.5 seconds 
-var intervalID = window.setInterval(myCallback, 500);
+var intervalID = window.setInterval(myCallback, 2000);
 
 function myCallback() {
- // Your code here
+ if (k_slider.value > counter_bubbles) {
+	let number_missing = k_slider.value - counter_bubbles;
+	if (number_missing > 0) {
+		for (let i = 0; i < number_missing; ++i) {
+			addCircle({
+			x: width / 2 + i * 1.5,
+			y: height / 2 + i * 1.5,
+			r: 5,
+			options: {
+				mass: 1 + i * 2,
+				friction: 0,
+				frictionStatic: 0,
+				// frictionStatic: 5,
+				label: 'ball',
+				render: {
+				opacity: 0.6,
+				},
+				collisionFilter: {
+				category: 0x0002,
+				mask: 0x0002 | 0x0001
+				}
+			}
+			});
+		}
+	}
+ }
+
+ if (k_slider.value < counter_bubbles) {
+	let number = k_slider.value - counter_bubbles;
+	if (number_missing > 0) {
+		for (let i = 0; i < number_missing; ++i) {
+			addCircle({
+			x: width / 2 + i * 1.5,
+			y: height / 2 + i * 1.5,
+			r: 5,
+			options: {
+				mass: 1 + i * 2,
+				friction: 0,
+				frictionStatic: 0,
+				// frictionStatic: 5,
+				label: 'ball',
+				render: {
+				opacity: 0.6,
+				},
+				collisionFilter: {
+				category: 0x0002,
+				mask: 0x0002 | 0x0001
+				}
+			}
+			});
+		}
+	}
+ }
 }
 
 
 function setup () {
-  const width = window.innerWidth/10;
-  const height = window.innerHeight/10;
+  const width = window.innerWidth/4;
+  const height = window.innerHeight/2;
   // create an engine
 
   // create a renderer
