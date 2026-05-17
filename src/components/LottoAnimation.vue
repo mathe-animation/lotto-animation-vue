@@ -4,150 +4,172 @@
     <div id="drawhere"></div>
     <!--debug:{{JSON.stringify(debug)}}-->
   </div>
+  <div id="box2" class="box" style="grid-area: box2;">
+  <img src="../assets/lotto-wheel.jpg" alt="Italian Trulli">
+</div>
 </template>
 
-<script lang="js">
-/*import {
-  Engine,
-  Render,
-  World,
-  Bodies,
-  Body,
-  Events,
-  Composite,
-  Composites,
-  Constraint,
-  Vertices,
-  Mouse,
-  MouseConstraint,
-  Query,
-  Common
-} from "matter-js";
-import decomp from "poly-decomp";*/
+<script setup lang="js">
 
-let ballRadius = 10;
-let pegCount = 16;
-let pegSize = 50;
-let maximumBalls = 200;
-let ballEveryNFrames = 5;
-
-let w = 750;
-let h = 900;
-let countX = 10;
-let countY = 20;
-let m;
-
-const { Bodies, Body, Composite, Engine, Events, World } = Matter;
-
-let canvas;
-//let engine;
-
+let { Engine, Render, World, Bodies, Body, Events } = Matter;
+let engine = Engine.create();
 let wheel;
 
-function setup() {
-let engine = Engine.create();
-Engine.run(engine);	
+function setup () {
+  //const width_anim = document.getElementById('box6').offsetWidth;
+  //const height_anim = document.getElementById('box6').offsetHeight;
+  //const width = width_anim;
+  //const height = height_anim;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  // create an engine
 
-canvas = createCanvas(windowWidth, windowHeight);
+  // create a renderer
+  let render = Render.create({
+      element: document.getElementById('app'),
+      engine: engine,
+      options: {
+        width: width,
+        height: height,
+        wireframes: false,
+        background: "#fff",
+        showAngleIndicator: true,
+      }
+  });
 
-m = min(width, height);
-let rat = 1 / 5 * 2;
-let r = m * rat;
+  let parts = [];
+  let bodies = [];
+  for (let i = 0; i < 90; i++) {
+    let a = Bodies.rectangle(
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 , 
+      10, 
+      12, 
+      {
+        isStatic: true, 
+        friction: 0.5,
+        angle: Math.PI / 180 * i * 4,
+        render: {
+          fillStyle: i !== 0 ? "#000" : '#fff',
+          strokeStyle: "#fff",
+          lineWidth: 0
+        }
+      }
+    );
+    parts.push(a);
+    World.add(engine.world, a);
+  }
 
-let parts = [];
+  wheel = Body.create({ parts, isStatic: true });
 
-for(let i = 0; i < pegCount; i++) {
-	let segment = TAU / pegCount;
-	let angle = i / pegCount * TAU;
-	let angle2 = i / pegCount * TAU + segment / 2;
-	let x = cos(angle);
-	let y = sin(angle);
-	let x2 = cos(angle2);
-	let y2 = sin(angle2);
-	let cx = x * r;
-	let cy = y * r;
-	let cx2 = x2 * r;
-	let cy2 = y2 * r;
-	let circ = addCircle({ x: cx, y: cy, r: pegSize / 1000 * m, options: { isStatic: true, label: 'peg' } });
-	let rect = addRect({ x: cx2, y: cy2, w: 100 / 1000 * m, h: 30 / 1000 * m, options: { angle: angle2 + HALF_PI, isStatic: true } });
-	parts.push(circ, rect);
+  for (let i = 20; i < 45; i++) {
+    let a = Bodies.rectangle(
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120, 
+      30, 
+      30, 
+      {
+        isSensor: true,
+        isStatic: true, 
+        friction: 0,
+        label: 'addSpeedSensor',
+        angle: Math.PI / 180 * i * 4,
+        render: {
+          strokeStyle: '#C44D58',
+          fillStyle: 'transparent',
+          lineWidth: 1
+        }
+      }
+    );
+    World.add(engine.world, a);
+  }
+
+  Events.on(engine, 'collisionStart', function(event) {
+    var pairs = event.pairs;
+    for (let i = 0, j = pairs.length; i != j; ++i) {
+        let pair = pairs[i];
+        let { bodyA, bodyB } = pair; 
+
+        if (bodyA.label === 'addSpeedSensor') {
+          Body.setVelocity(bodyB, {x: -2.5, y: -2.5})
+          // Body.applyForce(bodyB, {x: bodyB.position.x, y: bodyB.position.y}, {x: custForceX, y: custForceY})
+        } else if (bodyB.label === 'addSpeedSensor') {
+          // Body.applyForce(bodyA, {x: bodyA.position.x, y: bodyA.position.y}, {x: -0.1, y: -0.05})
+        }
+    }
+  });
+
+  draw();
+
+  for (let i = 0; i < 10; ++i) {
+    addCircle({
+      x: width / 2 + i * 1.5,
+      y: height / 2 + i * 1.5,
+      r: 18,
+      options: {
+        mass: 1 + i * 2,
+        friction: 0,
+        frictionStatic: 0,
+        // frictionStatic: 5,
+        label: 'ball',
+        render: {
+          opacity: 0.6,
+        },
+        collisionFilter: {
+          category: 0x0002,
+          mask: 0x0002 | 0x0001
+        }
+      }
+    });
+  }
+
+  for (let i = 15; i < 25; ++i) {
+    addCircle({
+      x: width / 2 + i * 1.5,
+      y: height / 2 + i * 1.5,
+      r: 18,
+      options: {
+        mass: 1 + i * 2,
+        friction: 0,
+        frictionStatic: 0,
+        // frictionStatic: 5,
+        label: 'ball',
+        collisionFilter: {
+          category: 0x0004,
+          mask: 0x0004 | 0x0001
+        }
+      }
+    });
+  }
+  
+
+  // add all of the bodies to the world
+  World.add(engine.world, bodies);
+
+  // run the engine
+  //Engine.run(engine);
+  Matter.Runner.run(engine);
+
+  // run the renderer
+  Render.run(render);
 }
 
-wheel = Body.create({ parts, isStatic: true });
+function addBody (...bodies) {
+  World.add(engine.world, bodies);
 }
 
-function addBody(...bodies) {
-World.add(engine.world, bodies);
+function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
+  let body = Bodies.circle(x, y, r, options);
+  addBody(body);
+  return body;
 }
 
-function removeBody(...bodies) {
-World.remove(engine.world, bodies);
+function draw () {
+  Body.rotate(wheel, Math.PI/120);
+  window.requestAnimationFrame(draw);
 }
 
-function addRect({ x = 0, y = 0, w = 10, h = 10, options = {} } = {}) {
-let body = Bodies.rectangle(x, y, w, h, options);
-addBody(body);
-return body;
-}
-function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
-let body = Bodies.circle(x, y, r, options);
-addBody(body);
-return body;
-}
-
-function draw() {
-background(0);
-
-Body.rotate(wheel, 0.015 + cos(frameCount / 30 + HALF_PI) * 0.025);
-
-let bodies = Composite.allBodies(engine.world);
-
-if(bodies.length < maximumBalls && !(frameCount % ballEveryNFrames)) {
-	addCircle({
-			x: 0,
-			y: 0,
-			r: ballRadius / 1000 * m,
-			options: {
-				restitution: 0.8,
-				torque: random(-0.05, 0.05),
-				label: 'ball'
-			}
-		});
-}
-
-translate(width / 2, height / 2);
-
-bodies.forEach((n, i) => {
-	let render = n.render;
-	if(!render.visible) {
-		return;
-	}
-	fill(render.fillStyle);
-	stroke(render.strokeStyle);
-	strokeWeight(render.lineWidth);
-	if(['peg','ball'].includes(n.label)) {
-		ellipse(n.position.x, n.position.y, n.circleRadius * 2);
-	}
-	else {
-		beginShape();
-		n.vertices.forEach(({ x, y, isInternal }) => vertex(x, y));
-		endShape(CLOSE);
-	}
-	
-	if(!n.isStatic && n.position.y > height * 2) {
-		removeBody(n);
-	}
-});
-}
-
-function windowResized() {
-resizeCanvas(windowWidth, windowHeight);
-}
-
-      // run the engine
-      //Engine.run(engine);
-      // run the renderer
-      //Render.run(render);
+setup();
 
 </script>
 

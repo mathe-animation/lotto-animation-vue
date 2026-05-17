@@ -1,10 +1,9 @@
 <template>
   <div class="grid-container">
 
-  <div class="box" style="grid-area: box2;">
+  
   <LottoAnimation />
-  <img src="../assets/lotto-wheel.jpg" alt="Italian Trulli">
-</div>
+
 
     <div class="box" style="grid-area: box1;">
     <h1
@@ -132,8 +131,6 @@ function start_simulation() {
     console.log(simulation_running)
     simulation_running = true
     status_text.value = "Status: Simulation läuft..."
-    playIsHidden.value = true
-    stopIsHidden.value = false
     status_text.value = "Status: Die Simulation läuft. Bitte warten..."
     count_wins.value = LottoExperiment(
       n_slider.value,
@@ -295,7 +292,7 @@ div.v-card-text {
 
 .count-wins-title, .count-wins-number {
   flex: 0 0 100px;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 .count-wins-number {
