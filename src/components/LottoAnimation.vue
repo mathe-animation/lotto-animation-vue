@@ -1,25 +1,21 @@
 <template>
   <div class="content">
-    <div id="testLabel">Testing</div>
     <div id="drawhere"></div>
     <!--debug:{{JSON.stringify(debug)}}-->
   </div>
   <div id="box2" class="box" style="grid-area: box2;">
-  <img src="../assets/lotto-wheel.jpg" alt="Italian Trulli">
 </div>
+
 </template>
 
 <script setup lang="js">
 
-let { Engine, Render, World, Bodies, Body, Events } = Matter;
+let { Engine, Render, World, Bodies, Body, Events, Runner} = Matter;
 let engine = Engine.create();
 let wheel;
+let runner = Runner.create();
 
 function setup () {
-  //const width_anim = document.getElementById('box6').offsetWidth;
-  //const height_anim = document.getElementById('box6').offsetHeight;
-  //const width = width_anim;
-  //const height = height_anim;
   const width = window.innerWidth;
   const height = window.innerHeight;
   // create an engine
@@ -152,6 +148,7 @@ function setup () {
 
   // run the renderer
   Render.run(render);
+  Runner.run(runner, engine);
 }
 
 function addBody (...bodies) {
@@ -170,9 +167,4 @@ function draw () {
 }
 
 setup();
-
 </script>
-
-
-<style scoped>
-</style>
