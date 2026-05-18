@@ -50,7 +50,7 @@
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
     <div class="box box-sim-start" style="grid-area: box3;">
-      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
+      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
@@ -100,7 +100,7 @@ export default {
 
 <script setup lang="js">
 import { ref } from "vue"
-import SWorker from 'vue3-worker'
+import { useWebWorkerFn } from '@vueuse/core'
 
 let count_completed_experiments = 0
 
@@ -159,13 +159,11 @@ const count_trials_poss_val = [
   },
 ]
 
-SWorker.run(() => 'SWorker run 1: Function in other thread')
-  .then(console.log) // logs 'SWorker run 1: Function in other thread'
-  .catch(console.error) // logs any possible error
-
-SWorker.run((arg1, arg2) => `SWorker run 2: ${arg1} ${arg2}`, ['Another', 'function in other thread'])
-    .then(console.log) // logs 'SWorker run 2: Another function in other thread'
-    .catch(console.error) // logs any possible error
+const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
+  LottoExperiment(
+    n_slider.value,
+    k_slider.value,
+    count_trials.value))
 
 function itemProps(item) {
   return {
@@ -174,22 +172,16 @@ function itemProps(item) {
   }
 }
 
-function start_simulation() {
+async function start_simulation() {
   if (simulation_running == false) {
     console.log(simulation_running)
     simulation_running = true
     status_text.value = "Status: Simulation läuft..."
     status_text.value = "Status: Die Simulation läuft. Bitte warten..."
-    /*count_wins.value = SWorker.run(LottoExperiment(
-      n_slider.value,
-      k_slider.value,
-      count_trials.value))
-      .then(console.log) // logs 'SWorker run 1: Function in other thread'
-      .catch(console.error) // logs any possible error*/
-    /*count_wins.value = LottoExperiment(
-      n_slider.value,
-      k_slider.value,
-      count_trials.value)*/
+    /*const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
+      
+    )*/
+    count_wins.value = await workerFn()
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     playIsHidden.value = false
@@ -228,20 +220,20 @@ function Prob(n, k) {
 
 function LottoExperiment(n, k, number_trials) {
   const prob = Prob(n, k)
-  console.log("prob is " + String(prob))
+  /*console.log("prob is " + String(prob))*/
   count_wins.value = 0
-  console.log("n ist " + String(n))
+  /*console.log("n ist " + String(n))
   console.log("k ist " + String(k))
   console.log("pls make alert before calc")
-  console.log("number_trials ist " + String(number_trials))
+  console.log("number_trials ist " + String(number_trials))*/
   for (let i = 0; i < number_trials; i++) {
     let random_number = Math.random()
     if (random_number <= prob) {
       count_wins.value = count_wins.value + 1
-      console.log("win")
+      /*console.log("win")
       if (i % 1000 == 0) {
         console.log("another 1000 done")
-      }
+      }*/
     }
   }
   console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins.value))

@@ -17,6 +17,8 @@ let runner = Runner.create();
 const counter_bubbles = ref(0);
 const circles = [];
 
+const k_slider = ref(49);
+
 // Will execute myCallback every 0.5 seconds 
 var intervalID = window.setInterval(myCallback, 2000);
 
