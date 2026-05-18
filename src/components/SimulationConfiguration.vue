@@ -1,74 +1,78 @@
 <template>
   <div class="grid-container">
 
-  
-  <LottoAnimation :key="n_slider"/>
+
+    <LottoAnimation :key="n_slider" />
 
 
     <div class="box" style="grid-area: box1;">
-    <h1
-      class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
-      {{ "LOTTO: " + k_slider + " aus " + n_slider }}
-    </h1>
-    <v-card-text>
-      <div class="text-body-small lg">
-        Show thumb when using slider
-      </div>
-      <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" lglabel="k: Anzahl der gezogenen Kugeln"
-        hide-details>
-        <template v-slot:append>
-          <v-text-field v-model="k_slider" density="compact" style="width: 150px" type="number" variant="outlined"
-            hide-details></v-text-field>
-        </template>
-      </v-slider>
-      <div class="text-body-small">
-        Show thumb when using slider
-      </div>
-      <v-slider @change="update_animation" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4" lglabel="n: Anzahl der Kugeln insgesamt"
-        hide-details>
-        <template v-slot:append>
-          <v-text-field v-model="n_slider" density="compact" style="width: 150px" type="number" variant="outlined"
-            hide-details></v-text-field>
-        </template>
-      </v-slider>
-      <div class="text-body-small">
-        Show thumb when using slider
-      </div>
-      <v-slider v-model="count_trials" :min="1000" :max="5000000000" :step="1000" class="ma-4"
-        lglabel="Anzahl der gekauften LOTTO-Scheine" hide-details>
-        <template v-slot:append>
-          <v-text-field v-model="count_trials" density="compact" style="width: 150px" type="number" variant="outlined"
-            hide-details></v-text-field>
-        </template>
-      </v-slider>
-    </v-card-text>
-</div>
-<div class="box" style="grid-area: box5;">
-    <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
-      v-model:items-per-page="itemsPerPage"></v-data-table>
-</div>
-<div class="box box-sim-start" style="grid-area: box3;">
-    <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
-      <svg-icon type="mdi" :path="pathStart"></svg-icon>
-      {{ start_text }}
-    </v-btn>
-</div>
+      <h1
+        class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
+        {{ "LOTTO: " + k_slider + " aus " + n_slider }}
+      </h1>
+      <v-card-text>
+        <div class="text-body-small lg">
+          k (Anzahl der gezogenen Kugeln)
+        </div>
+        <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" lglabel="k: Anzahl der gezogenen Kugeln"
+          hide-details>
+          <template v-slot:append>
+            <v-text-field v-model="k_slider" density="compact" style="width: 150px" type="number" variant="outlined"
+              hide-details></v-text-field>
+          </template>
+        </v-slider>
+        <div class="text-body-small">
+          n (Anzahl der Kugeln insgesamt)
+        </div>
+        <v-slider @change="update_animation" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
+          lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
+          <template v-slot:append>
+            <v-text-field v-model="n_slider" density="compact" style="width: 150px" type="number" variant="outlined"
+              hide-details></v-text-field>
+          </template>
+        </v-slider>
+        <div class="text-body-small" style="margin-bottom: 0.2em;">
+          Anzahl gekaufter LOTTO-Scheine:
+        </div>
+        <!--<v-slider v-model="count_trials" :min="1000" :max="1000000000" :step="1000" class="ma-4"
+          lglabel="Anzahl der gekauften LOTTO-Scheine" hide-details>
+          <template v-slot:append>
+            <v-text-field v-model="count_trials" density="compact" style="width: 150px" type="number" variant="outlined"
+              hide-details></v-text-field>
+          </template>
+        </v-slider>-->
+        <v-select v-model="count_trials" density="compact" :item-props="itemProps"
+          :items="count_trials_poss_val"></v-select>
+      </v-card-text>
+    </div>
+    <div class="box" style="grid-area: box5;">
+      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
+        v-model:items-per-page="itemsPerPage"></v-data-table>
+    </div>
+    <div class="box box-sim-start" style="grid-area: box3;">
+      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" :class="{ hidden: playIsHidden }">
+        <svg-icon type="mdi" :path="pathStart"></svg-icon>
+        {{ start_text }}
+      </v-btn>
+
+     
+    </div>
 
 
-<div class="box" style="grid-area: box4;">
-    <p class="card-simulation-status">{{ status_text }}</p>
-    <p>
-      {{ count_wins_text_field }}
-    </p>
-</div>
+    <div class="box" style="grid-area: box4;">
+      <p class="card-simulation-status">{{ status_text }}</p>
+      <p>
+        {{ count_wins_text_field }}
+      </p>
+    </div>
 
-<div class="box class-box6" style="grid-area: box6;">
-  <!--<span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>-->
-  <span class="count-wins-title">{{  "Gewinnanzahl:"}}</span>
-  <br>
-  <span class="count-wins-number">{{  count_wins }}</span>
-</div>
-</div>
+    <div class="box class-box6" style="grid-area: box6;">
+      <!--<span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>-->
+      <span class="count-wins-title">{{ "Gewinnanzahl:" }}</span>
+      <br>
+      <span class="count-wins-number">{{ count_wins }}</span>
+    </div>
+  </div>
 </template>
 
 <script lang="js">
@@ -96,11 +100,7 @@ export default {
 
 <script setup lang="js">
 import { ref } from "vue"
-
-//const worker = new Worker("../worker.js");
-
-
-
+import SWorker from 'vue3-worker'
 
 let count_completed_experiments = 0
 
@@ -128,24 +128,75 @@ const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
 
 const renderComponent = ref(true);
 
+const count_trials_poss_val = [
+  {
+    value: 1000,
+    description: '1 Tausend',
+  },
+  {
+    value: 10000,
+    description: '10 Tausend',
+  },
+  {
+    value: 100000,
+    description: '100 Tausend',
+  },
+  {
+    value: 1000000,
+    description: '1 Million',
+  },
+  {
+    value: 10000000,
+    description: '10 Millionen',
+  },
+  {
+    value: 100000000,
+    description: '100 Millionen',
+  },
+  {
+    value: 1000000000,
+    description: '1 Billiarde (1000 Millionen)',
+  },
+]
+
+SWorker.run(() => 'SWorker run 1: Function in other thread')
+  .then(console.log) // logs 'SWorker run 1: Function in other thread'
+  .catch(console.error) // logs any possible error
+
+SWorker.run((arg1, arg2) => `SWorker run 2: ${arg1} ${arg2}`, ['Another', 'function in other thread'])
+    .then(console.log) // logs 'SWorker run 2: Another function in other thread'
+    .catch(console.error) // logs any possible error
+
+function itemProps(item) {
+  return {
+    title: item.value,
+    subtitle: item.description,
+  }
+}
+
 function start_simulation() {
   if (simulation_running == false) {
     console.log(simulation_running)
     simulation_running = true
     status_text.value = "Status: Simulation läuft..."
     status_text.value = "Status: Die Simulation läuft. Bitte warten..."
-    count_wins.value = LottoExperiment(
+    /*count_wins.value = SWorker.run(LottoExperiment(
       n_slider.value,
       k_slider.value,
-      count_trials.value)
-    //worker.postMessage("hello,woker")
+      count_trials.value))
+      .then(console.log) // logs 'SWorker run 1: Function in other thread'
+      .catch(console.error) // logs any possible error*/
+    /*count_wins.value = LottoExperiment(
+      n_slider.value,
+      k_slider.value,
+      count_trials.value)*/
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     playIsHidden.value = false
     stopIsHidden.value = true
   }
 }
-async function stop_simulation() {
+function stop_simulation() {
   console.log(simulation_running)
   simulation_running = false
   status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
@@ -181,6 +232,7 @@ function LottoExperiment(n, k, number_trials) {
   count_wins.value = 0
   console.log("n ist " + String(n))
   console.log("k ist " + String(k))
+  console.log("pls make alert before calc")
   console.log("number_trials ist " + String(number_trials))
   for (let i = 0; i < number_trials; i++) {
     let random_number = Math.random()
@@ -254,29 +306,29 @@ div {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0.5em;
-  grid-template-areas: 
-  "box1 box2"
-  "box1 box2"
-  "box1 box2"
-  "box1 box2"
-  "box1 box2"
-  "box1 box2"
-  "box3 box2"
-  "box4 box2"
-  "box5 box6"
-  "box5 box6"
-  "box5 box6"
-  "box5 box6"
-  "box5 box6"
-  "box5 box6";
-  
+  grid-template-areas:
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box3 box2"
+    "box4 box2"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6";
+
 }
 
-        img {
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
-        }
+img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+}
 
 .box {
   padding: 0.6em;
@@ -290,14 +342,15 @@ div.v-card-text {
   padding: 0;
 }
 
-        .class-box6 {
+.class-box6 {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   text-align: center;
 }
 
-.count-wins-title, .count-wins-number {
+.count-wins-title,
+.count-wins-number {
   flex: 0 0 100px;
   font-size: 1.5em;
 }

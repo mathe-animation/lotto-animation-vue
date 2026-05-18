@@ -25,6 +25,7 @@
     "@primeuix/themes": "^2.0.3",
     "@vueuse/core": "^14.3.0",
     "matter-js": "^0.20.0",
+    "mime-types": "^3.0.2",
     "mitt": "^3.0.1",
     "planck": "^1.5.0",
     "poly-decomp": "^0.3.0",
@@ -34,6 +35,8 @@
     "vue": "^3.5.34",
     "vue-cli-service": "^5.0.10",
     "vue-timer-hook": "^1.0.86",
+    "vue-worker": "^1.2.1",
+    "vue3-worker": "^1.2.0",
     "vuetify": "^4.0.2"
   },
   "devDependencies": {

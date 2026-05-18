@@ -6,14 +6,15 @@
 import Matter from 'matter-js' // Import the plugin
 // Composables
 import { createApp } from 'vue'
-import mitt from 'mitt'
 
 
 // Plugins
 import { registerPlugins } from '@/plugins'
 
+
 // Components
 import App from './App.vue'
+
 
 // Styles
 import 'unfonts.css'
@@ -26,4 +27,4 @@ app.config.globalProperties.$Matter = Matter
 
 registerPlugins(app)
 
-app.mount('#app')
+app.mount('#app')   
