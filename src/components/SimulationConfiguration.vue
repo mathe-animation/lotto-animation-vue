@@ -42,12 +42,12 @@
               hide-details></v-text-field>
           </template>
         </v-slider>-->
-        <v-select v-model="count_trials" density="compact" :item-props="itemProps"
+        <v-select item-color="#ff0" v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
       </div>
 
     <div class="box box-sim-start">
-      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#cc0" variant="flat">
+      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#ff0" variant="tonal">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
@@ -61,13 +61,13 @@
     </div>
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
+      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" class="custom-data-table" :class="{'custom-dark-theme': darkTheme}"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
 
     <div class="box yellow-border" style="grid-area: box2; padding: 0; margin: 0;">
-      <LottoAnimation :key="n_slider" />
+      <LottoAnimation /><!--:key="n_slider" />-->
     </div>
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
@@ -79,12 +79,12 @@
 
         <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
 
-        <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span>
+        <span style="color: #bb0000;" class="count-wins-number">{{ cost_sum.toLocaleString() + "€" }}</span>
       </div>
       <div class="div-result">
 
         <p class="count-wins-title">{{ "Gewinn insgesamt (durchschnittlich):" }}</p>
-        <span style="color: #00bb00;" class="count-wins-number">{{ (count_wins * 1000000).toLocaleString() + "€"
+        <span style="color: #00bb00;" class="count-wins-number">{{ win_sum.toLocaleString() + "€"
         }}</span>
       </div>
     </div>
@@ -127,6 +127,8 @@ let count_trials = ref(10000)
 
 //let trial_counter_value = ref(0)
 let count_wins = ref(0)
+let cost_sum = ref(0)
+let win_sum = ref(0)
 let count_wins_text_field = ref("")
 
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
@@ -137,7 +139,7 @@ let simulation_running = false
 
 let experiments = ref([])
 
-const itemsPerPage = ref(4)
+const itemsPerPage = ref(5)
 const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
 
 const renderComponent = ref(true);
@@ -193,6 +195,8 @@ function start_simulation() {
     let new_experiment_data = LottoExperiment(n_slider.value, k_slider.value, count_trials.value)
     experiments.value.push(new_experiment_data)
     count_completed_experiments = count_completed_experiments + 1
+    cost_sum.value = count_trials.value * 1.2
+    win_sum.value = count_wins.value * 1000000
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
   }
@@ -290,6 +294,7 @@ div {
 h1 {
   padding: 0;
   color: #cdcd00;
+  font-weight: 800;
 }
 
 #div_slider {
@@ -386,6 +391,17 @@ span {
 
 .text-body-small {
   padding-left: 0.7em;
+}
+
+/* Custom styling for the whole v-data-table */
+.custom-data-table {
+  color: #ff0;
+  background-color: #111;
+}
+
+/* Custom styling for dark theme */
+.custom-dark-theme {
+  /* Your custom styles for the dark theme go here */
 }
 
 .div-result {
