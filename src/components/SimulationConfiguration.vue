@@ -66,11 +66,12 @@
       </p>
     </div>
 
-    <div class="box class-box6" style="grid-area: box6;">
+    <div class="box class-box6" style="grid-area: box6; line-break: strict; display: block;">
       <!--<span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>-->
-      <span class="count-wins-title">{{ "Gewinnanzahl:" }}</span>
-      <br>
-      <span class="count-wins-number">{{ count_wins }}</span>
+      <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
+      <p class="count-wins-number">{{ count_wins }}</p>
+      <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
+      <span style="color: #bb0000;" class="count-wins-number">{{ count_trials * 1.2 + "€" }}</span>
     </div>
   </div>
 </template>
@@ -334,5 +335,9 @@ div.v-card-text {
 
 .title-font-size {
   font-size: 4em;
+}
+
+span {
+  display: inline-block;
 }
 </style>
