@@ -112,7 +112,7 @@ function setup () {
         friction: 0.5,
         angle: Math.PI / 180 * i * 4,
         render: {
-          fillStyle: i !== 0 ? "#aa0" : '#aa0',
+          fillStyle: i !== 0 ? "#ff0" : '#ff0',
           strokeStyle: "#550",
           lineWidth: 10
         }
@@ -129,7 +129,7 @@ function setup () {
       width / 2 + Math.cos(i * 4 * Math.PI / 180) * 150, 
       height / 2 + Math.sin(i * 4 * Math.PI / 180) * 150, 
       55, 
-      30, 
+      55, 
       {
         isSensor: true,
         isStatic: true, 
@@ -137,9 +137,9 @@ function setup () {
         label: 'addSpeedSensor',
         angle: Math.PI / 180 * i * 4,
         render: {
-          strokeStyle: '#ff0',
+          strokeStyle: '#660',
           fillStyle: 'transparent',
-          lineWidth: 0
+          lineWidth: 13
         }
       }
     );
