@@ -1,13 +1,15 @@
 <template>
 
-  <div id="box2" class="box" style="grid-area: box2;">
-</div>
+  <div id="app2"></div>
 
 </template>
 
 <script setup lang="js">
-import { ref } from "vue"
+import { ref, onMounted } from 'vue'
 
+onMounted(() => {
+  setup();
+})
 
 let { Engine, Render, World, Bodies, Body, Events, Runner} = Matter;
 let engine = Engine.create();
@@ -86,7 +88,7 @@ function setup () {
 
   // create a renderer
   let render = Render.create({
-      element: document.getElementById('app'),
+      element: document.getElementById('app2'),
       engine: engine,
       options: {
         width: width,
@@ -232,6 +234,4 @@ function draw () {
   Body.rotate(wheel, Math.PI/120);
   window.requestAnimationFrame(draw);
 }
-
-setup();
 </script>

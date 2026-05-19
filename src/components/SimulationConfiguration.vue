@@ -1,9 +1,9 @@
 <template>
   <div class="grid-container">
 
-
+    <div class="box" style="grid-area: box2;">
     <LottoAnimation :key="n_slider" />
-
+</div>
 
     <div class="box" style="grid-area: box1;">
       <h1
@@ -55,7 +55,7 @@
         {{ start_text }}
       </v-btn>
 
-     
+
     </div>
 
 
@@ -100,7 +100,8 @@ export default {
 
 <script setup lang="js">
 import { ref } from "vue"
-import { useWebWorkerFn } from '@vueuse/core'
+import { nextTick } from 'vue'
+import { useWebWorker } from '@vueuse/core'
 
 let count_completed_experiments = 0
 
@@ -115,9 +116,6 @@ let count_wins_text_field = ref("")
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 const start_text = "Simulation starten"
 const stop_text = "Simulation stoppen"
-
-const stopIsHidden = ref(true)
-const playIsHidden = ref(false)
 
 let simulation_running = false
 
@@ -159,11 +157,7 @@ const count_trials_poss_val = [
   },
 ]
 
-const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
-  LottoExperiment(
-    n_slider.value,
-    k_slider.value,
-    count_trials.value))
+//const { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
 
 function itemProps(item) {
   return {
@@ -172,28 +166,17 @@ function itemProps(item) {
   }
 }
 
-async function start_simulation() {
+function start_simulation() {
   if (simulation_running == false) {
     console.log(simulation_running)
     simulation_running = true
     status_text.value = "Status: Simulation läuft..."
-    status_text.value = "Status: Die Simulation läuft. Bitte warten..."
-    /*const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
-      
-    )*/
-    count_wins.value = await workerFn()
+    let new_experiment_data = LottoExperiment(n_slider.value, k_slider.value, count_trials.value)
+    experiments.value.push(new_experiment_data)
+    count_completed_experiments = count_completed_experiments + 1
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
-    playIsHidden.value = false
-    stopIsHidden.value = true
-  }
-}
-function stop_simulation() {
-  console.log(simulation_running)
-  simulation_running = false
-  status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
-  playIsHidden.value = false
-  stopIsHidden.value = true
+  } else { }
 }
 
 function factorial(n) {
@@ -220,33 +203,27 @@ function Prob(n, k) {
 
 function LottoExperiment(n, k, number_trials) {
   const prob = Prob(n, k)
-  /*console.log("prob is " + String(prob))*/
-  count_wins.value = 0
-  /*console.log("n ist " + String(n))
+  console.log("prob is " + String(prob))
+  let count_wins_local = 0
+  console.log("n ist " + String(n))
   console.log("k ist " + String(k))
   console.log("pls make alert before calc")
-  console.log("number_trials ist " + String(number_trials))*/
+  console.log("number_trials ist " + String(number_trials))
   for (let i = 0; i < number_trials; i++) {
     let random_number = Math.random()
     if (random_number <= prob) {
-      count_wins.value = count_wins.value + 1
-      /*console.log("win")
-      if (i % 1000 == 0) {
-        console.log("another 1000 done")
-      }*/
+      count_wins_local = count_wins_local + 1
     }
   }
-  console.log("Juhu fertig, Gewinn-Zähler: " + String(count_wins.value))
-  count_completed_experiments = count_completed_experiments + 1
   let new_experiment_list_item = {
     "Experiment Nr.": String(count_completed_experiments),
     "k": String(k),
     "n": String(n),
     "Versuchsanzahl": String(number_trials),
-    "Gewinnanzahl": String(count_wins.value)
+    "Gewinnanzahl": String(count_wins_local)
   }
-  experiments.value.push(new_experiment_list_item)
-  return count_wins.value
+  count_wins.value = count_wins_local
+  return new_experiment_list_item
 }
 
 function update_animation() {
