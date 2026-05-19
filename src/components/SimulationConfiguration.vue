@@ -250,6 +250,12 @@ function update_animation() {
 </script>
 
 <style scoped>
+* {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95em;
+}
+
+
 /*@reference "../styles/tailwind.css"*/
 
 /*
@@ -362,7 +368,7 @@ div.v-card-text {
 }
 
 .count-wins-number {
-  font-size: 3em;
+  font-size: 3.5em;
 }
 
 * /deep/ .v-list-item__subtitle {
