@@ -1,10 +1,8 @@
 <template>
   <div class="grid-container">
 
-    <div class="box yellow-border" style="grid-area: box2; padding: 0; margin: 0;">
-      <LottoAnimation :key="n_slider" />
-    </div>
-    <div class="box" style="grid-area: box1;">
+
+    <div class="box yellow-border" style="grid-area: box1;">
       <h1
         class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
@@ -47,30 +45,32 @@
         <v-select v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
       </div>
-    </div>
 
-    <div class="box box-sim-start" style="grid-area: box3;">
+    <div class="box box-sim-start">
       <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#cc0" variant="flat">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
 
-          <div class="box" style="grid-area: box4;">
-      <span style="padding: 0; margin: 0;" class="card-simulation-status">{{ status_text }}</span>
-      <p>
-        {{ count_wins_text_field }}
-      </p>
-    </div>
+      <div class="box" style="grid-area: box4;">
+        <span style="padding: 0; margin: 0;" class="card-simulation-status">{{ status_text }}</span>
+        <p>
+          {{ count_wins_text_field }}
+        </p>
+      </div>
 
 
     </div>
-        <div class="box yellow-border" style="grid-area: box5;">
+    </div>
+    <div class="box yellow-border" style="grid-area: box5;">
       <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
 
-
+    <div class="box yellow-border" style="grid-area: box2; padding: 0; margin: 0;">
+      <LottoAnimation :key="n_slider" />
+    </div>
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
       <div class="div-result">
@@ -80,13 +80,14 @@
       <div class="div-result">
 
         <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
-      
-      <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span></div>
+
+        <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span>
+      </div>
       <div class="div-result">
 
         <p class="count-wins-title">{{ "Gewinn insgesamt (durchschnittlich):" }}</p>
         <span style="color: #00bb00;" class="count-wins-number">{{ (count_wins * 1000000).toLocaleString() + "€"
-          }}</span>
+        }}</span>
       </div>
     </div>
   </div>
@@ -314,10 +315,10 @@ h1 {
     "box1 box2"
     "box1 box2"
     "box1 box2"
-    "box3 box2"
-    "box3 box2"
-    "box3 box2"
-    "box4 box6"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box6"
     "box5 box6"
     "box5 box6"
     "box5 box6"
@@ -391,6 +392,6 @@ span {
 .div-result {
   margin-top: 0em;
   padding: 0;
-  
+
 }
 </style>
