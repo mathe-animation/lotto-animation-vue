@@ -99,22 +99,22 @@ function setup () {
       }
   });
 
-  let parts = [];
+let parts = [];
   let bodies = [];
-  for (let i = 0; i < 90; i++) {
+  for (let i = 0; i < 92; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 130, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 130 , 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 , 
       10, 
-      10, 
+      12, 
       {
         isStatic: true, 
         friction: 0.5,
         angle: Math.PI / 180 * i * 4,
         render: {
-          fillStyle: i !== 0 ? "#ff0" : '#ff0',
-          strokeStyle: "#550",
-          lineWidth: 10
+          fillStyle: i !== 0 ? "#550" : '#550',
+          strokeStyle: "#fff",
+          lineWidth: 0
         }
       }
     );
@@ -126,10 +126,10 @@ function setup () {
 
   for (let i = 20; i < 45; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 150, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 150, 
-      55, 
-      55, 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120, 
+      30, 
+      30, 
       {
         isSensor: true,
         isStatic: true, 
@@ -137,9 +137,9 @@ function setup () {
         label: 'addSpeedSensor',
         angle: Math.PI / 180 * i * 4,
         render: {
-          strokeStyle: '#660',
+          strokeStyle: '#C44D58',
           fillStyle: 'transparent',
-          lineWidth: 13
+          lineWidth: 1
         }
       }
     );
@@ -163,7 +163,7 @@ function setup () {
 
   draw();
 
-for (let i = 0; i < 10; ++i) {
+  for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5,
