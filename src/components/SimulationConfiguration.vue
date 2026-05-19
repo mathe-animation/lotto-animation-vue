@@ -77,13 +77,13 @@
       </div>
       <div class="div-result">
 
-        <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
+        <p class="count-wins-title">{{ "Kosten insgesamt (" + price_lottoschein.toLocaleString() + "€ pro Lottoschein):" }}</p>
 
         <span style="color: #bb0000;" class="count-wins-number">{{ cost_sum.toLocaleString() + "€" }}</span>
       </div>
       <div class="div-result">
 
-        <p class="count-wins-title">{{ "Gewinn insgesamt (durchschnittlich):" }}</p>
+        <p class="count-wins-title">{{ "Gewinn insgesamt (ca eine Million € pro Gewinn):" }}</p>
         <span style="color: #00bb00;" class="count-wins-number">{{ win_sum.toLocaleString() + "€"
         }}</span>
       </div>
@@ -129,6 +129,7 @@ let count_trials = ref(10000)
 let count_wins = ref(0)
 let cost_sum = ref(0)
 let win_sum = ref(0)
+let price_lottoschein = 1.2
 let count_wins_text_field = ref("")
 
 const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
@@ -195,7 +196,8 @@ function start_simulation() {
     let new_experiment_data = LottoExperiment(n_slider.value, k_slider.value, count_trials.value)
     experiments.value.push(new_experiment_data)
     count_completed_experiments = count_completed_experiments + 1
-    cost_sum.value = count_trials.value * 1.2
+    price_lottoschein = 1.2 * (Prob(n_slider.value,k_slider.value) / Prob(49,6))
+    cost_sum.value = count_trials.value * price_lottoschein
     win_sum.value = count_wins.value * 1000000
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
