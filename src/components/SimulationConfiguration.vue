@@ -157,7 +157,7 @@ const count_trials_poss_val = [
   },
 ]
 
-//const { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
+//wwwwconst { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
 
 function itemProps(item) {
   return {

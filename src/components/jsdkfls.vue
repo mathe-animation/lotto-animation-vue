@@ -103,17 +103,17 @@ function setup () {
   let bodies = [];
   for (let i = 0; i < 90; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 130, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 130 , 
-      10, 
-      10, 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 , 
+      30, 
+      30, 
       {
         isStatic: true, 
         friction: 0.5,
         angle: Math.PI / 180 * i * 4,
         render: {
-          fillStyle: i !== 0 ? "#aa0" : '#aa0',
-          strokeStyle: "#550",
+          fillStyle: i !== 0 ? "#aa0" : '#ff0',
+          strokeStyle: "#ff0",
           lineWidth: 10
         }
       }
@@ -126,9 +126,9 @@ function setup () {
 
   for (let i = 20; i < 45; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 150, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 150, 
-      55, 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 160, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 160, 
+      30, 
       30, 
       {
         isSensor: true,
@@ -139,7 +139,7 @@ function setup () {
         render: {
           strokeStyle: '#ff0',
           fillStyle: 'transparent',
-          lineWidth: 0
+          lineWidth: 13
         }
       }
     );
