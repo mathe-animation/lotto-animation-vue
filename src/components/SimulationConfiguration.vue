@@ -54,7 +54,7 @@
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
     <div class="box box-sim-start" style="grid-area: box3;">
-      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0">
+      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#cc0" variant="flat">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
@@ -234,7 +234,7 @@ function LottoExperiment(n, k, number_trials) {
     "Experiment Nr.": String(count_completed_experiments),
     "k": String(k),
     "n": String(n),
-    "Versuchsanzahl": String(number_trials),
+    "Versuchsanzahl": number_trials.toLocaleString(),
     "Gewinnanzahl": String(count_wins_local)
   }
   count_wins.value = count_wins_local
@@ -278,6 +278,7 @@ div {
 
 h1 {
   padding: 0;
+  color: #cdcd00;
 }
 
 #btn-start-sim {
@@ -314,7 +315,7 @@ h1 {
     "box3 box2"
     "box3 box2"
     "box3 box2"
-    "box4 box2"
+    "box4 box6"
     "box5 box6"
     "box5 box6"
     "box5 box6"
@@ -340,6 +341,10 @@ img {
   padding: 0.5em;
 }
 
+.yellow-border {
+  border: 1px dotted #abab00;
+}
+
 .box-sim-start {
   padding: 0.3em;
   margin: 1em 0.3em 0.3em 0.3em;
@@ -362,7 +367,7 @@ div.v-card-text {
 }
 
 .count-wins-number {
-  font-size: 2.5em;
+  font-size: 3em;
 }
 
 * /deep/ .v-list-item__subtitle {
@@ -379,13 +384,6 @@ span {
 
 .text-body-small {
   padding-left: 0.7em;
-}
-
-.v-data-table__tr {
-  margin: 0;
-  padding: 0;
-  height: 10px;
-  line-height: 0.5;
 }
 
 .div-result {
