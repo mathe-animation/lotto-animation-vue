@@ -74,7 +74,7 @@
       <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
       <p class="count-wins-number">{{ count_wins }}</p>
       <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
-      <span style="color: #bb0000;" class="count-wins-number">{{ count_trials * 1.2 + "€" }}</span>
+      <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span>
     </div>
   </div>
 </template>
@@ -107,7 +107,7 @@ import { ref } from "vue"
 import { nextTick } from 'vue'
 import { useWebWorker } from '@vueuse/core'
 
-let count_completed_experiments = 0
+let count_completed_experiments = 1
 
 let k_slider = ref(6)
 let n_slider = ref(49)
@@ -125,7 +125,7 @@ let simulation_running = false
 
 let experiments = ref([])
 
-const itemsPerPage = ref(5)
+const itemsPerPage = ref(4)
 const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
 
 const renderComponent = ref(true);
@@ -369,5 +369,12 @@ span {
 
 .text-body-small {
   padding-left: 0.7em;
+}
+
+.v-data-table__tr {
+  margin: 0;
+  padding: 0;
+  height: 10px;
+  line-height: 0.5;
 }
 </style>
