@@ -176,6 +176,8 @@ let parts = [];
         label: 'ball',
         render: {
           opacity: 0.6,
+          fillStyle: 'yellow',
+          strokeStyle: 'yellow',
         },
         collisionFilter: {
           category: 0x0002,
@@ -196,6 +198,11 @@ let parts = [];
         frictionStatic: 0,
         // frictionStatic: 5,
         label: 'ball',
+        render: {
+          opacity: 1,
+          fillStyle: 'orange',
+          strokeStyle: 'orange',
+        },
         collisionFilter: {
           category: 0x0004,
           mask: 0x0004 | 0x0001
