@@ -75,6 +75,8 @@
       <p class="count-wins-number">{{ count_wins }}</p>
       <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
       <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span>
+      <p class="count-wins-title">{{ "Gewinn insgesamt (durchschnittlich):" }}</p>
+      <span style="color: #00bb00;" class="count-wins-number">{{ (count_wins * 1000000).toLocaleString() + "€" }}</span>
     </div>
   </div>
 </template>
@@ -157,7 +159,7 @@ const count_trials_poss_val = [
   },
   {
     value: 1000000000,
-    description: '1 Billiarde (1000 Millionen)',
+    description: '1 Milliarde (1000 Millionen)',
   },
 ]
 
@@ -345,14 +347,13 @@ div.v-card-text {
   text-align: center;
 }
 
-.count-wins-title,
-.count-wins-number {
+.count-wins-title {
   flex: 0 0 100px;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .count-wins-number {
-  font-size: 4em;
+  font-size: 2.5em;
 }
 
 * /deep/ .v-list-item__subtitle {
