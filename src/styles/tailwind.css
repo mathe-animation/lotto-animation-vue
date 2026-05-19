@@ -30,9 +30,9 @@
 @custom-variant dark (&:where(.v-theme--dark, .v-theme--dark *));
 
 /* safelist to ensure variables are always available */
-@source inline('font-heading');
+/*@source inline('font-heading');
 @source inline('font-body');
-@source inline('font-mono');
+@source inline('font-mono');*/
 
 /*
   note: adopt and extend values from TailwindCSS

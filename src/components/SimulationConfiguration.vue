@@ -4,7 +4,7 @@
 
     <div class="box yellow-border" style="grid-area: box1;">
       <h1
-        class="title-font-size relative top-0 w-fit py-4 justify-center flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
+        class="title-font-size">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
       </h1>
       <div class="div-slider">
@@ -73,18 +73,18 @@
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
       <div class="div-result">
         <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
-        <span class="count-wins-number">{{ count_wins }}</span>
+        <span class="result-text">{{ count_wins.toLocaleString() }}</span>
       </div>
       <div class="div-result">
 
         <p class="count-wins-title">{{ "Kosten insgesamt (" + price_lottoschein.toLocaleString() + "€ pro Lottoschein):" }}</p>
 
-        <span style="color: #bb0000;" class="count-wins-number">{{ cost_sum.toLocaleString() + "€" }}</span>
+        <span style="color: #bb0000;" class="result-text">{{ cost_sum.toLocaleString() + "€" }}</span>
       </div>
       <div class="div-result">
 
         <p class="count-wins-title">{{ "Gewinn insgesamt (ca eine Million € pro Gewinn):" }}</p>
-        <span style="color: #00bb00;" class="count-wins-number">{{ win_sum.toLocaleString() + "€"
+        <span style="color: #00bb00;" class="result-text">{{ win_sum.toLocaleString() + "€"
         }}</span>
       </div>
     </div>
@@ -375,8 +375,8 @@ div.v-card-text {
   font-size: 1em;
 }
 
-.count-wins-number {
-  font-size: 3.5em;
+.result-text {
+  font-size: 3em;
 }
 
 * /deep/ .v-list-item__subtitle {
@@ -410,5 +410,22 @@ span {
   margin-top: 0em;
   padding: 0;
 
+}
+
+@media screen and (max-width: 1350px) {
+  .title-font-size {
+    font-size: 3.2em;
+  }
+  .result-text {
+    font-size: 2.4em;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .title-font-size {
+    font-size: 2.6em;
+  }
+  .result-text {
+    font-size: 2em;
+  }
 }
 </style>
