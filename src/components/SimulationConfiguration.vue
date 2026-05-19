@@ -1,7 +1,7 @@
 <template>
   <div class="grid-container">
 
-    <div class="box" style="grid-area: box2;">
+    <div class="box" style="grid-area: box2; padding: 0; margin: 0;">
     <LottoAnimation :key="n_slider" />
 </div>
 
@@ -64,14 +64,13 @@
 
 
     <div class="box" style="grid-area: box4;">
-      <p class="card-simulation-status">{{ status_text }}</p>
+      <span style="padding: 0; margin: 0;" class="card-simulation-status">{{ status_text }}</span>
       <p>
         {{ count_wins_text_field }}
       </p>
     </div>
 
     <div class="box class-box6" style="grid-area: box6; line-break: strict; display: block;">
-      <!--<span class="card-simulation-status">{{ k_slider + " Richtige" }}</span>-->
       <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
       <p class="count-wins-number">{{ count_wins }}</p>
       <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
@@ -286,7 +285,7 @@ h1 {
   height: 100svh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0.5em;
   grid-template-areas:
     "box1 box2"
@@ -296,8 +295,22 @@ h1 {
     "box1 box2"
     "box1 box2"
     "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
+    "box1 box2"
     "box3 box2"
-    "box4 box6"
+    "box3 box2"
+    "box3 box2"
+    "box4 box2"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
+    "box5 box6"
     "box5 box6"
     "box5 box6"
     "box5 box6"
@@ -313,11 +326,12 @@ img {
 }
 
 .box {
-  padding: 0.6em;
+  padding: 0.5em;
 }
 
 .box-sim-start {
   padding: 0.3em;
+  margin: 1em 0.3em 0.3em 0.3em;
 }
 
 div.v-card-text {
