@@ -4,17 +4,17 @@
 
     <div class="box yellow-border" style="grid-area: box1;">
       <h1
-        class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
+        class="title-font-size relative top-0 w-fit py-4 justify-center flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
       </h1>
       <div class="div-slider">
         <div class="text-body-small lg">
           k (Anzahl der gezogenen Kugeln):
         </div>
-        <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" lglabel="k: Anzahl der gezogenen Kugeln"
+        <v-slider color="#ff0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
           hide-details>
           <template v-slot:append>
-            <v-text-field v-model="k_slider" density="compact" style="width: 150px" type="number" variant="outlined"
+            <v-text-field v-model="k_slider" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
               hide-details></v-text-field>
           </template>
         </v-slider>
@@ -23,17 +23,17 @@
         <div class="text-body-small">
           n (Anzahl der Kugeln in der LOTTO-Ziehmaschine):
         </div>
-        <v-slider @change="update_animation" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
+        <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
           <template v-slot:append>
-            <v-text-field v-model="n_slider" density="compact" style="width: 150px" type="number" variant="outlined"
+            <v-text-field v-model="n_slider" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
               hide-details></v-text-field>
           </template>
         </v-slider>
       </div>
       <div class="div-slider">
-        <div class="text-body-small" style="margin-bottom: 0.2em;">
-          Anzahl gekaufter LOTTO-Scheine:
+        <div class="text-body-small">
+          <span style="margin-bottom: 0.8em;">Anzahl gekaufter LOTTO-Scheine:</span>
         </div>
         <!--<v-slider v-model="count_trials" :min="1000" :max="1000000000" :step="1000" class="ma-4"
           lglabel="Anzahl der gekauften LOTTO-Scheine" hide-details>
@@ -242,17 +242,17 @@ function LottoExperiment(n, k, number_trials) {
   return new_experiment_list_item
 }
 
-function update_animation() {
+/*function update_animation() {
   renderComponent.value = false;
   renderComponent.value = true;
-}
+}*/
 
 </script>
 
 <style scoped>
 * {
   font-family: "JetBrains Mono", monospace;
-  font-size: 0.95em;
+  font-size: 0.98em;
 }
 
 
