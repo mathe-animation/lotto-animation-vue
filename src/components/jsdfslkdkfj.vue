@@ -4,6 +4,7 @@
     <div class="box yellow-border" style="grid-area: box2; padding: 0; margin: 0;">
       <LottoAnimation :key="n_slider" />
     </div>
+<div class="yellow-border">
     <div class="box" style="grid-area: box1;">
       <h1
         class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
@@ -48,29 +49,27 @@
           :items="count_trials_poss_val"></v-select>
       </div>
     </div>
-
+    
     <div class="box box-sim-start" style="grid-area: box3;">
       <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#cc0" variant="flat">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
 
-          <div class="box" style="grid-area: box4;">
+<div class="box" style="grid-area: box4;">
       <span style="padding: 0; margin: 0;" class="card-simulation-status">{{ status_text }}</span>
       <p>
         {{ count_wins_text_field }}
       </p>
     </div>
-
-
     </div>
-        <div class="box yellow-border" style="grid-area: box5;">
+    <div class="box yellow-border" style="grid-area: box5;">
       <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
-
-
+</div>
+    
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
       <div class="div-result">
