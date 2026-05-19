@@ -2,15 +2,15 @@
   <div class="grid-container">
 
     <div class="box" style="grid-area: box2; padding: 0; margin: 0;">
-    <LottoAnimation :key="n_slider" />
-</div>
+      <LottoAnimation :key="n_slider" />
+    </div>
 
     <div class="box" style="grid-area: box1;">
       <h1
         class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
       </h1>
-        <div class="div-slider">
+      <div class="div-slider">
         <div class="text-body-small lg">
           k (Anzahl der gezogenen Kugeln):
         </div>
@@ -21,10 +21,10 @@
               hide-details></v-text-field>
           </template>
         </v-slider>
-        </div>
-        <div class="div-slider">
+      </div>
+      <div class="div-slider">
         <div class="text-body-small">
-          n (Anzahl der Kugeln insgesamt):
+          n (Anzahl der Kugeln in der LOTTO-Ziehmaschine):
         </div>
         <v-slider @change="update_animation" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
@@ -33,8 +33,8 @@
               hide-details></v-text-field>
           </template>
         </v-slider>
-        </div>
-        <div class="div-slider">
+      </div>
+      <div class="div-slider">
         <div class="text-body-small" style="margin-bottom: 0.2em;">
           Anzahl gekaufter LOTTO-Scheine:
         </div>
@@ -47,7 +47,7 @@
         </v-slider>-->
         <v-select v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
-          </div>
+      </div>
     </div>
     <div class="box" style="grid-area: box5;">
       <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
@@ -71,12 +71,21 @@
     </div>
 
     <div class="box class-box6" style="grid-area: box6; line-break: strict; display: block;">
-      <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
-      <p class="count-wins-number">{{ count_wins }}</p>
-      <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
-      <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span>
-      <p class="count-wins-title">{{ "Gewinn insgesamt (durchschnittlich):" }}</p>
-      <span style="color: #00bb00;" class="count-wins-number">{{ (count_wins * 1000000).toLocaleString() + "€" }}</span>
+      <div class="div-result">
+        <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
+        <span class="count-wins-number">{{ count_wins }}</span>
+      </div>
+      <div class="div-result">
+
+        <p class="count-wins-title">{{ "Kosten insgesamt:" }}</p>
+      
+      <span style="color: #bb0000;" class="count-wins-number">{{ (count_trials * 1.2).toLocaleString() + "€" }}</span></div>
+      <div class="div-result">
+
+        <p class="count-wins-title">{{ "Gewinn insgesamt (durchschnittlich):" }}</p>
+        <span style="color: #00bb00;" class="count-wins-number">{{ (count_wins * 1000000).toLocaleString() + "€"
+          }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -377,5 +386,11 @@ span {
   padding: 0;
   height: 10px;
   line-height: 0.5;
+}
+
+.div-result {
+  margin-top: 0em;
+  padding: 0;
+  
 }
 </style>
