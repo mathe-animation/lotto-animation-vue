@@ -94,7 +94,7 @@ function setup () {
         width: width,
         height: height,
         wireframes: false,
-        background: "#fff",
+        background: "#111",
         showAngleIndicator: true,
       }
   });
@@ -103,17 +103,17 @@ function setup () {
   let bodies = [];
   for (let i = 0; i < 90; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 , 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 130, 
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 130 , 
       10, 
-      12, 
+      10, 
       {
         isStatic: true, 
         friction: 0.5,
         angle: Math.PI / 180 * i * 4,
         render: {
           fillStyle: i !== 0 ? "#000" : '#fff',
-          strokeStyle: "#fff",
+          strokeStyle: "#ff0",
           lineWidth: 0
         }
       }
@@ -163,11 +163,11 @@ function setup () {
 
   draw();
 
-  for (let i = 0; i < 49; ++i) {
+for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5,
-      r: 5,
+      r: 18,
       options: {
         mass: 1 + i * 2,
         friction: 0,
@@ -185,7 +185,7 @@ function setup () {
     });
   }
 
-  /*for (let i = 15; i < 25; ++i) {
+  for (let i = 15; i < 25; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5,
@@ -202,7 +202,7 @@ function setup () {
         }
       }
     });
-  }*/
+  }
   
 
   // add all of the bodies to the world
@@ -222,12 +222,12 @@ function addBody (...bodies) {
 }
 
 function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
-  //let body = Bodies.circle(x, y, r, options);
-  //addBody(body);
-  circles.push(Matter.Bodies.circle(200, 50, 5));
-  counter_bubbles.value = counter_bubbles.value + 1;
-  //return body;
-  return Matter.Bodies.circle(200, 50, 5);
+  let body = Bodies.circle(x, y, r, options);
+  addBody(body);
+  //circles.push(Matter.Bodies.circle(200, 50, 5));
+  //counter_bubbles.value = counter_bubbles.value + 1;
+  return body;
+  //return Matter.Bodies.circle(200, 50, 5);
 }
 
 function draw () {
