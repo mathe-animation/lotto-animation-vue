@@ -184,6 +184,9 @@ function itemProps(item) {
 
 function start_simulation() {
   if (simulation_running == false) {
+    if (k_slider.value > n_slider.value) {
+      alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
+    } else {
     console.log(simulation_running)
     simulation_running = true
     status_text.value = "Status: Simulation läuft..."
@@ -192,7 +195,8 @@ function start_simulation() {
     count_completed_experiments = count_completed_experiments + 1
     simulation_running = false
     status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
-  } else { }
+  }
+  }
 }
 
 function factorial(n) {
@@ -286,9 +290,6 @@ div {
 h1 {
   padding: 0;
   color: #cdcd00;
-}
-
-#btn-start-sim {
 }
 
 #div_slider {
