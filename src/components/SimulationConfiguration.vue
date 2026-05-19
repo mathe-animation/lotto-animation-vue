@@ -10,9 +10,9 @@
         class="title-font-size relative top-0 w-fit py-4 justify-center text-yellow-300 flex items-center bg-clip-text text-7xl font-extrabold text-center select-auto">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
       </h1>
-      <v-card-text>
+        <div class="div-slider">
         <div class="text-body-small lg">
-          k (Anzahl der gezogenen Kugeln)
+          k (Anzahl der gezogenen Kugeln):
         </div>
         <v-slider v-model="k_slider" :min="1" :max="30" :step="1" class="ma-4" lglabel="k: Anzahl der gezogenen Kugeln"
           hide-details>
@@ -21,8 +21,10 @@
               hide-details></v-text-field>
           </template>
         </v-slider>
+        </div>
+        <div class="div-slider">
         <div class="text-body-small">
-          n (Anzahl der Kugeln insgesamt)
+          n (Anzahl der Kugeln insgesamt):
         </div>
         <v-slider @change="update_animation" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
@@ -31,6 +33,8 @@
               hide-details></v-text-field>
           </template>
         </v-slider>
+        </div>
+        <div class="div-slider">
         <div class="text-body-small" style="margin-bottom: 0.2em;">
           Anzahl gekaufter LOTTO-Scheine:
         </div>
@@ -43,7 +47,7 @@
         </v-slider>-->
         <v-select v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
-      </v-card-text>
+          </div>
     </div>
     <div class="box" style="grid-area: box5;">
       <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
@@ -262,12 +266,20 @@ div {
   display: block;
 }
 
+h1 {
+  padding: 0;
+}
+
 #btn-start-sim {
   height: 100%;
 }
 
 #div_slider {
   display: block;
+}
+
+.div-slider {
+  margin-top: 0.6em;
 }
 
 .grid-container {
@@ -283,9 +295,9 @@ div {
     "box1 box2"
     "box1 box2"
     "box1 box2"
+    "box1 box2"
     "box3 box2"
-    "box4 box2"
-    "box5 box6"
+    "box4 box6"
     "box5 box6"
     "box5 box6"
     "box5 box6"
@@ -339,5 +351,9 @@ div.v-card-text {
 
 span {
   display: inline-block;
+}
+
+.text-body-small {
+  padding-left: 0.7em;
 }
 </style>
