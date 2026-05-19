@@ -52,12 +52,10 @@
         {{ start_text }}
       </v-btn>
 
-      <div class="box" style="grid-area: box4;">
-        <span style="padding: 0; margin: 0;" class="card-simulation-status">{{ status_text }}</span>
+        <span style="padding: 0; margin: 0;" class="card-simulation-status"><i>{{ status_text }}</i></span>
         <p>
           {{ count_wins_text_field }}
         </p>
-      </div>
 
 
     </div>
@@ -285,7 +283,6 @@ h1 {
 }
 
 #btn-start-sim {
-  height: 100%;
 }
 
 #div_slider {
@@ -346,11 +343,6 @@ img {
 
 .yellow-border {
   border: 1px dotted #abab00;
-}
-
-.box-sim-start {
-  padding: 0.3em;
-  margin: 1em 0.3em 0.3em 0.3em;
 }
 
 div.v-card-text {
