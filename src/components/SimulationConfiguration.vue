@@ -14,7 +14,7 @@
         <v-slider color="#ff0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
           hide-details>
           <template v-slot:append>
-            <v-text-field v-model="k_slider" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
+            <v-text-field v-model="k_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
               hide-details></v-text-field>
           </template>
         </v-slider>
@@ -26,7 +26,7 @@
         <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
           <template v-slot:append>
-            <v-text-field v-model="n_slider" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
+            <v-text-field v-model="n_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
               hide-details></v-text-field>
           </template>
         </v-slider>

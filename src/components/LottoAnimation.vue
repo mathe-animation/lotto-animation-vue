@@ -137,14 +137,18 @@ let parts = [];
         label: 'addSpeedSensor',
         angle: Math.PI / 180 * i * 4,
         render: {
-          strokeStyle: '#C44D58',
+          strokeStyle: '#00f',
           fillStyle: 'transparent',
           lineWidth: 1
         }
       }
     );
     World.add(engine.world, a);
-  }
+    }
+
+
+  //trapezoid = Matter.Bodies.trapezoid(10, 10, width=100, height=100)
+
 
   Events.on(engine, 'collisionStart', function(event) {
     var pairs = event.pairs;
@@ -200,7 +204,7 @@ let parts = [];
         label: 'ball',
         render: {
           opacity: 1,
-          fillStyle: 'orange',
+          fillStyle: '#770',
           strokeStyle: 'orange',
         },
         collisionFilter: {
