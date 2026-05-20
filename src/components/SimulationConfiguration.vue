@@ -61,7 +61,7 @@
     </div>
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" class="custom-data-table" :class="{'custom-dark-theme': darkTheme}"
+      <v-data-table v-model:sort-by="sortBy" :mobile="smAndDown" density="compact" :items="experiments" class="custom-data-table" :class="{'custom-dark-theme': darkTheme}"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
@@ -77,7 +77,7 @@
       </div>
       <div class="div-result">
 
-        <p class="count-wins-title">{{ "Kosten insgesamt (" + price_lottoschein.toLocaleString() + "€ pro Lottoschein):" }}</p>
+        <p class="count-wins-title">{{ "Kosten (" + price_lottoschein.toLocaleString() + "€ pro Lottoschein):" }}</p>
 
         <span style="color: #bb0000;" class="result-text">{{ cost_sum.toLocaleString() + "€" }}</span>
       </div>
@@ -118,6 +118,9 @@ export default {
 import { ref } from "vue"
 import { nextTick } from 'vue'
 import { useWebWorker } from '@vueuse/core'
+ import { useDisplay } from 'vuetify'
+
+
 
 let count_completed_experiments = 1
 
@@ -175,6 +178,10 @@ const count_trials_poss_val = [
     description: '1 Milliarde (1000 Millionen)',
   },
 ]
+
+  const { smAndDown } = useDisplay()
+
+  const expanded = ref([])
 
 //wwwwconst { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
 
@@ -242,11 +249,11 @@ function LottoExperiment(n, k, number_trials) {
     }
   }
   let new_experiment_list_item = {
-    "Experiment Nr.": String(count_completed_experiments),
+    "Nr.": String(count_completed_experiments),
     "k": String(k),
     "n": String(n),
-    "Versuchsanzahl": number_trials.toLocaleString(),
-    "Gewinnanzahl": String(count_wins_local)
+    "Versuche": number_trials.toLocaleString(),
+    "Gewinne": String(count_wins_local)
   }
   count_wins.value = count_wins_local
   return new_experiment_list_item
@@ -384,7 +391,7 @@ div.v-card-text {
 }
 
 .title-font-size {
-  font-size: 4em;
+  font-size: 3.5em;
 }
 
 span {
@@ -427,5 +434,9 @@ span {
   .result-text {
     font-size: 2em;
   }
+}
+
+.v-table > .v-table__wrapper > table > tbody > tr > td {
+  height: 10px;
 }
 </style>
