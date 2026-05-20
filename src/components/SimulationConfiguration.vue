@@ -43,7 +43,7 @@
           :items="count_trials_poss_val"></v-select>
       </div>
 
-      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#ff0" variant="tonal">
+      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#cd0" variant="flat">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
       </v-btn>
@@ -69,20 +69,20 @@
     </div>
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
-      <div class="div-result">
+      <div class="div-result" :class="{divResultActive: winCostCalcActive}">
         <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
         <span class="result-text">{{ count_wins.toLocaleString() }}</span>
       </div>
-      <div class="div-result">
+      <div class="div-result" :class="{active: winCostCalcActive}">
 
         <p class="count-wins-title">{{ "Kosten (" + price_lottoschein.toLocaleString() + "€ pro Lottoschein):" }}</p>
 
-        <span style="color: #bb0000;" class="result-text">{{ cost_sum.toLocaleString() + "€" }}</span>
+        <span class="result-text" :class="{result_text_cost_active : winCostCalcActive}">{{ cost_sum.toLocaleString() + "€" }}</span>
       </div>
-      <div class="div-result">
+      <div class="div-result" :class="{active: winCostCalcActive}">
 
         <p class="count-wins-title">{{ "Gewinn insgesamt (ca eine Million € pro Gewinn):" }}</p>
-        <span style="color: #00bb00;" class="result-text">{{ parseInt(win_sum).toLocaleString() + "€"
+        <span class="result-text" :class="{result_text_win_sum_active : winCostCalcActive}">{{ parseInt(win_sum).toLocaleString() + "€"
         }}</span>
       </div>
     </div>
@@ -153,31 +153,33 @@ const sortBy = ref([{ key: 'Nr.', order: 'desc' }])
 
 const renderComponent = ref(true);
 
+const winCostCalcActive = ref(true);
+
 const count_trials_poss_val = [
   {
     value: 1000,
     description: '1 Tausend',
   },
-  {
+  /*{
     value: 10000,
     description: '10 Tausend',
   },
   {
     value: 100000,
     description: '100 Tausend',
-  },
+  },*/
   {
     value: 1000000,
     description: '1 Million',
   },
-  {
+  /*{
     value: 10000000,
     description: '10 Millionen',
   },
   {
     value: 100000000,
     description: '100 Millionen',
-  },
+  },*/
   {
     value: 1000000000,
     description: '1 Milliarde (1000 Millionen)',
@@ -209,9 +211,17 @@ function start_simulation() {
       experiments.value.push(new_experiment_data)
       count_completed_experiments = count_completed_experiments + 1
       price_lottoschein = 1.2
-      cost_sum.value = count_trials.value * price_lottoschein
-      win_sum.value = count_wins.value * 1000000 * (Prob(49, 6)/Prob(n_slider.value, k_slider.value))
-      simulation_running = false
+      
+      if (k_slider.value == 6 && n_slider.value == 49) {
+        winCostCalcActive.value = true
+        cost_sum.value = count_trials.value * price_lottoschein
+        win_sum.value = count_wins.value * 1000000 * (Prob(49, 6)/Prob(n_slider.value, k_slider.value))
+      } else {
+        winCostCalcActive.value = false
+        cost_sum.value = 0
+        win_sum.value = 0
+      }
+        simulation_running = false
       status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     }
   }
@@ -235,18 +245,18 @@ function binomial(n, k) {
 function Prob(n, k) {
   // Wahrscheinlichkeit für genau r Richtige bei einem Lottofeld
   var N = binomial(n, k)
-  var y = 1 / N
-  return y
+  var result = 1 / N
+  return result
 }
 
 function LottoExperiment(n, k, number_trials) {
   const prob = Prob(n, k)
-  console.log("prob is " + String(prob))
+  //console.log("prob is " + String(prob))
   let count_wins_local = 0
-  console.log("n ist " + String(n))
+  /*console.log("n ist " + String(n))
   console.log("k ist " + String(k))
   console.log("pls make alert before calc")
-  console.log("number_trials ist " + String(number_trials))
+  console.log("number_trials ist " + String(number_trials))*/
   for (let i = 0; i < number_trials; i++) {
     let random_number = Math.random()
     if (random_number <= prob) {
@@ -411,6 +421,7 @@ div.v-card-text {
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: #440;
 }
 
 .count-wins-title {
@@ -450,6 +461,14 @@ span {
   margin-top: 0em;
   padding: 0;
 
+}
+
+.result_text_cost_active {
+  color: #b00;
+}
+
+.result_text_win_sum_active {
+  color: #0b0;
 }
 
 .animation {
