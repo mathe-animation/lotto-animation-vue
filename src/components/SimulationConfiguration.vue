@@ -120,6 +120,9 @@ import { useWebWorker } from '@vueuse/core'
  import { useDisplay } from 'vuetify'
 
 
+let viewport_width_bigger_900 = false;
+let viewport_width;
+let animation_big = true;
 
 let count_completed_experiments = 1
 
@@ -262,6 +265,38 @@ function LottoExperiment(n, k, number_trials) {
   renderComponent.value = false;
   renderComponent.value = true;
 }*/
+
+const forceRender = async () => {
+  // Here, we'll remove MyComponent
+  renderComponent.value = false;
+
+   // Then, wait for the change to get flushed to the DOM
+  await nextTick();
+
+  // Add MyComponent back in
+  renderComponent.value = true;
+};
+
+// Will execute myCallback every 0.5 seconds 
+var intervalID = window.setInterval(myCallback, 500);
+
+function myCallback() {
+  let viewport_width = window.innerWidth;
+  if (viewport_width > 900) {
+    viewport_width_bigger_900 = true;
+  } else {
+    viewport_width_bigger_900 = false;
+  }
+  if (viewport_width_bigger_900 != animation_big) {
+    forceRender();
+  }
+  if (viewport_width_bigger_900 == true) {
+    animation_big = true;
+  } else {
+    animation_big = false;
+  }
+}
+
 
 </script>
 
@@ -494,17 +529,32 @@ span {
 
 @media screen and (max-width: 900px) {
   .grid-container {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    "box1 box1 box1 box2"
-    "box6 box6 box6 box6"
-    "box5 box5 box5 box5"
-    "box5 box5 box5 box5";
+    "box1 box1 box1 box2 box2"
+    "box6 box6 box6 box6 box6"
+    "box5 box5 box5 box5 box5"
+    "box5 box5 box5 box5 box5";
   }
+    .inner-div-animation {
+  left: 5%;
+} 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 850px) {
+    .inner-div-animation {
+  left: 3%;
+} 
+}
+
+@media screen and (max-width: 820px) {
+    .inner-div-animation {
+  left: 1%;
+} 
+}
+
+@media screen and (max-width: 780px) {
   .grid-container {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
