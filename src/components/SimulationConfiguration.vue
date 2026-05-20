@@ -465,7 +465,7 @@ span {
 
 @media screen and (max-height: 900px) {
 .inner-div-animation {
-  top: -23%;
+  top: -10%;
   margin-top: 0em;
 }
 }
