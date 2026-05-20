@@ -70,21 +70,22 @@
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
       <div class="div-result" :class="{divResultActive: winCostCalcActive}">
-        <p class="count-wins-title">{{ "Gewinnanzahl:" }}</p>
-        <span class="result-text">{{ count_wins.toLocaleString() }}</span>
+        <p class="count-wins-title result_text_heading_active">{{ "Gewinnanzahl:" }}</p>
+        <span class="result-text result_text_count_wins">{{ count_wins.toLocaleString() }}</span>
       </div>
-      <div class="div-result" :class="{active: winCostCalcActive}">
+            <div class="div-result" :class="{active: winCostCalcActive}">
 
-        <p class="count-wins-title">{{ "Kosten (" + price_lottoschein.toLocaleString() + "€ pro Lottoschein):" }}</p>
-
-        <span class="result-text" :class="{result_text_cost_active : winCostCalcActive}">{{ cost_sum.toLocaleString() + "€" }}</span>
-      </div>
-      <div class="div-result" :class="{active: winCostCalcActive}">
-
-        <p class="count-wins-title">{{ "Gewinn insgesamt (ca eine Million € pro Gewinn):" }}</p>
-        <span class="result-text" :class="{result_text_win_sum_active : winCostCalcActive}">{{ parseInt(win_sum).toLocaleString() + "€"
+        <p class="count-wins-title" :class="{result_text_heading_active : winCostCalcActive}">{{ "Gewinn insgesamt (ca. 1 Mio. € pro Gewinn):" }}</p>
+        <span class="result-text" :class="{result_text_win_sum_active : winCostCalcActive}">{{"≈" + parseInt(win_sum).toLocaleString() + "€"
         }}</span>
       </div>
+      <div class="div-result" :class="{active: winCostCalcActive}">
+
+        <p class="count-wins-title" :class="{result_text_heading_active : winCostCalcActive}">{{ "Kosten (1,20€ pro Lottoschein):" }}</p>
+
+        <span class="result-text" :class="{result_text_cost_active : winCostCalcActive}">{{cost_sum.toLocaleString() + "€" }}</span>
+      </div>
+
     </div>
   </div>
 </template>
@@ -421,7 +422,7 @@ div.v-card-text {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #440;
+  color: #330;
 }
 
 .count-wins-title {
@@ -461,6 +462,14 @@ span {
   margin-top: 0em;
   padding: 0;
 
+}
+
+.result_text_heading_active {
+  color: #aa0;
+}
+
+.result_text_count_wins {
+  color: #fff;
 }
 
 .result_text_cost_active {
@@ -593,6 +602,7 @@ span {
 
   .inner-div-animation {
     left: 5%;
+    top: -22%;
   }
 }
 
