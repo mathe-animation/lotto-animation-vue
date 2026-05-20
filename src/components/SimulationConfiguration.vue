@@ -56,9 +56,9 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
-        class="custom-data-table no-padding-table" :class="{ 'custom-dark-theme': darkTheme }"
-        v-model:items-per-page="itemsPerPage"></v-data-table>
+      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #111; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
+        class="no-padding-table"
+        v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
     </div>
 
 
@@ -81,7 +81,7 @@
       </div>
       <div class="div-result" :class="{active: winCostCalcActive}">
 
-        <p class="count-wins-title" :class="{result_text_heading_active : winCostCalcActive}">{{ "Kosten (1,20€ pro Lottoschein):" }}</p>
+        <p class="count-wins-title" :class="{result_text_heading_active : winCostCalcActive}">{{ "Kosten insgesamt (1,20€ pro Lottoschein):" }}</p>
 
         <span class="result-text" :class="{result_text_cost_active : winCostCalcActive}">{{cost_sum.toLocaleString() + "€" }}</span>
       </div>
@@ -465,7 +465,7 @@ span {
 }
 
 .result_text_heading_active {
-  color: #aa0;
+  color: #cd0;
 }
 
 .result_text_count_wins {
