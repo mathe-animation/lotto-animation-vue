@@ -25,16 +25,11 @@ import './styles/main.scss'
 
 const app = createApp(App)
 
-const vuetify = createVuetify({
-  locale: {
-    locale: 'zhHans',
-    fallback: 'sv',
-    messages: { zhHans, pl},
+export default createVuetify({
+  theme: {
+    defaultTheme: 'dark', // 'system' | 'light' | 'dark'
   },
 })
-
-
-app.config.globalProperties.$Matter = Matter
 
 registerPlugins(app)
 

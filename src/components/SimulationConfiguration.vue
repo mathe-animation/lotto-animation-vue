@@ -119,7 +119,11 @@ import { ref } from "vue"
 import { nextTick } from 'vue'
 import { useWebWorker } from '@vueuse/core'
 import { useDisplay } from 'vuetify'
+import { useTheme } from 'vuetify'
 
+const theme = useTheme()
+
+theme.change('dark');
 
 let viewport_width_bigger_900 = false;
 let viewport_width;
@@ -146,8 +150,8 @@ let simulation_running = false
 
 let experiments = ref([])
 
-const itemsPerPage = ref(5)
-const sortBy = ref([{ key: 'Experiment Nr.', order: 'desc' }])
+const itemsPerPage = ref(4)
+const sortBy = ref([{ key: 'Nr.', order: 'desc' }])
 
 const renderComponent = ref(true);
 
@@ -307,6 +311,11 @@ function myCallback() {
   font-size: 0.98em;
 }
 
+::v-deep .v-data-table__tr {
+  line-height: 10px !important;
+  /* Override Vuetify's default padding */
+}
+
 
 /*@reference "../styles/tailwind.css"*/
 
@@ -420,10 +429,6 @@ div.v-card-text {
   font-size: 3em;
 }
 
-* /deep/ .v-list-item__subtitle {
-  white-space: normal;
-}
-
 .title-font-size {
   font-size: 3.5em;
 }
@@ -440,6 +445,7 @@ span {
 .custom-data-table {
   color: #ff0;
   background-color: #111;
+  line-height: 0.3em;
 }
 
 /* Custom styling for dark theme */
@@ -459,9 +465,11 @@ span {
 
 .inner-div-animation {
   position: absolute;
-  top: 10%;
+  top: 3%;
   left: 28%;
 }
+
+
 
 @media screen and (max-width: 1350px) {
   .title-font-size {
