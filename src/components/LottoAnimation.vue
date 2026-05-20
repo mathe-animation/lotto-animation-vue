@@ -119,10 +119,10 @@ function getWidth() {
 
 function getHeight() {
   if (window.innerWidth > 900) {
-    return 400;
+    return 430;
   }
   if (window.innerWidth <= 900) {
-    return 250;
+    return 430;
   }
 }
 
@@ -196,10 +196,10 @@ function setup() {
   for (let i = 0; i < 3; i++) {
     let b = Bodies.trapezoid(
       150,
-      370,
-      200,
-      40,
-      0.3,
+      390,
+      180,
+      50,
+      0.4,
       {
         isStatic: true,
         friction: 0.5,

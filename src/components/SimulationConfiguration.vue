@@ -460,31 +460,34 @@ span {
 
 .inner-div-animation {
   position: absolute;
-  top: -10%;
   left: 28%;
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 900px) {
 .inner-div-animation {
-  top: -12%;
+  top: -23%;
+  margin-top: 0em;
 }
 }
 
 @media screen and (max-height: 670px) {
 .inner-div-animation {
   top: -14%;
+    margin-top: 0em;
 }
 }
 
 @media screen and (max-height: 650px) {
 .inner-div-animation {
   top: -16%;
+    margin-top: 0em;
 }
 }
 
 @media screen and (max-height: 640px) {
 .inner-div-animation {
   top: -17%;
+    margin-top: 0em;
 }
 }
 
