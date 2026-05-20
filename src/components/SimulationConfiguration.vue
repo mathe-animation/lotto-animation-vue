@@ -311,11 +311,6 @@ function myCallback() {
   font-size: 0.98em;
 }
 
-::v-deep .v-data-table__tr {
-  line-height: 10px !important;
-  /* Override Vuetify's default padding */
-}
-
 
 /*@reference "../styles/tailwind.css"*/
 
@@ -380,7 +375,7 @@ h1 {
     "box1 box2"
     "box1 box2"
     "box1 box2"
-    "box1 box6"
+    "box1 box2"
     "box5 box6"
     "box5 box6"
     "box5 box6"
@@ -465,10 +460,33 @@ span {
 
 .inner-div-animation {
   position: absolute;
-  top: -15%;
+  top: -10%;
   left: 28%;
 }
 
+@media screen and (max-height: 700px) {
+.inner-div-animation {
+  top: -12%;
+}
+}
+
+@media screen and (max-height: 670px) {
+.inner-div-animation {
+  top: -14%;
+}
+}
+
+@media screen and (max-height: 650px) {
+.inner-div-animation {
+  top: -16%;
+}
+}
+
+@media screen and (max-height: 640px) {
+.inner-div-animation {
+  top: -17%;
+}
+}
 
 
 @media screen and (max-width: 1350px) {
