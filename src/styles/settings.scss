@@ -13,6 +13,7 @@
 
   $grid-breakpoints: (
     'xs': 0,
+    'ssm': 400px,
     'sm': 600px,
     'md': 840px,
     'lg': 1145px,
@@ -25,4 +26,5 @@
     'xl': 1400px,
     'xxl': 2000px,
   ),
+  $data-table-footer-pagination-margin-inline-start: 0px,
 );

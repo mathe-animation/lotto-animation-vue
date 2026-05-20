@@ -46,7 +46,6 @@
           :items="count_trials_poss_val"></v-select>
       </div>
 
-    <div class="box box-sim-start">
       <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#ff0" variant="tonal">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         {{ start_text }}
@@ -59,9 +58,8 @@
 
 
     </div>
-    </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table v-model:sort-by="sortBy" :mobile="smAndDown" density="compact" :items="experiments" class="custom-data-table" :class="{'custom-dark-theme': darkTheme}"
+      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" class="custom-data-table no-padding-table" :class="{'custom-dark-theme': darkTheme}"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
@@ -434,9 +432,10 @@ span {
   .result-text {
     font-size: 2em;
   }
+  ::v-deep .no-padding-table .v-data-table__td {  
+  padding: 0 !important; /* Override Vuetify's default padding */  
+  }  
 }
 
-.v-table > .v-table__wrapper > table > tbody > tr > td {
-  height: 10px;
-}
+
 </style>
