@@ -1,7 +1,5 @@
 <template>
   <div class="grid-container">
-
-
     <div class="box yellow-border" style="grid-area: box1;">
       <h1 class="title-font-size">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
@@ -84,8 +82,8 @@
       <div class="div-result">
 
         <p class="count-wins-title">{{ "Gewinn insgesamt (ca eine Million € pro Gewinn):" }}</p>
-        <span style="color: #00bb00;" class="result-text">{{ win_sum.toLocaleString() + "€"
-          }}</span>
+        <span style="color: #00bb00;" class="result-text">{{ parseInt(win_sum).toLocaleString() + "€"
+        }}</span>
       </div>
     </div>
   </div>
@@ -212,7 +210,7 @@ function start_simulation() {
       count_completed_experiments = count_completed_experiments + 1
       price_lottoschein = 1.2
       cost_sum.value = count_trials.value * price_lottoschein
-      win_sum.value = count_wins.value * 1000000 * (Prob(n_slider.value, k_slider.value) / Prob(49, 6))
+      win_sum.value = count_wins.value * 1000000 * (Prob(49, 6)/Prob(n_slider.value, k_slider.value))
       simulation_running = false
       status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     }
@@ -464,31 +462,31 @@ span {
 }
 
 @media screen and (max-height: 900px) {
-.inner-div-animation {
-  top: -10%;
-  margin-top: 0em;
-}
+  .inner-div-animation {
+    top: -10%;
+    margin-top: 0em;
+  }
 }
 
 @media screen and (max-height: 670px) {
-.inner-div-animation {
-  top: -14%;
+  .inner-div-animation {
+    top: -14%;
     margin-top: 0em;
-}
+  }
 }
 
 @media screen and (max-height: 650px) {
-.inner-div-animation {
-  top: -16%;
+  .inner-div-animation {
+    top: -16%;
     margin-top: 0em;
-}
+  }
 }
 
 @media screen and (max-height: 640px) {
-.inner-div-animation {
-  top: -17%;
+  .inner-div-animation {
+    top: -17%;
     margin-top: 0em;
-}
+  }
 }
 
 
