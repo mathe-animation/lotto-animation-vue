@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
-import Fonts from 'unplugin-fonts/vite'
+//import Fonts from 'unplugin-fonts/vite'
 import { defineConfig } from 'vite'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
@@ -19,7 +19,7 @@ export default defineConfig({
         configFile: 'src/styles/settings.scss',
       },
     }),
-    Fonts({
+    /*Fonts({
       fontsource: {
         families: [
           {
@@ -33,7 +33,7 @@ export default defineConfig({
           },
         ],
       },
-    }),
+    }),*/
   ],
   define: { 'process.env': {} },
   resolve: {

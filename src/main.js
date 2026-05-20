@@ -8,7 +8,6 @@ import Matter from 'matter-js' // Import the plugin
 import { createApp } from 'vue'
 import { createVuetify } from 'vuetify'
 
-
 // Plugins
 import { registerPlugins } from '@/plugins'
 // Translations provided by Vuetify
@@ -19,7 +18,7 @@ import App from './App.vue'
 
 
 // Styles
-import 'unfonts.css'
+//import 'unfonts.css'
 import './styles/tailwind.css'
 import './styles/main.scss'
 
