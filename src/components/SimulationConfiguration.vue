@@ -3,8 +3,7 @@
 
 
     <div class="box yellow-border" style="grid-area: box1;">
-      <h1
-        class="title-font-size">
+      <h1 class="title-font-size">
         {{ "LOTTO: " + k_slider + " aus " + n_slider }}
       </h1>
       <div class="div-slider">
@@ -14,8 +13,8 @@
         <v-slider color="#ff0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
           hide-details>
           <template v-slot:append>
-            <v-text-field v-model="k_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
-              hide-details></v-text-field>
+            <v-text-field v-model="k_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;"
+              type="number" variant="outlined" hide-details></v-text-field>
           </template>
         </v-slider>
       </div>
@@ -26,8 +25,8 @@
         <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
           <template v-slot:append>
-            <v-text-field v-model="n_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;" type="number" variant="outlined"
-              hide-details></v-text-field>
+            <v-text-field v-model="n_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;"
+              type="number" variant="outlined" hide-details></v-text-field>
           </template>
         </v-slider>
       </div>
@@ -51,22 +50,24 @@
         {{ start_text }}
       </v-btn>
 
-        <span style="padding: 0; margin: 0;" class="card-simulation-status"><i>{{ status_text }}</i></span>
-        <p>
-          {{ count_wins_text_field }}
-        </p>
+      <span class="card-simulation-status"><i>{{ status_text }}</i></span>
+      <p>
+        {{ count_wins_text_field }}
+      </p>
 
 
     </div>
-    <div class="box" style="grid-area: box5;">
-      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" class="custom-data-table no-padding-table yellow-border" :class="{'custom-dark-theme': darkTheme}"
+    <div class="box yellow-border" style="grid-area: box5;">
+      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments"
+        class="custom-data-table no-padding-table" :class="{ 'custom-dark-theme': darkTheme }"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
 
     <div class="box yellow-border animation" style="grid-area: box2; padding: 0; margin: 0;">
-      <div class="inner-div-animation"><LottoAnimation /><!--:key="n_slider" />-->
-        </div>
+      <div class="inner-div-animation">
+        <LottoAnimation /><!--:key="n_slider" />-->
+      </div>
     </div>
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
@@ -84,7 +85,7 @@
 
         <p class="count-wins-title">{{ "Gewinn insgesamt (ca eine Million € pro Gewinn):" }}</p>
         <span style="color: #00bb00;" class="result-text">{{ win_sum.toLocaleString() + "€"
-        }}</span>
+          }}</span>
       </div>
     </div>
   </div>
@@ -117,7 +118,7 @@ export default {
 import { ref } from "vue"
 import { nextTick } from 'vue'
 import { useWebWorker } from '@vueuse/core'
- import { useDisplay } from 'vuetify'
+import { useDisplay } from 'vuetify'
 
 
 let viewport_width_bigger_900 = false;
@@ -181,9 +182,9 @@ const count_trials_poss_val = [
   },
 ]
 
-  const { smAndDown } = useDisplay()
+const { smAndDown } = useDisplay()
 
-  const expanded = ref([])
+const expanded = ref([])
 
 //wwwwconst { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
 
@@ -199,18 +200,18 @@ function start_simulation() {
     if (k_slider.value > n_slider.value) {
       alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
     } else {
-    console.log(simulation_running)
-    simulation_running = true
-    status_text.value = "Status: Simulation läuft..."
-    let new_experiment_data = LottoExperiment(n_slider.value, k_slider.value, count_trials.value)
-    experiments.value.push(new_experiment_data)
-    count_completed_experiments = count_completed_experiments + 1
-    price_lottoschein = 1.2 * (Prob(n_slider.value,k_slider.value) / Prob(49,6))
-    cost_sum.value = count_trials.value * price_lottoschein
-    win_sum.value = count_wins.value * 1000000
-    simulation_running = false
-    status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
-  }
+      console.log(simulation_running)
+      simulation_running = true
+      status_text.value = "Status: Simulation läuft..."
+      let new_experiment_data = LottoExperiment(n_slider.value, k_slider.value, count_trials.value)
+      experiments.value.push(new_experiment_data)
+      count_completed_experiments = count_completed_experiments + 1
+      price_lottoschein = 1.2
+      cost_sum.value = count_trials.value * price_lottoschein
+      win_sum.value = count_wins.value * 1000000 * (Prob(n_slider.value, k_slider.value) / Prob(49, 6))
+      simulation_running = false
+      status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
+    }
   }
 }
 
@@ -270,7 +271,7 @@ const forceRender = async () => {
   // Here, we'll remove MyComponent
   renderComponent.value = false;
 
-   // Then, wait for the change to get flushed to the DOM
+  // Then, wait for the change to get flushed to the DOM
   await nextTick();
 
   // Add MyComponent back in
@@ -345,7 +346,7 @@ h1 {
 }
 
 .div-slider {
-  margin-top: 0.6em;
+  margin-top: 0em;
 }
 
 .grid-container {
@@ -466,104 +467,112 @@ span {
   .title-font-size {
     font-size: 3.2em;
   }
+
   .result-text {
     font-size: 2.4em;
   }
+
   .inner-div-animation {
-  left: 25%;
+    left: 25%;
+  }
 }
-}
+
 @media screen and (max-width: 1300px) {
   .title-font-size {
     font-size: 2.6em;
   }
+
   .result-text {
     font-size: 2em;
   }
-  ::v-deep .no-padding-table .v-data-table__td {  
-  padding: 0 !important; /* Override Vuetify's default padding */  
-  }  
+
+  ::v-deep .no-padding-table .v-data-table__td {
+    padding: 0 !important;
+    /* Override Vuetify's default padding */
+  }
 }
 
 @media screen and (max-width: 1200px) {
   .inner-div-animation {
-  left: 24%;
-} 
+    left: 24%;
+  }
 }
 
 @media screen and (max-width: 1180px) {
   .inner-div-animation {
-  left: 23%;
-} 
+    left: 23%;
+  }
 }
 
 @media screen and (max-width: 1150px) {
   .inner-div-animation {
-  left: 22%;
-} 
+    left: 22%;
+  }
 }
 
 @media screen and (max-width: 1120px) {
   .inner-div-animation {
-  left: 21%;
-} 
+    left: 21%;
+  }
 }
 
 @media screen and (max-width: 1060px) {
   .inner-div-animation {
-  left: 19%;
-} 
+    left: 19%;
+  }
 }
 
 @media screen and (max-width: 980px) {
   .inner-div-animation {
-  left: 17%;
-} 
+    left: 17%;
+  }
 }
 
 @media screen and (max-width: 940px) {
   .inner-div-animation {
-  left: 15%;
-} 
+    left: 15%;
+  }
 }
 
 @media screen and (max-width: 900px) {
   .grid-container {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    "box1 box1 box1 box2 box2"
-    "box6 box6 box6 box6 box6"
-    "box5 box5 box5 box5 box5"
-    "box5 box5 box5 box5 box5";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "box1 box1 box1 box2 box2"
+      "box6 box6 box6 box6 box6"
+      "box5 box5 box5 box5 box5"
+      "box5 box5 box5 box5 box5";
   }
-    .inner-div-animation {
-  left: 5%;
-} 
+
+  .inner-div-animation {
+    left: 5%;
+  }
 }
 
 @media screen and (max-width: 850px) {
-    .inner-div-animation {
-  left: 3%;
-} 
+  .inner-div-animation {
+    left: 3%;
+  }
 }
 
 @media screen and (max-width: 820px) {
-    .inner-div-animation {
-  left: 1%;
-} 
+  .inner-div-animation {
+    left: 1%;
+  }
 }
 
 @media screen and (max-width: 780px) {
   .grid-container {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-areas:
-    "box1 box1 box1 box1"
-    "box6 box6 box6 box6"
-    "box5 box5 box5 box5"
-    "box5 box5 box5 box5";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "box1 box1 box1 box1"
+      "box6 box6 box6 box6"
+      "box5 box5 box5 box5"
+      "box5 box5 box5 box5";
   }
+
   .animation {
     display: none;
   }
@@ -578,7 +587,6 @@ span {
 @media screen and (max-width: 450px) {
   .title-font-size {
     font-size: 2em;
+  }
 }
-}
-
 </style>

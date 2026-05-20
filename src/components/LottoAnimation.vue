@@ -116,17 +116,17 @@ function getWidth() {
 
 function getHeight() {
  if (window.innerWidth > 900) {
-  return window.innerWidth/2;
+  return 300;
  }
  if (window.innerWidth <= 900) {
-  return window.innerWidth/6;
+  return 250;
  }
 }
 
 
 function setup () {
   const width = 300;//getWidth();
-  const height = 300; //window.innerHeight/2;
+  const height = getHeight(); //window.innerHeight/2;
   // create an engine
 
   // create a renderer
