@@ -39,7 +39,7 @@ onMounted(() => {
 
 
 
-let { Engine, Render, World, Bodies, Body, Events, Runner} = Matter;
+let { Engine, Render, World, Bodies, Body, Events, Runner } = Matter;
 let engine = Engine.create();
 let wheel;
 let runner = Runner.create();
@@ -54,107 +54,107 @@ var intervalID = window.setInterval(myCallback, 2000);
 
 function myCallback() {
  if (k_slider.value > counter_bubbles) {
-	let number_missing = k_slider.value - counter_bubbles;
-	if (number_missing > 0) {
-		for (let i = 0; i < number_missing; ++i) {
-			addCircle({
-			x: width / 2 + i * 1.5,
-			y: height / 2 + i * 1.5,
-			r: 5,
-			options: {
-				mass: 1 + i * 2,
-				friction: 0,
-				frictionStatic: 0,
-				// frictionStatic: 5,
-				label: 'ball',
-				render: {
-				opacity: 0.6,
-				},
-				collisionFilter: {
-				category: 0x0002,
-				mask: 0x0002 | 0x0001
-				}
-			}
-			});
-		}
-	}
+  let number_missing = k_slider.value - counter_bubbles;
+  if (number_missing > 0) {
+    for (let i = 0; i < number_missing; ++i) {
+      addCircle({
+      x: width / 2 + i * 1.5,
+      y: height / 2 + i * 1.5,
+      r: 5,
+      options: {
+        mass: 1 + i * 2,
+        friction: 0,
+        frictionStatic: 0,
+        // frictionStatic: 5,
+        label: 'ball',
+        render: {
+        opacity: 0.6,
+        },
+        collisionFilter: {
+        category: 0x0002,
+        mask: 0x0002 | 0x0001
+        }
+      }
+      });
+    }
+  }
  }
 
  if (k_slider.value < counter_bubbles) {
-	let number_too_much = counter_bubbles - k_slider.value;
-	if (number_too_much > 0) {
-		for (let i = 0; i < number_too_much; ++i) {
-			addCircle({
-			x: width / 2 + i * 1.5,
-			y: height / 2 + i * 1.5,
-			r: 5,
-			options: {
-				mass: 1 + i * 2,
-				friction: 0,
-				frictionStatic: 0,
-				// frictionStatic: 5,
-				label: 'ball',
-				render: {
-				opacity: 0.6,
-				},
-				collisionFilter: {
-				category: 0x0002,
-				mask: 0x0002 | 0x0001
-				}
-			}
-			});
-		}
-	}
+  let number_too_much = counter_bubbles - k_slider.value;
+  if (number_too_much > 0) {
+    for (let i = 0; i < number_too_much; ++i) {
+      addCircle({
+      x: width / 2 + i * 1.5,
+      y: height / 2 + i * 1.5,
+      r: 5,
+      options: {
+        mass: 1 + i * 2,
+        friction: 0,
+        frictionStatic: 0,
+        // frictionStatic: 5,
+        label: 'ball',
+        render: {
+        opacity: 0.6,
+        },
+        collisionFilter: {
+        category: 0x0002,
+        mask: 0x0002 | 0x0001
+        }
+      }
+      });
+    }
+  }
  }
 }*/
 
 function getWidth() {
- if (window.innerWidth > 900) {
-  return window.innerWidth/2;
- }
- if (window.innerWidth <= 900) {
-  return window.innerWidth/4;
- }
+  if (window.innerWidth > 900) {
+    return window.innerWidth / 2;
+  }
+  if (window.innerWidth <= 900) {
+    return window.innerWidth / 4;
+  }
 }
 
 function getHeight() {
- if (window.innerWidth > 900) {
-  return 300;
- }
- if (window.innerWidth <= 900) {
-  return 250;
- }
+  if (window.innerWidth > 900) {
+    return 400;
+  }
+  if (window.innerWidth <= 900) {
+    return 250;
+  }
 }
 
 
-function setup () {
+function setup() {
   const width = 300;//getWidth();
   const height = getHeight(); //window.innerHeight/2;
   // create an engine
 
   // create a renderer
   let render = Render.create({
-      element: document.getElementById('app2'),
-      engine: engine,
-      options: {
-        width: width,
-        height: height,
-        wireframes: false,
-        background: "#111",
-        showAngleIndicator: true,
-      }
+    element: document.getElementById('app2'),
+    engine: engine,
+    options: {
+      width: width,
+      height: height,
+      wireframes: false,
+      background: "#111",
+      showAngleIndicator: true,
+    }
   });
 
-let parts = [];
+  let parts = [];
   let bodies = [];
   for (let i = 0; i < 92; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 , 
-      10, 
-      12, 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120,
+      10,
+      12,
       {
-        isStatic: true, 
+        isStatic: true,
         friction: 0.5,
         angle: Math.PI / 180 * i * 4,
         render: {
@@ -172,13 +172,13 @@ let parts = [];
 
   for (let i = 20; i < 45; i++) {
     let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120, 
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120, 
-      30, 
-      30, 
+      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120,
+      30,
+      30,
       {
         isSensor: true,
-        isStatic: true, 
+        isStatic: true,
         friction: 0,
         label: 'addSpeedSensor',
         angle: Math.PI / 180 * i * 4,
@@ -190,24 +190,44 @@ let parts = [];
       }
     );
     World.add(engine.world, a);
-    }
+  }
+
+  //stand for wheel
+  for (let i = 0; i < 3; i++) {
+    let b = Bodies.trapezoid(
+      150,
+      370,
+      200,
+      40,
+      0.3,
+      {
+        isStatic: true,
+        friction: 0.5,
+        angle: 0,
+        render: {
+          fillStyle: "#550",
+          strokeStyle: "#fff",
+          lineWidth: 5
+        }
+      }
+    );
+    bodies.push(b);
+    World.add(engine.world, b);
+  }
 
 
-  //trapezoid = Matter.Bodies.trapezoid(10, 10, width=100, height=100)
-
-
-  Events.on(engine, 'collisionStart', function(event) {
+  Events.on(engine, 'collisionStart', function (event) {
     var pairs = event.pairs;
     for (let i = 0, j = pairs.length; i != j; ++i) {
-        let pair = pairs[i];
-        let { bodyA, bodyB } = pair; 
+      let pair = pairs[i];
+      let { bodyA, bodyB } = pair;
 
-        if (bodyA.label === 'addSpeedSensor') {
-          Body.setVelocity(bodyB, {x: -2.5, y: -2.5})
-          // Body.applyForce(bodyB, {x: bodyB.position.x, y: bodyB.position.y}, {x: custForceX, y: custForceY})
-        } else if (bodyB.label === 'addSpeedSensor') {
-          // Body.applyForce(bodyA, {x: bodyA.position.x, y: bodyA.position.y}, {x: -0.1, y: -0.05})
-        }
+      if (bodyA.label === 'addSpeedSensor') {
+        Body.setVelocity(bodyB, { x: -2.5, y: -2.5 })
+        // Body.applyForce(bodyB, {x: bodyB.position.x, y: bodyB.position.y}, {x: custForceX, y: custForceY})
+      } else if (bodyB.label === 'addSpeedSensor') {
+        // Body.applyForce(bodyA, {x: bodyA.position.x, y: bodyA.position.y}, {x: -0.1, y: -0.05})
+      }
     }
   });
 
@@ -260,7 +280,7 @@ let parts = [];
       }
     });
   }
-  
+
 
   // add all of the bodies to the world
   World.add(engine.world, bodies);
@@ -274,11 +294,11 @@ let parts = [];
   Runner.run(runner, engine);
 }
 
-function addBody (...bodies) {
+function addBody(...bodies) {
   World.add(engine.world, bodies);
 }
 
-function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
+function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
   let body = Bodies.circle(x, y, r, options);
   addBody(body);
   //circles.push(Matter.Bodies.circle(200, 50, 5));
@@ -287,8 +307,8 @@ function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
   //return Matter.Bodies.circle(200, 50, 5);
 }
 
-function draw () {
-  Body.rotate(wheel, Math.PI/240);
+function draw() {
+  Body.rotate(wheel, Math.PI / 240);
   window.requestAnimationFrame(draw);
 }
 </script>

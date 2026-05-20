@@ -465,7 +465,7 @@ span {
 
 .inner-div-animation {
   position: absolute;
-  top: 3%;
+  top: -15%;
   left: 28%;
 }
 
