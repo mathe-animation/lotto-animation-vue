@@ -65,7 +65,8 @@
 
 
     <div class="box yellow-border animation" style="grid-area: box2; padding: 0; margin: 0;">
-      <LottoAnimation /><!--:key="n_slider" />-->
+      <div class="inner-div-animation"><LottoAnimation /><!--:key="n_slider" />-->
+        </div>
     </div>
 
     <div class="box class-box6 yellow-border" style="grid-area: box6; line-break: strict; display: block;">
@@ -416,6 +417,16 @@ span {
 
 }
 
+.animation {
+  position: relative;
+}
+
+.inner-div-animation {
+  position: absolute;
+  top: 10%;
+  left: 28%;
+}
+
 @media screen and (max-width: 1350px) {
   .title-font-size {
     font-size: 3.2em;
@@ -423,6 +434,9 @@ span {
   .result-text {
     font-size: 2.4em;
   }
+  .inner-div-animation {
+  left: 25%;
+}
 }
 @media screen and (max-width: 1300px) {
   .title-font-size {
@@ -434,6 +448,48 @@ span {
   ::v-deep .no-padding-table .v-data-table__td {  
   padding: 0 !important; /* Override Vuetify's default padding */  
   }  
+}
+
+@media screen and (max-width: 1200px) {
+  .inner-div-animation {
+  left: 24%;
+} 
+}
+
+@media screen and (max-width: 1180px) {
+  .inner-div-animation {
+  left: 23%;
+} 
+}
+
+@media screen and (max-width: 1150px) {
+  .inner-div-animation {
+  left: 22%;
+} 
+}
+
+@media screen and (max-width: 1120px) {
+  .inner-div-animation {
+  left: 21%;
+} 
+}
+
+@media screen and (max-width: 1060px) {
+  .inner-div-animation {
+  left: 19%;
+} 
+}
+
+@media screen and (max-width: 980px) {
+  .inner-div-animation {
+  left: 17%;
+} 
+}
+
+@media screen and (max-width: 940px) {
+  .inner-div-animation {
+  left: 15%;
+} 
 }
 
 @media screen and (max-width: 900px) {

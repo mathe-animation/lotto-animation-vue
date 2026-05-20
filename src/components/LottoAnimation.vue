@@ -4,8 +4,33 @@
 
 </template>
 
+<script lang="js">
+
+</script>
+
 <script setup lang="js">
 import { ref, onMounted } from 'vue'
+
+/*let animation_size_adjusted = false;
+
+addEventListener("resize", (event) => { })
+
+onresize = (event) => { 
+  animation_size_adjusted = false;
+  setTimeout(() => {
+  console.log("this is the third message");
+}, 1000);
+}
+
+// Will execute myCallback every 0.5 seconds 
+var intervalID = window.setInterval(myCallback, 1000);
+
+function myCallback() {
+ if (animation_size_adjusted == false) {
+  setup();
+  animation_size_adjusted = true;
+ }
+}*/
 
 onMounted(() => {
   setup();
@@ -21,7 +46,7 @@ const circles = [];
 
 const k_slider = ref(49);
 
-// Will execute myCallback every 0.5 seconds 
+/*// Will execute myCallback every 0.5 seconds 
 var intervalID = window.setInterval(myCallback, 2000);
 
 function myCallback() {
@@ -78,7 +103,7 @@ function myCallback() {
 		}
 	}
  }
-}
+}*/
 
 function getWidth() {
  if (window.innerWidth > 900) {
@@ -100,8 +125,8 @@ function getHeight() {
 
 
 function setup () {
-  const width = getWidth();
-  const height = window.innerHeight/2;
+  const width = 300;//getWidth();
+  const height = 300; //window.innerHeight/2;
   // create an engine
 
   // create a renderer
