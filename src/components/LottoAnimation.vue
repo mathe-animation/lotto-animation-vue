@@ -285,7 +285,7 @@ function addCircle ({ x = 0, y = 0, r = 10, options = {} } = {}) {
 }
 
 function draw () {
-  Body.rotate(wheel, Math.PI/120);
+  Body.rotate(wheel, Math.PI/240);
   window.requestAnimationFrame(draw);
 }
 </script>

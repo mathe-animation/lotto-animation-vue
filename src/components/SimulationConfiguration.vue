@@ -21,7 +21,7 @@
       </div>
       <div class="div-slider">
         <div class="text-body-small">
-          n (Anzahl Kugeln in Ziehmaschine):
+          n (Anzahl Kugeln in Maschine):
         </div>
         <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
@@ -58,8 +58,8 @@
 
 
     </div>
-    <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" class="custom-data-table no-padding-table" :class="{'custom-dark-theme': darkTheme}"
+    <div class="box" style="grid-area: box5;">
+      <v-data-table v-model:sort-by="sortBy" density="compact" :items="experiments" class="custom-data-table no-padding-table yellow-border" :class="{'custom-dark-theme': darkTheme}"
         v-model:items-per-page="itemsPerPage"></v-data-table>
     </div>
 
@@ -569,5 +569,16 @@ span {
   }
 }
 
+@media screen and (max-width: 500px) {
+  .result-text {
+    font-size: 1.6em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .title-font-size {
+    font-size: 2em;
+}
+}
 
 </style>
