@@ -80,9 +80,27 @@ function myCallback() {
  }
 }
 
+function getWidth() {
+ if (window.innerWidth > 900) {
+  return window.innerWidth/2;
+ }
+ if (window.innerWidth <= 900) {
+  return window.innerWidth/4;
+ }
+}
+
+function getHeight() {
+ if (window.innerWidth > 900) {
+  return window.innerWidth/2;
+ }
+ if (window.innerWidth <= 900) {
+  return window.innerWidth/6;
+ }
+}
+
 
 function setup () {
-  const width = window.innerWidth/2;
+  const width = getWidth();
   const height = window.innerHeight/2;
   // create an engine
 

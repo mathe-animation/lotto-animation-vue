@@ -21,7 +21,7 @@
       </div>
       <div class="div-slider">
         <div class="text-body-small">
-          n (Anzahl der Kugeln in der LOTTO-Ziehmaschine):
+          n (Anzahl Kugeln in Ziehmaschine):
         </div>
         <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
@@ -64,7 +64,7 @@
     </div>
 
 
-    <div class="box yellow-border" style="grid-area: box2; padding: 0; margin: 0;">
+    <div class="box yellow-border animation" style="grid-area: box2; padding: 0; margin: 0;">
       <LottoAnimation /><!--:key="n_slider" />-->
     </div>
 
@@ -347,7 +347,6 @@ h1 {
     "box5 box6"
     "box5 box6"
     "box5 box6";
-
 }
 
 img {
@@ -435,6 +434,33 @@ span {
   ::v-deep .no-padding-table .v-data-table__td {  
   padding: 0 !important; /* Override Vuetify's default padding */  
   }  
+}
+
+@media screen and (max-width: 900px) {
+  .grid-container {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "box1 box1 box1 box2"
+    "box6 box6 box6 box6"
+    "box5 box5 box5 box5"
+    "box5 box5 box5 box5";
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .grid-container {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "box1 box1 box1 box1"
+    "box6 box6 box6 box6"
+    "box5 box5 box5 box5"
+    "box5 box5 box5 box5";
+  }
+  .animation {
+    display: none;
+  }
 }
 
 
