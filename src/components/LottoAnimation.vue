@@ -10,6 +10,7 @@
 
 <script setup lang="js">
 import { ref, onMounted } from 'vue'
+import Matter from "matter-js"
 
 /*let animation_size_adjusted = false;
 
@@ -35,6 +36,8 @@ function myCallback() {
 onMounted(() => {
   setup();
 })
+
+
 
 let { Engine, Render, World, Bodies, Body, Events, Runner} = Matter;
 let engine = Engine.create();
