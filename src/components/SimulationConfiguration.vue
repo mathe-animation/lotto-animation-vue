@@ -56,7 +56,7 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #111; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
+      <v-data-table-virtual v-model:sort-by="sortBy" :row-props="colorRowItem" style="background-color: #111; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
     </div>
@@ -193,12 +193,19 @@ const expanded = ref([])
 
 //wwwwconst { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
 
-function itemProps(item) {
+/*function itemProps(item) {
   return {
     title: item.value,
     subtitle: item.description,
   }
 }
+
+function colorRowItem(item) {
+  if (item.item.some_property != undefined && item.item.some_property.includes("49")) {
+    return { class: 'some_text' };
+  } 
+}*/
+
 
 function start_simulation() {
   if (simulation_running == false) {
@@ -496,23 +503,30 @@ span {
   }
 }
 
-@media screen and (max-height: 670px) {
+@media screen and (max-height: 710px) {
   .inner-div-animation {
     top: -14%;
     margin-top: 0em;
   }
 }
 
+@media screen and (max-height: 670px) {
+  .inner-div-animation {
+    top: -19%;
+    margin-top: 0em;
+  }
+}
+
 @media screen and (max-height: 650px) {
   .inner-div-animation {
-    top: -16%;
+    top: -21%;
     margin-top: 0em;
   }
 }
 
 @media screen and (max-height: 640px) {
   .inner-div-animation {
-    top: -17%;
+    top: -22%;
     margin-top: 0em;
   }
 }
