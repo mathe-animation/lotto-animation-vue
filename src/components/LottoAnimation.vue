@@ -147,7 +147,7 @@ function setup() {
 
   let parts = [];
   let bodies = [];
-  for (let i = 0; i < 92; i++) {
+  for (let i = 0; i < 94; i++) {
     let a = Bodies.rectangle(
       width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
       height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120,
@@ -205,8 +205,8 @@ function setup() {
         friction: 0.5,
         angle: 0,
         render: {
-          fillStyle: "#550",
-          strokeStyle: "#fff",
+          fillStyle: "#008",
+          strokeStyle: "#550",
           lineWidth: 5
         }
       }
@@ -308,7 +308,7 @@ function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
 }
 
 function draw() {
-  Body.rotate(wheel, Math.PI / 240);
+  Body.rotate(wheel, Math.PI / 120);
   window.requestAnimationFrame(draw);
 }
 </script>
