@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     
       <v-btn
         class="m-2"
@@ -94,14 +93,13 @@
 
     </div>
   </div>
-  </v-app>
 </template>
 
-<script lang="js">
+<!--<script lang="js">
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiRestart } from "@mdi/js"
 import { mdiStopCircleOutline } from "@mdi/js"
-import LottoAnimation from "./components/LottoAnimation.vue";
+
 
 export default {
   name: "my-cool-component",
@@ -116,7 +114,7 @@ export default {
   },
 }
 // `setup` is a special hook dedicated for the Composition API.
-</script>
+</script>-->
 
 <script setup lang="js">
 import { ref } from "vue"
@@ -124,7 +122,16 @@ import { nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useTheme } from 'vuetify'
 import Worker from "./components/Worker.vue";
-import { status_text } from './store.js'
+import { status_text } from './assets/store.js'
+import { k_slider } from './assets/store.js'
+import { n_slider } from './assets/store.js'
+import { count_trials } from './assets/store.js'
+import { count_wins } from './assets/store.js'
+import { experiments } from './assets/store.js'
+import { win_sum } from "./assets/store"
+import { cost_sum } from './assets/store'
+import LottoAnimation from "./components/LottoAnimation.vue";
+
 
 const theme = useTheme()
 
@@ -134,25 +141,10 @@ let viewport_width_bigger_900 = false;
 let viewport_width;
 let animation_big = true;
 
-let count_completed_experiments = 1
-
-let k_slider = ref(6)
-let n_slider = ref(49)
-let count_trials = ref(1000)
-
 //let trial_counter_value = ref(0)
-let count_wins = ref(0)
-let cost_sum = ref(0)
-let win_sum = ref(0)
+
 let price_lottoschein = 1.2
 let count_wins_text_field = ref("")
-
-//const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
-const start_text = "Simulation starten"
-const stop_text = "Simulation stoppen"
-
-let simulation_running = false
-let experiments = ref([])
 
 const itemsPerPage = ref(4)
 const sortBy = ref([{ key: 'Nr.', order: 'desc' }])

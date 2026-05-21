@@ -18,7 +18,6 @@ import { useWebWorkerFn } from "@vueuse/core";
 import { ref } from "vue";
 import SvgIcon from '@jamescoyle/vue-icon';
 
-
 let term = ref();
 let fibonnaciValue = ref();
 
@@ -56,12 +55,12 @@ function lotto_experiment(n,k,number_trials) {
 const { workerFn } = useWebWorkerFn(lotto_experiment);
 
 async function onClick() {
-  if (this.$parent.simulation_running == false) {
+  if (this.$parent.simulation_running.value == false) {
     if (this.$parent.k_slider.value > this.$parent.n_slider.value) {
       alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
     } else {
-      console.log(simulation_running)
-      simulation_running = true
+      console.log(simulation_running.value)
+      simulation_running.value = true
       this.$parent.status_text.value = "Status: Simulation läuft..."
       let new_experiment_data = await workerFn(this.$parent.n_slider.value,this.$parent.k_slider.value, this.$parent.count_trials.value)
       this.$parent.experiments.value.push(new_experiment_data)
@@ -77,7 +76,7 @@ async function onClick() {
         this.$parent.cost_sum.value = 0
         this.$parent.win_sum.value = 0
       }
-        this.$parent.simulation_running = false
+        this.$parent.simulation_running.value = false
       this.$parent.status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     }
   }
@@ -135,7 +134,7 @@ function LottoExperiment(n, k, number_trials) {
 }
 </script>
 
-<script lang="js">
+<!--<script lang="js">
 import { mdiPlay, mdiPlayBox } from "@mdi/js"
 
 export default {
@@ -149,5 +148,4 @@ export default {
     }
   },
 }
-// `setup` is a special hook dedicated for the Composition API.
-</script>
+</script>-->
