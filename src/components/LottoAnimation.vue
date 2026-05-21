@@ -6,6 +6,7 @@
 
 <script setup lang="js">
 import { ref, onMounted, render } from 'vue'
+import { nextTick } from 'vue'
 import Matter from "matter-js"
 import { simulation_running } from '../assets/store'
 import { renderComponent } from '../assets/store'
@@ -244,7 +245,6 @@ function setup() {
 
   draw();
 
-//if (simulation_running.value ==true) {
   for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
@@ -267,9 +267,7 @@ function setup() {
         }
       }
     });
-//  }
 
-//  for (let i = 15; i < 25; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5 -35,
@@ -292,9 +290,6 @@ function setup() {
       }
     });
   }
-//} else {
-
-//}
 
   // add all of the bodies to the world
   World.add(engine.world, bodies);

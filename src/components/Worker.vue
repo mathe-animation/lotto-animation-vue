@@ -9,6 +9,7 @@
 <script setup lang="js">
 import { useWebWorkerFn } from "@vueuse/core";
 import { ref } from "vue";
+import { nextTick } from 'vue'
 import SvgIcon from '@jamescoyle/vue-icon';
 import { simulation_running } from '../assets/store'
 import { k_slider } from '../assets/store'
@@ -22,6 +23,7 @@ import { winCostCalcActive } from "../assets/store"
 import { cost_sum } from '../assets/store'
 import { win_sum } from '../assets/store'
 import { bool_reload_anim } from '../assets/store'
+import { renderComponent } from '../assets/store'
 
 // Will execute myCallback every 0.5 seconds 
 var intervalID = window.setInterval(myCallback, 500);
@@ -178,7 +180,7 @@ async function onClick() {
 }*/
 </script>
 
-<!--<script lang="js">
+<script lang="js">
 import { mdiPlay, mdiPlayBox } from "@mdi/js"
 
 export default {
@@ -192,4 +194,4 @@ export default {
     }
   },
 }
-</script>-->
+</script>
