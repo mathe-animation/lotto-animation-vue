@@ -51,11 +51,8 @@
         <v-select item-color="#ff0" v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
       </div>
-
-      <v-btn id="btn-start-sim" block @click="start_simulation" rounded="0" color="#cd0" variant="flat">
-        <svg-icon type="mdi" :path="pathStart"></svg-icon>
-        {{ start_text }}
-      </v-btn>
+      
+      <div @click="start_simulation"><Worker /></div>
 
       <span class="card-simulation-status"><i>{{ status_text }}</i></span>
       <p>
@@ -126,9 +123,9 @@ export default {
 <script setup lang="js">
 import { ref } from "vue"
 import { nextTick } from 'vue'
-import { useWebWorker } from '@vueuse/core'
 import { useDisplay } from 'vuetify'
 import { useTheme } from 'vuetify'
+import Worker from "./components/Worker.vue";
 
 const theme = useTheme()
 
