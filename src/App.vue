@@ -52,7 +52,7 @@
           :items="count_trials_poss_val"></v-select>
       </div>
       
-      <div><Worker /></div>
+      <div></div>
 
       <span class="card-simulation-status"><i>{{ status_text }}</i></span>
       <p>
@@ -124,6 +124,7 @@ import { nextTick } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useTheme } from 'vuetify'
 import Worker from "./components/Worker.vue";
+import { status_text } from './store.js'
 
 const theme = useTheme()
 
@@ -146,7 +147,7 @@ let win_sum = ref(0)
 let price_lottoschein = 1.2
 let count_wins_text_field = ref("")
 
-const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
+//const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 const start_text = "Simulation starten"
 const stop_text = "Simulation stoppen"
 

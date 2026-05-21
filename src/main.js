@@ -15,7 +15,7 @@ import { pl, zhHans } from 'vuetify/locale'
 
 // Components
 import App from './App.vue'
-
+import { ref } from "vue"
 
 // Styles
 //import 'unfonts.css'
@@ -23,6 +23,8 @@ import './styles/tailwind.css'
 import './styles/main.scss'
 
 const app = createApp(App)
+const status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
+
 
 export default createVuetify({
   theme: {
