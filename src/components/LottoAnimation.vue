@@ -140,7 +140,7 @@ function setup() {
       width: width,
       height: height,
       wireframes: false,
-      background: "#111",
+      background: "#121212",
       showAngleIndicator: true,
     }
   });

@@ -132,7 +132,7 @@ let count_completed_experiments = 1
 
 let k_slider = ref(6)
 let n_slider = ref(49)
-let count_trials = ref(10000)
+let count_trials = ref(1000)
 
 //let trial_counter_value = ref(0)
 let count_wins = ref(0)
@@ -429,7 +429,7 @@ div.v-card-text {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #330;
+  color: #220;
 }
 
 .count-wins-title {
@@ -494,18 +494,73 @@ span {
 .inner-div-animation {
   position: absolute;
   left: 28%;
+  top: 10%;
 }
 
 @media screen and (max-height: 900px) {
   .inner-div-animation {
-    top: -10%;
+    top: 10%;
     margin-top: 0em;
   }
 }
 
-@media screen and (max-height: 710px) {
+@media screen and (max-height: 880px) {
   .inner-div-animation {
-    top: -14%;
+    top: 8%;
+  }
+}
+
+@media screen and (max-height: 860px) {
+  .inner-div-animation {
+    top: 6%;
+  }
+}
+
+@media screen and (max-height: 840px) {
+  .inner-div-animation {
+    top: 4%;
+  }
+}
+
+@media screen and (max-height: 820px) {
+  .inner-div-animation {
+    top: 2%;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .inner-div-animation {
+    top: 0%;
+  }
+}
+
+@media screen and (max-height: 780px) {
+  .inner-div-animation {
+    top: -2%;
+  }
+}
+
+@media screen and (max-height: 760px) {
+  .inner-div-animation {
+    top: -4%;
+  }
+}
+
+@media screen and (max-height: 740px) {
+  .inner-div-animation {
+    top: -6%;
+  }
+}
+
+@media screen and (max-height: 720px) {
+  .inner-div-animation {
+    top: -8%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .inner-div-animation {
+    top: -12%;
     margin-top: 0em;
   }
 }
