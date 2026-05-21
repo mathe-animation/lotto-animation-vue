@@ -17,3 +17,5 @@ export let experiments = ref([])
 
 export let winCostCalcActive = ref(true);
 
+export let bool_reload_anim = ref(true)
+

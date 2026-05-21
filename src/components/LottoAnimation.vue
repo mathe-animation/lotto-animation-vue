@@ -4,10 +4,6 @@
 
 </template>
 
-<script lang="js">
-
-</script>
-
 <script setup lang="js">
 import { ref, onMounted } from 'vue'
 import Matter from "matter-js"

@@ -69,7 +69,7 @@
 
     <div class="box yellow-border animation" style="grid-area: box2; padding: 0; margin: 0;">
       <div class="inner-div-animation">
-        <LottoAnimation class="lotto_animation"/><!--:key="n_slider" />-->
+        <LottoAnimation class="lotto_animation" :key="bool_reload_anim" />
       </div>
     </div>
 
@@ -130,6 +130,7 @@ import { count_wins } from './assets/store.js'
 import { experiments } from './assets/store.js'
 import { win_sum } from "./assets/store"
 import { cost_sum } from './assets/store'
+import { bool_reload_anim } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
 
 
