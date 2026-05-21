@@ -1,12 +1,14 @@
 <template>
 
-  <div id="app2"></div>
+  <div id="app2" :key="renderComponent"></div>
 
 </template>
 
 <script setup lang="js">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, render } from 'vue'
 import Matter from "matter-js"
+import { simulation_running } from '../assets/store'
+import { renderComponent } from '../assets/store'
 
 /*let animation_size_adjusted = false;
 
@@ -44,6 +46,19 @@ const counter_bubbles = ref(0);
 const circles = [];
 
 const k_slider = ref(49);
+
+const forceRender = async () => {
+  // Here, we'll remove MyComponent
+  renderComponent.value = false;
+
+  // Then, wait for the change to get flushed to the DOM
+  await nextTick();
+
+  // Add MyComponent back in
+  renderComponent.value = true;
+};
+
+forceRender();
 
 /*// Will execute myCallback every 0.5 seconds 
 var intervalID = window.setInterval(myCallback, 2000);
@@ -140,7 +155,7 @@ function setup() {
       showAngleIndicator: true,
     }
   });
-
+  
   let parts = [];
   let bodies = [];
   for (let i = 0; i < 94; i++) {
@@ -229,6 +244,7 @@ function setup() {
 
   draw();
 
+//if (simulation_running.value ==true) {
   for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
@@ -251,9 +267,9 @@ function setup() {
         }
       }
     });
-  }
+//  }
 
-  for (let i = 15; i < 25; ++i) {
+//  for (let i = 15; i < 25; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5 -35,
@@ -276,7 +292,9 @@ function setup() {
       }
     });
   }
+//} else {
 
+//}
 
   // add all of the bodies to the world
   World.add(engine.world, bodies);
@@ -304,7 +322,12 @@ function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
 }
 
 function draw() {
-  Body.rotate(wheel, Math.PI / 120);
+  if (simulation_running.value == true) {
+    Body.rotate(wheel, Math.PI / 120);
+  } else {
+    Body.rotate(wheel, Math.PI / 960);
+    //World.remove(engine.world, a)
+  }
   window.requestAnimationFrame(draw);
 }
-</script>
+</script>s
