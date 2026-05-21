@@ -487,30 +487,24 @@ span {
   color: #0b0;
 }
 
-/*.animation {
-  position: relative;
-}*/
-
 .inner-div-animation {
   /*position: absolute;
   left: 28%;
   top: 10%;*/
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   width: 30vw;
 }
 
 .lotto_animation {
-  margin: 0 auto;
 }
 
 @media screen and (max-height: 900px) {
   .inner-div-animation {
-    top: 10%;
-    margin-top: 0em;
+    margin: 3.5em auto 0 auto;
   }
 }
 
-@media screen and (max-height: 880px) {
+/*@media screen and (max-height: 880px) {
   .inner-div-animation {
     top: 8%;
   }
@@ -550,38 +544,53 @@ span {
   .inner-div-animation {
     top: -4%;
   }
-}
+}*/
 
 @media screen and (max-height: 740px) {
   .inner-div-animation {
-    top: -8%;
+    margin: 2.2em auto 0 auto;
   }
 }
 
 @media screen and (max-height: 720px) {
   .inner-div-animation {
-    top: -10%;
+    margin: 1.7em auto 0 auto;
   }
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 705px) {
   .inner-div-animation {
-    top: -15%;
-    margin-top: 0em;
+    margin: 1.6em auto 0 auto;
   }
 }
 
-@media screen and (max-height: 670px) {
+@media screen and (max-height: 695px) {
   .inner-div-animation {
-    top: -19%;
-    margin-top: 0em;
+    margin: 1.1em auto 0 auto;
   }
 }
 
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 685px) {
   .inner-div-animation {
-    top: -21%;
-    margin-top: 0em;
+    margin: 0.6em auto 0 auto;
+  }
+}
+
+@media screen and (max-height: 675px) {
+  .inner-div-animation {
+    margin: 0.4em auto 0 auto;
+  }
+}
+
+@media screen and (max-height: 665px) {
+  .inner-div-animation {
+    margin: 0.2em auto 0 auto;
+  }
+}
+
+/*@media screen and (max-height: 655px) {
+  .inner-div-animation {
+    margin: 0em auto 0 auto;
   }
 }
 
@@ -590,9 +599,9 @@ span {
     top: -23%;
     margin-top: 0em;
   }
-}
+}*/
 
-@media screen and (max-height: 625px) {
+@media screen and (max-height: 655px) {
   .grid-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
