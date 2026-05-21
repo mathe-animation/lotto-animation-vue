@@ -64,7 +64,7 @@
 
     <div class="box yellow-border animation" style="grid-area: box2; padding: 0; margin: 0;">
       <div class="inner-div-animation">
-        <LottoAnimation /><!--:key="n_slider" />-->
+        <LottoAnimation class="lotto_animation"/><!--:key="n_slider" />-->
       </div>
     </div>
 
@@ -193,14 +193,14 @@ const expanded = ref([])
 
 //wwwwconst { data , post , terminate , worker  } = useWebWorker ("@/worker.js")
 
-/*function itemProps(item) {
+function itemProps(item) {
   return {
     title: item.value,
     subtitle: item.description,
   }
 }
 
-function colorRowItem(item) {
+/*function colorRowItem(item) {
   if (item.item.some_property != undefined && item.item.some_property.includes("49")) {
     return { class: 'some_text' };
   } 
@@ -487,14 +487,20 @@ span {
   color: #0b0;
 }
 
-.animation {
+/*.animation {
   position: relative;
-}
+}*/
 
 .inner-div-animation {
-  position: absolute;
+  /*position: absolute;
   left: 28%;
-  top: 10%;
+  top: 10%;*/
+  margin: 0 auto;
+  width: 30vw;
+}
+
+.lotto_animation {
+  margin: 0 auto;
 }
 
 @media screen and (max-height: 900px) {
@@ -548,19 +554,19 @@ span {
 
 @media screen and (max-height: 740px) {
   .inner-div-animation {
-    top: -6%;
+    top: -8%;
   }
 }
 
 @media screen and (max-height: 720px) {
   .inner-div-animation {
-    top: -8%;
+    top: -10%;
   }
 }
 
 @media screen and (max-height: 700px) {
   .inner-div-animation {
-    top: -12%;
+    top: -15%;
     margin-top: 0em;
   }
 }
@@ -581,11 +587,34 @@ span {
 
 @media screen and (max-height: 640px) {
   .inner-div-animation {
-    top: -22%;
+    top: -23%;
     margin-top: 0em;
   }
 }
 
+@media screen and (max-height: 625px) {
+  .grid-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "box1 box1 box1 box1 box2 box2"
+      "box6 box6 box6 box6 box6 box6"
+      "box5 box5 box5 box5 box5 box5"
+      "box5 box5 box5 box5 box5 box5";
+}
+  .inner-div-animation {
+    left:0%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+
+  .inner-div-animation {
+      width: 20vw;
+
+  }
+  
+}
 
 @media screen and (max-width: 1350px) {
   .title-font-size {
@@ -597,8 +626,10 @@ span {
   }
 
   .inner-div-animation {
-    left: 25%;
+      width: 25vw;
+
   }
+  
 }
 
 @media screen and (max-width: 1300px) {
@@ -630,31 +661,25 @@ span {
 
 @media screen and (max-width: 1150px) {
   .inner-div-animation {
-    left: 22%;
+    width: 27vw;
   }
 }
 
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 1100px) {
   .inner-div-animation {
-    left: 21%;
+    width: 29vw;
   }
 }
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1010px) {
   .inner-div-animation {
-    left: 19%;
+    width: 30vw;
   }
 }
 
 @media screen and (max-width: 980px) {
   .inner-div-animation {
-    left: 17%;
-  }
-}
-
-@media screen and (max-width: 940px) {
-  .inner-div-animation {
-    left: 15%;
+    width: 32vw;
   }
 }
 
@@ -670,8 +695,7 @@ span {
   }
 
   .inner-div-animation {
-    left: 5%;
-    top: -22%;
+    width: 37vw;
   }
 }
 

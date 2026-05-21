@@ -119,10 +119,10 @@ function getWidth() {
 
 function getHeight() {
   if (window.innerWidth > 900) {
-    return 430;
+    return 360;
   }
   if (window.innerWidth <= 900) {
-    return 430;
+    return 360;
   }
 }
 
@@ -140,7 +140,7 @@ function setup() {
       width: width,
       height: height,
       wireframes: false,
-      background: "#121212",
+      background: "#333",
       showAngleIndicator: true,
     }
   });
@@ -150,7 +150,7 @@ function setup() {
   for (let i = 0; i < 94; i++) {
     let a = Bodies.rectangle(
       width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120,
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 -35,
       10,
       12,
       {
@@ -173,7 +173,7 @@ function setup() {
   for (let i = 20; i < 45; i++) {
     let a = Bodies.rectangle(
       width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120,
+      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 -35,
       30,
       30,
       {
@@ -196,7 +196,7 @@ function setup() {
   for (let i = 0; i < 3; i++) {
     let b = Bodies.trapezoid(
       150,
-      390,
+      320,
       180,
       50,
       0.4,
@@ -236,7 +236,7 @@ function setup() {
   for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
-      y: height / 2 + i * 1.5,
+      y: height / 2 + i * 1.5 -35,
       r: 18,
       options: {
         mass: 1 + i * 2,
@@ -260,7 +260,7 @@ function setup() {
   for (let i = 15; i < 25; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
-      y: height / 2 + i * 1.5,
+      y: height / 2 + i * 1.5 -35,
       r: 18,
       options: {
         mass: 1 + i * 2,
