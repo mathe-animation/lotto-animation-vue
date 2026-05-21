@@ -17,6 +17,11 @@
 import { useWebWorkerFn } from "@vueuse/core";
 import { ref } from "vue";
 import SvgIcon from '@jamescoyle/vue-icon';
+import { simulation_running } from '../assets/store'
+import { k_slider } from '../assets/store'
+import { n_slider } from '../assets/store'
+import { count_trials } from '../assets/store'
+import { status_text } from '../assets/store'
 
 let term = ref();
 let fibonnaciValue = ref();
@@ -55,29 +60,29 @@ function lotto_experiment(n,k,number_trials) {
 const { workerFn } = useWebWorkerFn(lotto_experiment);
 
 async function onClick() {
-  if (this.$parent.simulation_running.value == false) {
-    if (this.$parent.k_slider.value > this.$parent.n_slider.value) {
+  if (simulation_running.value == false) {
+    if (k_slider.value > n_slider.value) {
       alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
     } else {
       console.log(simulation_running.value)
       simulation_running.value = true
-      this.$parent.status_text.value = "Status: Simulation läuft..."
-      let new_experiment_data = await workerFn(this.$parent.n_slider.value,this.$parent.k_slider.value, this.$parent.count_trials.value)
-      this.$parent.experiments.value.push(new_experiment_data)
-      this.$parent.count_completed_experiments = count_completed_experiments + 1
+      status_text.value = "Status: Simulation läuft..."
+      let new_experiment_data = await workerFn(n_slider.value,k_slider.value, count_trials.value)
+      experiments.value.push(new_experiment_data)
+      count_completed_experiments = count_completed_experiments + 1
       price_lottoschein = 1.2
       
       if (k_slider.value == 6 && n_slider.value == 49) {
         winCostCalcActive.value = true
-        this.$parent.cost_sum.value = this.$parent.count_trials.value * price_lottoschein
-        this.$parent.win_sum.value = this.$parent.count_wins.value * 1000000 * (Prob(49, 6)/Prob(this.$parent.n_slider.value, this.$parent.k_slider.value))
+        cost_sum.value = count_trials.value * price_lottoschein
+        win_sum.value = count_wins.value * 1000000 * (Prob(49, 6)/Prob(n_slider.value, k_slider.value))
       } else {
         winCostCalcActive.value = false
-        this.$parent.cost_sum.value = 0
-        this.$parent.win_sum.value = 0
+        cost_sum.value = 0
+        win_sum.value = 0
       }
-        this.$parent.simulation_running.value = false
-      this.$parent.status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
+        simulation_running.value = false
+      status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     }
   }
 }

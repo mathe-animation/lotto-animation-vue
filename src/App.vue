@@ -51,7 +51,7 @@
           :items="count_trials_poss_val"></v-select>
       </div>
       
-      <div></div>
+      <div><Worker /></div>
 
       <span class="card-simulation-status"><i>{{ status_text }}</i></span>
       <p>
