@@ -15,3 +15,5 @@ export let win_sum = ref(0)
 export let simulation_running = ref(false)
 export let experiments = ref([])
 
+export let winCostCalcActive = ref(true);
+

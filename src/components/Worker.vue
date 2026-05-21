@@ -25,6 +25,11 @@ import { status_text } from '../assets/store'
 import { count_completed_experiments } from '../assets/store'
 import { count_wins } from '../assets/store'
 import { experiments } from '../assets/store'
+import {winCostCalcActive} from "../assets/store"
+import { cost_sum } from '../assets/store'
+import { win_sum } from '../assets/store'
+
+
 
 
 
@@ -129,14 +134,14 @@ async function onClick() {
       count_wins.value = await workerFn(n_slider_curr,k_slider_curr, count_trials_curr)
       count_completed_experiments.value = count_completed_experiments.value + 1
       let new_experiment_list_item = {
-        "Nr.": String(count_completed_experiments),
+        "Nr.": String(count_completed_experiments.value),
         "k": String(k_slider_curr),
         "n": String(n_slider_curr),
         "Versuche": count_trials_curr.toLocaleString(),
         "Gewinne": String(count_wins.value)
     }  
       experiments.value.push(new_experiment_list_item)
-      price_lottoschein = 1.2
+      let price_lottoschein = 1.2
       
       if (k_slider.value == 6 && n_slider.value == 49) {
         winCostCalcActive.value = true
