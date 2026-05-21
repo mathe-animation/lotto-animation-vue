@@ -24,6 +24,7 @@
     "@mdi/js": "^7.4.47",
     "@primeuix/themes": "^2.0.3",
     "@vueuse/core": "^14.3.0",
+    "mathjs": "^15.2.0",
     "matter-js": "^0.20.0",
     "mime-types": "^3.0.2",
     "mitt": "^3.0.1",
