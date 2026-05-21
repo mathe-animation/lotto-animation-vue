@@ -28,7 +28,32 @@ function fibonacci(num) {
   return fibonacci(num - 1) + fibonacci(num - 2);
 }
 
-const { workerFn } = useWebWorkerFn(fibonacci);
+function lotto_experiment(n,k,number_trials) {
+  const prob = Prob(n, k)
+  //console.log("prob is " + String(prob))
+  let count_wins_local = 0
+  /*console.log("n ist " + String(n))
+  console.log("k ist " + String(k))
+  console.log("pls make alert before calc")
+  console.log("number_trials ist " + String(number_trials))*/
+  for (let i = 0; i < number_trials; i++) {
+    let random_number = Math.random()
+    if (random_number <= prob) {
+      count_wins_local = count_wins_local + 1
+    }
+  }
+  let new_experiment_list_item = {
+    "Nr.": String(count_completed_experiments),
+    "k": String(k),
+    "n": String(n),
+    "Versuche": number_trials.toLocaleString(),
+    "Gewinne": String(count_wins_local)
+  }
+  count_wins.value = count_wins_local
+  return new_experiment_list_item
+}
+
+const { workerFn } = useWebWorkerFn(lotto_experiment);
 
 async function onClick() {
   if (this.$parent.simulation_running == false) {
@@ -38,7 +63,7 @@ async function onClick() {
       console.log(simulation_running)
       simulation_running = true
       this.$parent.status_text.value = "Status: Simulation läuft..."
-      let new_experiment_data = LottoExperiment(this.$parent.n_slider.value,this.$parent.k_slider.value, this.$parent.count_trials.value)
+      let new_experiment_data = await workerFn(this.$parent.n_slider.value,this.$parent.k_slider.value, this.$parent.count_trials.value)
       this.$parent.experiments.value.push(new_experiment_data)
       this.$parent.count_completed_experiments = count_completed_experiments + 1
       price_lottoschein = 1.2
