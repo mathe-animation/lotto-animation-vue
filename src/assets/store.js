@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 export let status_text = ref("Status: Die Simulation wurde noch nicht gestartet...")
 
-export let count_completed_experiments = 1
+export let count_completed_experiments = ref(0)
 
 export let k_slider = ref(6)
 export let n_slider = ref(49)

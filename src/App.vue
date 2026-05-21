@@ -130,7 +130,8 @@ import { count_wins } from './assets/store.js'
 import { experiments } from './assets/store.js'
 import { win_sum } from "./assets/store"
 import { cost_sum } from './assets/store'
-import LottoAnimation from "./components/LottoAnimation.vue";
+import LottoAnimation from "./components/LottoAnimation.vue"
+
 
 
 const theme = useTheme()
