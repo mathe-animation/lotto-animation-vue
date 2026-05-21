@@ -52,7 +52,7 @@
           :items="count_trials_poss_val"></v-select>
       </div>
       
-      <div @click="start_simulation"><Worker /></div>
+      <div><Worker /></div>
 
       <span class="card-simulation-status"><i>{{ status_text }}</i></span>
       <p>
@@ -62,7 +62,7 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table-virtual v-model:sort-by="sortBy" :row-props="colorRowItem" style="background-color: #111; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
+      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #111; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
     </div>
@@ -100,7 +100,6 @@
 <script lang="js">
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiRestart } from "@mdi/js"
-import { mdiPlayBox } from "@mdi/js"
 import { mdiStopCircleOutline } from "@mdi/js"
 import LottoAnimation from "./components/LottoAnimation.vue";
 
@@ -112,7 +111,6 @@ export default {
   data() {
     return {
       pathRestart: mdiRestart,
-      pathStart: mdiPlayBox,
       pathStop: mdiStopCircleOutline,
     }
   },
@@ -153,7 +151,6 @@ const start_text = "Simulation starten"
 const stop_text = "Simulation stoppen"
 
 let simulation_running = false
-
 let experiments = ref([])
 
 const itemsPerPage = ref(4)
@@ -212,82 +209,6 @@ function itemProps(item) {
     return { class: 'some_text' };
   } 
 }*/
-
-
-function start_simulation() {
-  if (simulation_running == false) {
-    if (k_slider.value > n_slider.value) {
-      alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
-    } else {
-      console.log(simulation_running)
-      simulation_running = true
-      status_text.value = "Status: Simulation läuft..."
-      let new_experiment_data = LottoExperiment(n_slider.value, k_slider.value, count_trials.value)
-      experiments.value.push(new_experiment_data)
-      count_completed_experiments = count_completed_experiments + 1
-      price_lottoschein = 1.2
-      
-      if (k_slider.value == 6 && n_slider.value == 49) {
-        winCostCalcActive.value = true
-        cost_sum.value = count_trials.value * price_lottoschein
-        win_sum.value = count_wins.value * 1000000 * (Prob(49, 6)/Prob(n_slider.value, k_slider.value))
-      } else {
-        winCostCalcActive.value = false
-        cost_sum.value = 0
-        win_sum.value = 0
-      }
-        simulation_running = false
-      status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
-    }
-  }
-}
-
-function factorial(n) {
-  // n!
-  var fac = 1
-  for (let i = 1; i <= n; i++) {
-    fac = fac * i
-  }
-  return fac
-}
-
-function binomial(n, k) {
-  // Binomialkoeffizient von n über k
-  var bin = factorial(n) / (factorial(k) * factorial(n - k))
-  return bin
-}
-
-function Prob(n, k) {
-  // Wahrscheinlichkeit für genau r Richtige bei einem Lottofeld
-  var N = binomial(n, k)
-  var result = 1 / N
-  return result
-}
-
-function LottoExperiment(n, k, number_trials) {
-  const prob = Prob(n, k)
-  //console.log("prob is " + String(prob))
-  let count_wins_local = 0
-  /*console.log("n ist " + String(n))
-  console.log("k ist " + String(k))
-  console.log("pls make alert before calc")
-  console.log("number_trials ist " + String(number_trials))*/
-  for (let i = 0; i < number_trials; i++) {
-    let random_number = Math.random()
-    if (random_number <= prob) {
-      count_wins_local = count_wins_local + 1
-    }
-  }
-  let new_experiment_list_item = {
-    "Nr.": String(count_completed_experiments),
-    "k": String(k),
-    "n": String(n),
-    "Versuche": number_trials.toLocaleString(),
-    "Gewinne": String(count_wins_local)
-  }
-  count_wins.value = count_wins_local
-  return new_experiment_list_item
-}
 
 /*function update_animation() {
   renderComponent.value = false;
