@@ -461,9 +461,9 @@ span {
 }
 
 /* Custom styling for dark theme */
-.custom-dark-theme {
-  /* Your custom styles for the dark theme go here */
-}
+/*.custom-dark-theme {
+  Your custom styles for the dark theme go here
+}*/
 
 .div-result {
   margin-top: 0em;
@@ -493,9 +493,6 @@ span {
   top: 10%;*/
   margin: 0 auto 0 auto;
   width: 30vw;
-}
-
-.lotto_animation {
 }
 
 @media screen and (max-height: 900px) {
