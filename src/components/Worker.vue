@@ -26,21 +26,23 @@ import { bool_reload_anim } from '../assets/store'
 import { renderComponent } from '../assets/store'
 
 // Will execute myCallback every 0.5 seconds 
-var intervalID = window.setInterval(myCallback, 500);
+/*var intervalID = window.setInterval(myCallback, 500);
 let simulation_running_guess = simulation_running.value
 
 async function myCallback() {
     if (simulation_running != simulation_running_guess) {
         // Here, we'll remove MyComponent
-        renderComponent.value = false;
+        renderComponent.value = true;
 
         // Then, wait for the change to get flushed to the DOM
         await nextTick();
 
         // Add MyComponent back in
         renderComponent.value = true;
+
+        simulation_running_guess = !simulation_running_guess
     }
-}
+}*/
 
 
 

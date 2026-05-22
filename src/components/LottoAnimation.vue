@@ -11,6 +11,8 @@ import Matter from "matter-js"
 import { simulation_running } from '../assets/store'
 import { renderComponent } from '../assets/store'
 
+
+
 /*let animation_size_adjusted = false;
 
 addEventListener("resize", (event) => { })
@@ -58,67 +60,6 @@ const forceRender = async () => {
   // Add MyComponent back in
   renderComponent.value = true;
 };
-
-forceRender();
-
-/*// Will execute myCallback every 0.5 seconds 
-var intervalID = window.setInterval(myCallback, 2000);
-
-function myCallback() {
- if (k_slider.value > counter_bubbles) {
-  let number_missing = k_slider.value - counter_bubbles;
-  if (number_missing > 0) {
-    for (let i = 0; i < number_missing; ++i) {
-      addCircle({
-      x: width / 2 + i * 1.5,
-      y: height / 2 + i * 1.5,
-      r: 5,
-      options: {
-        mass: 1 + i * 2,
-        friction: 0,
-        frictionStatic: 0,
-        // frictionStatic: 5,
-        label: 'ball',
-        render: {
-        opacity: 0.6,
-        },
-        collisionFilter: {
-        category: 0x0002,
-        mask: 0x0002 | 0x0001
-        }
-      }
-      });
-    }
-  }
- }
-
- if (k_slider.value < counter_bubbles) {
-  let number_too_much = counter_bubbles - k_slider.value;
-  if (number_too_much > 0) {
-    for (let i = 0; i < number_too_much; ++i) {
-      addCircle({
-      x: width / 2 + i * 1.5,
-      y: height / 2 + i * 1.5,
-      r: 5,
-      options: {
-        mass: 1 + i * 2,
-        friction: 0,
-        frictionStatic: 0,
-        // frictionStatic: 5,
-        label: 'ball',
-        render: {
-        opacity: 0.6,
-        },
-        collisionFilter: {
-        category: 0x0002,
-        mask: 0x0002 | 0x0001
-        }
-      }
-      });
-    }
-  }
- }
-}*/
 
 function getWidth() {
   if (window.innerWidth > 900) {
@@ -245,6 +186,7 @@ function setup() {
 
   draw();
 
+//if (simulation_running.value ==true) {
   for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
@@ -267,7 +209,9 @@ function setup() {
         }
       }
     });
+  }
 
+for (let i = 15; i < 25; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
       y: height / 2 + i * 1.5 -35,
@@ -290,6 +234,9 @@ function setup() {
       }
     });
   }
+//} else {
+
+//}
 
   // add all of the bodies to the world
   World.add(engine.world, bodies);
@@ -317,12 +264,8 @@ function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
 }
 
 function draw() {
-  if (simulation_running.value == true) {
     Body.rotate(wheel, Math.PI / 120);
-  } else {
-    Body.rotate(wheel, Math.PI / 960);
-    //World.remove(engine.world, a)
-  }
   window.requestAnimationFrame(draw);
 }
+
 </script>s

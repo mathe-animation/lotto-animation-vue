@@ -19,6 +19,6 @@ export let winCostCalcActive = ref(true);
 
 export let bool_reload_anim = ref(true);
 
-export let renderComponent = ref(true);
+export let renderComponent = ref(false);
 
 

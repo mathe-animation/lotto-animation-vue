@@ -131,6 +131,7 @@ import { experiments } from './assets/store.js'
 import { win_sum } from "./assets/store"
 import { cost_sum } from './assets/store'
 import { bool_reload_anim } from './assets/store'
+import { renderComponent } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
 
 
@@ -151,7 +152,6 @@ let count_wins_text_field = ref("")
 const itemsPerPage = ref(4)
 const sortBy = ref([{ key: 'Nr.', order: 'desc' }])
 
-const renderComponent = ref(true);
 
 const winCostCalcActive = ref(true);
 
@@ -210,19 +210,8 @@ function itemProps(item) {
   renderComponent.value = true;
 }*/
 
-const forceRender = async () => {
-  // Here, we'll remove MyComponent
-  renderComponent.value = false;
-
-  // Then, wait for the change to get flushed to the DOM
-  await nextTick();
-
-  // Add MyComponent back in
-  renderComponent.value = true;
-};
-
 // Will execute myCallback every 0.5 seconds 
-var intervalID = window.setInterval(myCallback, 500);
+/*var intervalID = window.setInterval(myCallback, 500);
 
 function myCallback() {
   let viewport_width = window.innerWidth;
@@ -239,7 +228,7 @@ function myCallback() {
   } else {
     animation_big = false;
   }
-}
+}*/
 
 
 </script>
