@@ -70,6 +70,10 @@ const k_slider = ref(49);
   renderComponent.value = true;
 };*/
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function getWidth() {
   if (window.innerWidth > 900) {
     return window.innerWidth / 2;
@@ -88,8 +92,11 @@ function getHeight() {
   }
 }
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
-function setup() {
+async function setup() {
   const width = 300;//getWidth();
   const height = getHeight(); //window.innerHeight/2;
   // create an engine
@@ -195,11 +202,12 @@ function setup() {
   });
 
   draw();
-
-  for (let i = 0; i < 10; ++i) {
+  let min = -100;
+  let max = 100;
+  for (let i = 0; i < 9; ++i) {
     addCircle({
-      x: width / 2 + i * 1.5,
-      y: height / 2 + i * 1.5 -35,
+      x: width / 2 + i * 1.5 + getRandomArbitrary(min, max),
+      y: height / 2 + i * 1.5 -35 + getRandomArbitrary(min, max),
       r: 18,
       options: {
         mass: 1 + i * 2,
@@ -220,10 +228,11 @@ function setup() {
     });
   }
 
-for (let i = 15; i < 25; ++i) {
+
+for (let i = 15; i < 22; ++i) {
     addCircle({
-      x: width / 2 + i * 1.5,
-      y: height / 2 + i * 1.5 -35,
+      x: width / 2 + i * 1.5 + getRandomArbitrary(min, max),
+      y: height / 2 + i * 1.5 -35 + getRandomArbitrary(min, max),
       r: 18,
       options: {
         mass: 1 + i * 2,
@@ -261,7 +270,7 @@ function addBody(...bodies) {
   World.add(engine.world, bodies);
 }
 
-function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
+async function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
   let body = Bodies.circle(x, y, r, options);
   addBody(body);
   //circles.push(Matter.Bodies.circle(200, 50, 5));
@@ -278,7 +287,7 @@ function draw() {
   } else {
    Body.rotate(wheel, Math.PI / 4000);
    //engine.gravity = Vector.create(0,0);
-   engine.gravity.scale = -0.00005
+   engine.gravity.scale = -0.000005
   }
   window.requestAnimationFrame(draw);
 }
