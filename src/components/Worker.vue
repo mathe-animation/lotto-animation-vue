@@ -24,6 +24,8 @@ import { cost_sum } from '../assets/store'
 import { win_sum } from '../assets/store'
 import { bool_reload_anim } from '../assets/store'
 import { renderComponent } from '../assets/store'
+import { simulation_just_ended } from '../assets/store'
+
 
 // Will execute myCallback every 0.5 seconds 
 /*var intervalID = window.setInterval(myCallback, 500);
@@ -172,6 +174,7 @@ async function onClick() {
         simulation_running.value = false
         bool_reload_anim.value = false
         bool_reload_anim.value = true
+        simulation_just_ended.value = true
         status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
     }
 }

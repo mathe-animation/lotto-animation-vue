@@ -107,9 +107,9 @@ onMounted(() => {
   updateAnim();*/
 });
 
-onBeforeUnmount(() => {
+/*onBeforeUnmount(() => {
   if (ro) ro.disconnect();
-});
+});*/
 
 const inheritRadius = computed<CSSProperties>(() => {
   const radius = props.style?.borderRadius;

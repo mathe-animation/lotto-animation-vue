@@ -55,11 +55,13 @@
     <div class="box yellow-border" style="grid-area: box5;">
       <div class="div-e-border" style="position: relative;">
           <ElectricBorder
+    v-if="simulation_just_ended"
     :color="'#ee0'"
     :speed="0"
     :chaos="0.000000001"
     :thickness="2"
     :style="{ borderRadius: '0px'}"
+    :class="{ shown : simulation_running}"
   >
     <div>
       
@@ -137,6 +139,8 @@ import { experiments } from './assets/store.js'
 import { win_sum } from "./assets/store"
 import { cost_sum } from './assets/store'
 import { bool_reload_anim } from './assets/store'
+import { simulation_running } from './assets/store'
+import { simulation_just_ended } from './assets/store'
 import { renderComponent } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
 import ElectricBorder from "./components/ElectricBorder.vue";
@@ -236,7 +240,6 @@ function myCallback() {
     animation_big = false;
   }
 }*/
-
 
 </script>
 
