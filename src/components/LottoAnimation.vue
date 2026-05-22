@@ -109,7 +109,7 @@ async function setup() {
       width: width,
       height: height,
       wireframes: false,
-      background: "#001",
+      background: "#2d2d30",
       showAngleIndicator: true,
     }
   });
@@ -120,14 +120,14 @@ async function setup() {
     let a = Bodies.rectangle(
       width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
       height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 -35,
-      14,
+      9,
       12,
       {
         isStatic: true,
         friction: 5,
         angle: Math.PI / 180 * i * 4,
         render: {
-          fillStyle: i !== 0 ? "#550" : '#550',
+          fillStyle: i !== 0 ? "#880" : '#880',
           strokeStyle: "#fff",
           lineWidth: 0
         }
@@ -176,7 +176,7 @@ async function setup() {
         angle: 0,
         render: {
           fillStyle: "#008",
-          strokeStyle: "#550",
+          strokeStyle: "#880",
           lineWidth: 5
         }
       }
@@ -242,7 +242,7 @@ for (let i = 15; i < 22; ++i) {
         label: 'ball',
         render: {
           opacity: 1,
-          fillStyle: '#770',
+          fillStyle: '#880',
           strokeStyle: 'orange',
         },
         collisionFilter: {

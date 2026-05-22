@@ -53,7 +53,7 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #001; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
+      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
     </div>
@@ -376,7 +376,7 @@ span {
 }
 
 .result_text_heading_active {
-  color: #cd0;
+  color: #ff0;
 }
 
 .result_text_count_wins {
@@ -384,11 +384,11 @@ span {
 }
 
 .result_text_cost_active {
-  color: #b00;
+  color: #f00;
 }
 
 .result_text_win_sum_active {
-  color: #0b0;
+  color: #0f0;
 }
 
 .inner-div-animation {
