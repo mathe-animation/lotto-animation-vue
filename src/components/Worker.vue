@@ -89,6 +89,10 @@ function lotto_experiment(n, k, number_trials) {
 
 const { workerFn } = useWebWorkerFn(lotto_experiment);
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 /*function factorial(n) {
   // n!
   var fac = 1
@@ -171,11 +175,14 @@ async function onClick() {
             cost_sum.value = 0
             win_sum.value = 0
         }
-        simulation_running.value = false
+        
         bool_reload_anim.value = false
         bool_reload_anim.value = true
         simulation_just_ended.value = true
         status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
+        await sleep(450)
+        simulation_just_ended.value = false
+        simulation_running.value = false
     }
 }
 

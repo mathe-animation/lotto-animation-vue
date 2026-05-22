@@ -52,22 +52,25 @@
 
 
     </div>
-    <div class="box yellow-border" style="grid-area: box5;">
-      <div class="div-e-border" style="position: relative;">
+    <div class="box yellow-border" style="grid-area: box5; position: relative;">
+      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: relative; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
+        class="no-padding-table"
+        v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
+      <div class="div-e-border" style="position: absolute; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
           <ElectricBorder
     v-if="simulation_just_ended"
     :color="'#ee0'"
     :speed="0"
-    :chaos="0.000000001"
-    :thickness="2"
+    :chaos="1"
+    :thickness="5"
     :style="{ borderRadius: '0px'}"
     :class="{ shown : simulation_running}"
   >
-    <div>
+    <div style="height: 260px;">
       
-        <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: relative; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
+        <!--<v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: absolute; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
-        v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
+        v-model:items-per-page="itemsPerPage"></v-data-table-virtual>-->
       
     </div>
   </ElectricBorder>
@@ -141,6 +144,7 @@ import { cost_sum } from './assets/store'
 import { bool_reload_anim } from './assets/store'
 import { simulation_running } from './assets/store'
 import { simulation_just_ended } from './assets/store'
+import { always_true } from './assets/store'
 import { renderComponent } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
 import ElectricBorder from "./components/ElectricBorder.vue";

@@ -22,5 +22,6 @@ export let bool_reload_anim = ref(true);
 export let renderComponent = ref(true);
 
 export let simulation_just_ended = ref(false);
+export let always_true = ref(true);
 
 
