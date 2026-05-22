@@ -109,7 +109,7 @@ async function setup() {
       width: width,
       height: height,
       wireframes: false,
-      background: "#2d2d30",
+      background: "#2d0030",
       showAngleIndicator: true,
     }
   });
@@ -242,7 +242,7 @@ for (let i = 15; i < 22; ++i) {
         label: 'ball',
         render: {
           opacity: 1,
-          fillStyle: '#ff0',
+          fillStyle: '#ee0',
           strokeStyle: '#000',
         },
         collisionFilter: {

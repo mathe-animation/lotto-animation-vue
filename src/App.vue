@@ -9,6 +9,16 @@
     ></v-btn>-->
   </template>
 
+  <template v-slot:header="{ props: { headers } }">
+    <thead>
+      <tr>
+        <th v-for="h in headers" :class="h.class">
+          <span>{{h.text}}</span>
+        </th>
+      </tr>
+    </thead>
+</template>
+
   <template v-slot:default="{ isActive }">
     <v-card title="Dialog">
       <v-card-text>
@@ -81,7 +91,7 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5; position: relative;">
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30;" :items="experiments" height="260" :headers="headers" density="compact" fixed-header v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
+      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d0030;" :items="experiments" height="260" :headers="headers" density="compact" fixed-header v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
       <div class="div-e-border" style="position: absolute; z-index: -1; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
           <transition name="fade-slide"><ElectricBorder
     v-if="simulation_just_ended"
@@ -192,6 +202,15 @@ let price_lottoschein = 1.2
 let count_wins_text_field = ref("")
 
 const itemsPerPage = ref(4)
+
+/*const headers = [
+  { text: 'Nr.', value: 'Nr.', class: 'my-header-style' },
+  { text: 'k', value: 'k', class: 'my-header-style' },
+  { text: 'n', value: 'n', class: 'my-header-style' },
+  { text: 'Versuche', value: 'Versuche', class: 'my-header-style' },
+  { text: 'Gewinnne', value: 'Gewinne', class: 'my-header-style' },
+]*/
+
 const headers = [
     { title: 'Nr.', align: 'start', key: 'Nr.' },
     { title: 'k', align: 'end', key: 'k' },
@@ -205,29 +224,13 @@ const sortBy = ref([{ key: 'Nr.', order: 'desc' }])
 
 const count_trials_poss_val = [
   {
-    value: 1000,
-    description: '1 Tausend',
-  },
-  /*{
     value: 10000,
     description: '10 Tausend',
   },
   {
-    value: 100000,
-    description: '100 Tausend',
-  },*/
-  {
     value: 1000000,
     description: '1 Million',
   },
-  /*{
-    value: 10000000,
-    description: '10 Millionen',
-  },
-  {
-    value: 100000000,
-    description: '100 Millionen',
-  },*/
   {
     value: 1000000000,
     description: '1 Milliarde (1000 Millionen)',
