@@ -391,7 +391,7 @@ div.v-card-text {
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #550;
+  color: #330;
 }
 
 .count-wins-title {
