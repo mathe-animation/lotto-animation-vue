@@ -127,8 +127,8 @@ async function setup() {
         friction: 5,
         angle: Math.PI / 180 * i * 4,
         render: {
-          fillStyle: i !== 0 ? "#880" : '#880',
-          strokeStyle: "#fff",
+          fillStyle: i !== 0 ? "#ff9999" : '#ff0000',
+          strokeStyle: "#ff9999",
           lineWidth: 0
         }
       }
@@ -152,7 +152,7 @@ async function setup() {
           label: 'addSpeedSensor',
           angle: Math.PI / 180 * i * 4,
           render: {
-            strokeStyle: '#00f',
+            strokeStyle: '#6e9fc1',
             fillStyle: 'transparent',
             lineWidth: 1
           }
@@ -175,8 +175,8 @@ async function setup() {
         friction: 0.5,
         angle: 0,
         render: {
-          fillStyle: "#008",
-          strokeStyle: "#880",
+          fillStyle: "#6e9fc1",
+          strokeStyle: "#6e9fc1",
           lineWidth: 5
         }
       }
@@ -216,9 +216,9 @@ async function setup() {
         // frictionStatic: 5,
         label: 'ball',
         render: {
-          opacity: 0.6,
-          fillStyle: 'yellow',
-          strokeStyle: 'yellow',
+          opacity: 1,
+          fillStyle: '#ff9999',
+          strokeStyle: '#ff9999',
         },
         collisionFilter: {
           category: 0x0002,
@@ -242,7 +242,7 @@ for (let i = 15; i < 22; ++i) {
         label: 'ball',
         render: {
           opacity: 1,
-          fillStyle: '#880',
+          fillStyle: '#ff0',
           strokeStyle: 'orange',
         },
         collisionFilter: {
