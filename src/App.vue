@@ -57,7 +57,7 @@
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
       <div class="div-e-border" style="position: absolute; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
-          <ElectricBorder
+          <transition name="fade-slide"><ElectricBorder
     v-if="simulation_just_ended"
     :color="'#ee0'"
     :speed="0"
@@ -73,7 +73,7 @@
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>-->
       
     </div>
-  </ElectricBorder>
+  </ElectricBorder></transition>
   </div>
     </div>
 
@@ -669,5 +669,22 @@ span {
   .title-font-size {
     font-size: 2em;
   }
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+   transition: all 0.4s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+   opacity: 0;
+   transform: translateY(20px);
+}
+
+.fade-slide-enter-to,
+.fade-slide-leave-from {
+   opacity: 1;
+   transform: translateY(0);
 }
 </style>
