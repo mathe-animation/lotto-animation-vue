@@ -25,6 +25,8 @@ import { win_sum } from '../assets/store'
 import { bool_reload_anim } from '../assets/store'
 import { renderComponent } from '../assets/store'
 import { simulation_just_ended } from '../assets/store'
+import { isActive } from '../assets/store'
+
 
 
 // Will execute myCallback every 0.5 seconds 
@@ -142,7 +144,8 @@ return new_experiment_list_item
 
 async function onClick() {
     if (simulation_running.value == true) {
-        alert("Die Simulation läuft noch. Bitte warten. (meist weniger als 20 Sekunden)")
+        isActive.value = true;
+        alert("Die Simulation läuft noch. Bitte warten (meist weniger als 20 Sekunden).")
     } else if (k_slider.value > n_slider.value) {
         alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
     } else {
