@@ -288,7 +288,7 @@ function draw() {
   } else {
    Body.rotate(wheel, Math.PI / 1800);
    //engine.gravity = Vector.create(0,0);
-   engine.gravity.scale = -0.000005
+   engine.gravity.scale = -0.00005
    engine.timing.timeScale = 0.9
   }
   window.requestAnimationFrame(draw);
