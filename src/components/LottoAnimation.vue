@@ -169,14 +169,14 @@ async function setup() {
       320,
       180,
       50,
-      0.4,
+      0.6,
       {
         isStatic: true,
         friction: 0.5,
         angle: 0,
         render: {
-          fillStyle: "#6e9fc1",
-          strokeStyle: "#6e9fc1",
+          fillStyle: "#ff9999",
+          strokeStyle: "#ff9999",
           lineWidth: 5
         }
       }
@@ -218,7 +218,7 @@ async function setup() {
         render: {
           opacity: 1,
           fillStyle: '#ff9999',
-          strokeStyle: '#ff9999',
+          strokeStyle: '#000',
         },
         collisionFilter: {
           category: 0x0002,
@@ -243,7 +243,7 @@ for (let i = 15; i < 22; ++i) {
         render: {
           opacity: 1,
           fillStyle: '#ff0',
-          strokeStyle: 'orange',
+          strokeStyle: '#000',
         },
         collisionFilter: {
           category: 0x0004,
