@@ -109,7 +109,7 @@ async function setup() {
       width: width,
       height: height,
       wireframes: false,
-      background: "#121212",
+      background: "#001",
       showAngleIndicator: true,
     }
   });
@@ -202,8 +202,8 @@ async function setup() {
   });
 
   draw();
-  let min = -100;
-  let max = 100;
+  let min = -50;
+  let max = 50;
   for (let i = 0; i < 9; ++i) {
     addCircle({
       x: width / 2 + i * 1.5 + getRandomArbitrary(min, max),
@@ -283,11 +283,13 @@ function draw() {
   if (simulation_running.value == true) { 
   Body.rotate(wheel, Math.PI / 120);
   engine.gravity.scale = 0.001
+  engine.timing.timeScale = 1
 
   } else {
-   Body.rotate(wheel, Math.PI / 4000);
+   Body.rotate(wheel, Math.PI / 1800);
    //engine.gravity = Vector.create(0,0);
    engine.gravity.scale = -0.000005
+   engine.timing.timeScale = 0.9
   }
   window.requestAnimationFrame(draw);
 }

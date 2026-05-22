@@ -45,7 +45,7 @@
       
       <div><Worker /></div>
 
-      <span class="card-simulation-status"><i>{{ status_text }}</i></span>
+      <span class="card-simulation-status"><b>{{ status_text }}</b></span>
       <p>
         {{ count_wins_text_field }}
       </p>
@@ -53,7 +53,7 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #111; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
+      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #001; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
     </div>
