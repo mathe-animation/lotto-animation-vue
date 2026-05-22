@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app2" :key="renderComponent"></div>
+  <div id="app2" :key="renderComponent.value"></div>
 
 </template>
 
@@ -11,7 +11,16 @@ import Matter from "matter-js"
 import { simulation_running } from '../assets/store'
 import { renderComponent } from '../assets/store'
 
+/*var intervalID = window.setInterval(myCallback, 500);
+let simulation_running_guess = simulation_running.value;
 
+async function myCallback() {
+    if (simulation_running.value != simulation_running_guess) {
+      simulation_running_guess = simulation_running.value;
+      forceRender();
+
+    }
+}*/
 
 /*let animation_size_adjusted = false;
 
@@ -40,7 +49,7 @@ onMounted(() => {
 
 
 
-let { Engine, Render, World, Bodies, Body, Events, Runner } = Matter;
+let { Engine, Render, World, Bodies, Body, Events, Runner, Vector } = Matter;
 let engine = Engine.create();
 let wheel;
 let runner = Runner.create();
@@ -50,7 +59,7 @@ const circles = [];
 
 const k_slider = ref(49);
 
-const forceRender = async () => {
+/*const forceRender = async () => {
   // Here, we'll remove MyComponent
   renderComponent.value = false;
 
@@ -59,7 +68,7 @@ const forceRender = async () => {
 
   // Add MyComponent back in
   renderComponent.value = true;
-};
+};*/
 
 function getWidth() {
   if (window.innerWidth > 900) {
@@ -100,15 +109,15 @@ function setup() {
   
   let parts = [];
   let bodies = [];
-  for (let i = 0; i < 94; i++) {
+  for (let i = 0; i < 93; i++) {
     let a = Bodies.rectangle(
       width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
       height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 -35,
-      10,
+      14,
       12,
       {
         isStatic: true,
-        friction: 0.5,
+        friction: 5,
         angle: Math.PI / 180 * i * 4,
         render: {
           fillStyle: i !== 0 ? "#550" : '#550',
@@ -123,27 +132,28 @@ function setup() {
 
   wheel = Body.create({ parts, isStatic: true });
 
-  for (let i = 20; i < 45; i++) {
-    let a = Bodies.rectangle(
-      width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
-      height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 -35,
-      30,
-      30,
-      {
-        isSensor: true,
-        isStatic: true,
-        friction: 0,
-        label: 'addSpeedSensor',
-        angle: Math.PI / 180 * i * 4,
-        render: {
-          strokeStyle: '#00f',
-          fillStyle: 'transparent',
-          lineWidth: 1
+    for (let i = 20; i < 45; i++) {
+      let a = Bodies.rectangle(
+        width / 2 + Math.cos(i * 4 * Math.PI / 180) * 120,
+        height / 2 + Math.sin(i * 4 * Math.PI / 180) * 120 -35,
+        30,
+        30,
+        {
+          isSensor: true,
+          isStatic: true,
+          friction: 0,
+          label: 'addSpeedSensor',
+          angle: Math.PI / 180 * i * 4,
+          render: {
+            strokeStyle: '#00f',
+            fillStyle: 'transparent',
+            lineWidth: 1
+          }
         }
-      }
-    );
-    World.add(engine.world, a);
-  }
+      );
+      World.add(engine.world, a);
+    }
+  
 
   //stand for wheel
   for (let i = 0; i < 3; i++) {
@@ -186,7 +196,6 @@ function setup() {
 
   draw();
 
-//if (simulation_running.value ==true) {
   for (let i = 0; i < 10; ++i) {
     addCircle({
       x: width / 2 + i * 1.5,
@@ -233,21 +242,19 @@ for (let i = 15; i < 25; ++i) {
         }
       }
     });
-  }
-//} else {
+}
 
-//}
 
   // add all of the bodies to the world
   World.add(engine.world, bodies);
 
-  // run the engine
-  //Engine.run(engine);
-  Matter.Runner.run(engine);
+// run the renderer
+Render.run(render);
 
-  // run the renderer
-  Render.run(render);
-  Runner.run(runner, engine);
+// create runner
+
+// run the engine
+Runner.run(runner, engine);
 }
 
 function addBody(...bodies) {
@@ -264,8 +271,16 @@ function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
 }
 
 function draw() {
-    Body.rotate(wheel, Math.PI / 120);
+  if (simulation_running.value == true) { 
+  Body.rotate(wheel, Math.PI / 120);
+  //engine.gravity.scale = 0.01
+
+  } else {
+   Body.rotate(wheel, Math.PI / 1000);
+   //engine.gravity = Vector.create(0,0);
+   //engine.gravity.scale = 0.001
+  }
   window.requestAnimationFrame(draw);
 }
 
-</script>s
+</script>
