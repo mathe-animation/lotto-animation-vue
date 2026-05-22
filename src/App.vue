@@ -621,11 +621,6 @@ span {
     padding: 0 0.2em !important;
   }}
 
-  @media screen and (max-width: 550) {
-  ::v-deep .no-padding-table .v-data-table__td {
-    padding: 0 0 !important;
-  }}
-
 @media screen and (max-width: 1200px) {
   .inner-div-animation {
     left: 24%;
