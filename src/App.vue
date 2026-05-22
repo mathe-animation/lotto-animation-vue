@@ -77,7 +77,7 @@
               hide-details></v-text-field>
           </template>
         </v-slider>-->
-        <v-select item-color="#ff0" v-model="count_trials" density="compact" :item-props="itemProps"
+        <v-select item-color="#faf" v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
       </div>
       
