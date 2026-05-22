@@ -1,6 +1,6 @@
 <template>
   <v-dialog max-width="500">
-  <template v-slot:activator="{ props: activatorProps }">
+  <template v-slot:activator="{ isActive }">
    <!--<v-btn
       v-bind="activatorProps"
       color="surface-variant"
@@ -92,7 +92,7 @@
     :style="{ borderRadius: '0px'}"
     :class="{ shown : simulation_running}"
   >
-    <div style="height: 260px;">
+    <div style="height: 280px;">
       
         <!--<v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: absolute; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
@@ -174,6 +174,7 @@ import { isActive } from './assets/store'
 import { renderComponent } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
 import ElectricBorder from "./components/ElectricBorder.vue";
+import { winCostCalcActive } from './assets/store'
 
 
 
@@ -201,7 +202,6 @@ const headers = [
 const sortBy = ref([{ key: 'Nr.', order: 'desc' }])
 
 
-const winCostCalcActive = ref(true);
 
 const count_trials_poss_val = [
   {
