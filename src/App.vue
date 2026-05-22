@@ -92,7 +92,7 @@
     </div>
     <div class="box yellow-border" style="grid-area: box5; position: relative; height: 280px;">
       <div style="height: 280px; position: absolute; height: 280px;"></div>
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d0030;" :items="experiments" height="260" :headers="headers" density="compact" fixed-header v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
+      <v-data-table-virtual class="no-padding-table" color="#faf" v-model:sort-by="sortBy" style="background-color: #2d0030; line-height: 0.3em;" :items="experiments" height="260" :headers="headers" density="compact" fixed-header v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
       <div class="div-e-border" style="position: absolute; z-index: -1; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
           <transition name="fade-slide"><ElectricBorder
     v-if="simulation_just_ended"
@@ -611,10 +611,20 @@ span {
   }
 
   ::v-deep .no-padding-table .v-data-table__td {
-    padding: 0.7em !important;
+    padding: 0 1.3em !important;
     /* Override Vuetify's default padding */
   }
 }
+
+@media screen and (max-width: 710) {
+  ::v-deep .no-padding-table .v-data-table__td {
+    padding: 0 0.2em !important;
+  }}
+
+  @media screen and (max-width: 550) {
+  ::v-deep .no-padding-table .v-data-table__td {
+    padding: 0 0 !important;
+  }}
 
 @media screen and (max-width: 1200px) {
   .inner-div-animation {
