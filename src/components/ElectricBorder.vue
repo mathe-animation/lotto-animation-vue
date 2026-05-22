@@ -90,21 +90,21 @@ const updateAnim = () => {
   });
 };
 
-watch(
+/*watch(
   () => [props.speed, props.chaos],
   () => {
     updateAnim();
   },
   { deep: true }
-);
+);*/
 
 let ro: ResizeObserver | null = null;
 
 onMounted(() => {
-  if (!rootRef.value) return;
+  /*if (!rootRef.value) return;
   ro = new ResizeObserver(() => updateAnim());
   ro.observe(rootRef.value);
-  updateAnim();
+  updateAnim();*/
 });
 
 onBeforeUnmount(() => {
@@ -155,7 +155,7 @@ const bgGlowStyle = computed<CSSProperties>(() => ({
   transform: 'scale(1.08)',
   filter: 'blur(32px)',
   opacity: 0.3,
-  zIndex: -1,
+  zIndex: 10000,
   background: `linear-gradient(-30deg, ${hexToRgba(props.color, 0.8)}, transparent, ${props.color})`
 }));
 </script>

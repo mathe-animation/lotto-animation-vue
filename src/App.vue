@@ -52,24 +52,24 @@
 
 
     </div>
-    <div class="box yellow-border" style="grid-area: box5;position: relative; z-index: 1;">
-      
+    <div class="box yellow-border" style="grid-area: box5;">
+      <div class="div-e-border" style="position: relative;">
           <ElectricBorder
-    style="position: relative; z-index: 2;"
     :color="'#ee0'"
-    :speed="1"
-    :chaos="0.2"
+    :speed="0"
+    :chaos="0.000000001"
     :thickness="2"
     :style="{ borderRadius: '0px'}"
   >
     <div>
-      <p :style="{ margin: '6px 0 0', opacity: 0.8 }">
-        <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: relative; z-index: 1 !important;" height="260" fixed-header density="compact" :items="experiments"
+      
+        <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: relative; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
-      </p>
+      
     </div>
   </ElectricBorder>
+  </div>
     </div>
 
 
@@ -567,7 +567,7 @@ span {
   }
 
   ::v-deep .no-padding-table .v-data-table__td {
-    padding: 0 !important;
+    padding: 0.7em !important;
     /* Override Vuetify's default padding */
   }
 }
