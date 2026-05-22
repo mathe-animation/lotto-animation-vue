@@ -36,10 +36,10 @@
         <div class="text-body-small lg">
           k (Anzahl der gezogenen Kugeln):
         </div>
-        <v-slider color="#ee0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
+        <v-slider color="#ff0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
           hide-details>
           <template v-slot:append>
-            <v-text-field v-model="k_slider" color="#ee0" density="compact" style="width: 150px; font-size: 0.9em;"
+            <v-text-field v-model="k_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;"
               type="number" variant="outlined" hide-details></v-text-field>
           </template>
         </v-slider>
@@ -48,10 +48,10 @@
         <div class="text-body-small">
           n (Anzahl Kugeln in Maschine):
         </div>
-        <v-slider color="#ee0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
+        <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
           <template v-slot:append>
-            <v-text-field v-model="n_slider" color="#ee0" density="compact" style="width: 150px; font-size: 0.9em;"
+            <v-text-field v-model="n_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;"
               type="number" variant="outlined" hide-details></v-text-field>
           </template>
         </v-slider>
@@ -67,7 +67,7 @@
               hide-details></v-text-field>
           </template>
         </v-slider>-->
-        <v-select item-color="#ee0" v-model="count_trials" density="compact" :item-props="itemProps"
+        <v-select item-color="#ff0" v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
       </div>
       
@@ -85,7 +85,7 @@
       <div class="div-e-border" style="position: absolute; z-index: -1; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
           <transition name="fade-slide"><ElectricBorder
     v-if="simulation_just_ended"
-    :color="'#ee0'"
+    :color="'#ff0'"
     :speed="0"
     :chaos="1"
     :thickness="5"
@@ -94,7 +94,7 @@
   >
     <div style="height: 280px;">
       
-        <!--<v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: absolute; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
+        <!--<v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ff0; position: absolute; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>-->
       
@@ -316,7 +316,7 @@ div {
 
 h1 {
   padding: 0;
-  color: #ee0;
+  color: #ff0;
   font-weight: 800;
 }
 
@@ -414,7 +414,7 @@ span {
 
 /* Custom styling for the whole v-data-table */
 .custom-data-table {
-  color: #ee0;
+  color: #ff0;
   background-color: #111;
   line-height: 0.3em;
 }

@@ -1,7 +1,7 @@
 <!-- https://vueuse.org/core/useWebWorkerFn/ -->
 
 <template>
-    <v-btn @click="onClick" id="btn-start-sim" block rounded="0" color="#ee0" variant="flat">
+    <v-btn @click="onClick" id="btn-start-sim" block rounded="0" color="#ff0" variant="flat">
         <svg-icon type="mdi" :path="pathStart"></svg-icon>
         Simulation starten
     </v-btn>
