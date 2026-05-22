@@ -170,7 +170,7 @@ import { cost_sum } from './assets/store'
 import { bool_reload_anim } from './assets/store'
 import { simulation_running } from './assets/store'
 import { simulation_just_ended } from './assets/store'
-import { always_true } from './assets/store'
+import { isActive } from './assets/store'
 import { renderComponent } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
 import ElectricBorder from "./components/ElectricBorder.vue";
@@ -195,7 +195,7 @@ const headers = [
     { title: 'Nr.', align: 'start', key: 'Nr.' },
     { title: 'k', align: 'end', key: 'k' },
     { title: 'n', align: 'end', key: 'n' },
-    { title: 'n', align: 'end', key: 'Versuche' },
+    { title: 'Versuche', align: 'end', key: 'Versuche' },
     { title: 'Gewinne', align: 'end', key: 'Gewinne' },
   ]
 const sortBy = ref([{ key: 'Nr.', order: 'desc' }])

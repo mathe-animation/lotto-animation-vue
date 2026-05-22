@@ -145,7 +145,7 @@ return new_experiment_list_item
 async function onClick() {
     if (simulation_running.value == true) {
         isActive.value = true;
-        alert("Die Simulation läuft noch. Bitte warten (meist weniger als 20 Sekunden).")
+        alert('Die Simulation läuft noch. Bitte drücke auf "OK" und warte bis die Simulation beendet ist (meist weniger als 20 Sekunden).')
     } else if (k_slider.value > n_slider.value) {
         alert("k muss kleiner oder gleich n sein...\n\nWenn in der LOTTO-Maschine zum Beispiel nur n=10 Kugeln sind, ist es nicht möglich k=11 Kugeln zu ziehen.")
     } else {
