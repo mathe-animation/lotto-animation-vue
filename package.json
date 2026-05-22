@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
+  "homepage": "https://https://github.com/mathe-animation/lotto-animation-vue",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -13,7 +14,7 @@
     "lint:fix": "eslint --fix",
     "mcp": "ruler apply",
     "mcp:revert": "ruler revert",
-    "deploy": "vue-cli-service build && gh-pages -d dist"
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.10",
@@ -35,6 +36,7 @@
     "sweetalert": "^2.1.2",
     "vue": "^3.5.34",
     "vue-cli-service": "^5.0.10",
+    "vue-gh-pages": "^1.19.1",
     "vue-timer-hook": "^1.0.86",
     "vue-use": "^0.2.0",
     "vue-worker": "^1.2.1",
@@ -52,7 +54,9 @@
     "@vue/tsconfig": "^0.9.0",
     "eslint": "^9.39.4",
     "eslint-config-vuetify": "^4.3.4",
+    "gh-pages": "^6.3.0",
     "npm-run-all2": "^8.0.4",
+    "push-dir": "^0.4.1",
     "sass": "^1.99.0",
     "sass-embedded": "^1.98.0",
     "sass-loader": "^17.0.0",
