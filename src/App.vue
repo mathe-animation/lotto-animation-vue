@@ -379,7 +379,7 @@ img {
 }
 
 .yellow-border {
-  border: 1px dotted #abab00;
+  border: 2px dotted #880;
 }
 
 div.v-card-text {
