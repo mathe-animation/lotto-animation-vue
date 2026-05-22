@@ -53,10 +53,8 @@
 
     </div>
     <div class="box yellow-border" style="grid-area: box5; position: relative;">
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: relative; z-index: -1;" height="260" fixed-header density="compact" :items="experiments"
-        class="no-padding-table"
-        v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
-      <div class="div-e-border" style="position: absolute; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
+      <v-data-table-virtual :items="experiments" height="260" :headers="headers" fixed-header v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
+      <div class="div-e-border" style="position: absolute; z-index: -1; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
           <transition name="fade-slide"><ElectricBorder
     v-if="simulation_just_ended"
     :color="'#ee0'"
@@ -165,6 +163,13 @@ let price_lottoschein = 1.2
 let count_wins_text_field = ref("")
 
 const itemsPerPage = ref(4)
+const headers = [
+    { title: 'Nr.', align: 'start', key: 'Nr.' },
+    { title: 'k', align: 'end', key: 'k' },
+    { title: 'n', align: 'end', key: 'n' },
+    { title: 'n', align: 'end', key: 'Versuche' },
+    { title: 'Gewinne', align: 'end', key: 'Gewinne' },
+  ]
 const sortBy = ref([{ key: 'Nr.', order: 'desc' }])
 
 
@@ -673,13 +678,13 @@ span {
 
 .fade-slide-enter-active,
 .fade-slide-leave-active {
-   transition: all 0.4s ease;
+   transition: all 0.2s ease;
 }
 
 .fade-slide-enter-from,
 .fade-slide-leave-to {
    opacity: 0;
-   transform: translateY(20px);
+   transform: translateY(0px);
 }
 
 .fade-slide-enter-to,
