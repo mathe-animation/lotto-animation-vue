@@ -1,12 +1,4 @@
 <template>
-    
-      <v-btn
-        class="m-2"
-        icon="mdi-theme-light-dark"
-        location="top right"
-        position="absolute"
-        @click="$vuetify.theme.cycle()"
-      />
       <div class="grid-container">
     <div class="box yellow-border" style="grid-area: box1;">
       <h1 class="title-font-size">

@@ -273,12 +273,12 @@ function addCircle({ x = 0, y = 0, r = 10, options = {} } = {}) {
 function draw() {
   if (simulation_running.value == true) { 
   Body.rotate(wheel, Math.PI / 120);
-  //engine.gravity.scale = 0.01
+  engine.gravity.scale = 0.001
 
   } else {
-   Body.rotate(wheel, Math.PI / 1000);
+   Body.rotate(wheel, Math.PI / 4000);
    //engine.gravity = Vector.create(0,0);
-   //engine.gravity.scale = 0.001
+   engine.gravity.scale = -0.00005
   }
   window.requestAnimationFrame(draw);
 }
