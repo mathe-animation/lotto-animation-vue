@@ -8,10 +8,10 @@
         <div class="text-body-small lg">
           k (Anzahl der gezogenen Kugeln):
         </div>
-        <v-slider color="#ff0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
+        <v-slider color="#ee0" v-model="k_slider" :min="1" :max="30" :step="1" lglabel="k: Anzahl der gezogenen Kugeln"
           hide-details>
           <template v-slot:append>
-            <v-text-field v-model="k_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;"
+            <v-text-field v-model="k_slider" color="#ee0" density="compact" style="width: 150px; font-size: 0.9em;"
               type="number" variant="outlined" hide-details></v-text-field>
           </template>
         </v-slider>
@@ -20,10 +20,10 @@
         <div class="text-body-small">
           n (Anzahl Kugeln in Maschine):
         </div>
-        <v-slider color="#ff0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
+        <v-slider color="#ee0" v-model="n_slider" :min="1" :max="100" :step="1" class="ma-4"
           lglabel="n: Anzahl der Kugeln insgesamt" hide-details>
           <template v-slot:append>
-            <v-text-field v-model="n_slider" color="#ff0" density="compact" style="width: 150px; font-size: 0.9em;"
+            <v-text-field v-model="n_slider" color="#ee0" density="compact" style="width: 150px; font-size: 0.9em;"
               type="number" variant="outlined" hide-details></v-text-field>
           </template>
         </v-slider>
@@ -39,7 +39,7 @@
               hide-details></v-text-field>
           </template>
         </v-slider>-->
-        <v-select item-color="#ff0" v-model="count_trials" density="compact" :item-props="itemProps"
+        <v-select item-color="#ee0" v-model="count_trials" density="compact" :item-props="itemProps"
           :items="count_trials_poss_val"></v-select>
       </div>
       
@@ -52,10 +52,24 @@
 
 
     </div>
-    <div class="box yellow-border" style="grid-area: box5;">
-      <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ff0;" height="260" fixed-header density="compact" :items="experiments"
+    <div class="box yellow-border" style="grid-area: box5;position: relative; z-index: 1;">
+      
+          <ElectricBorder
+    style="position: relative; z-index: 2;"
+    :color="'#ee0'"
+    :speed="1"
+    :chaos="0.2"
+    :thickness="2"
+    :style="{ borderRadius: '0px'}"
+  >
+    <div>
+      <p :style="{ margin: '6px 0 0', opacity: 0.8 }">
+        <v-data-table-virtual v-model:sort-by="sortBy" style="background-color: #2d2d30; color: #ee0; position: relative; z-index: 1 !important;" height="260" fixed-header density="compact" :items="experiments"
         class="no-padding-table"
         v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
+      </p>
+    </div>
+  </ElectricBorder>
     </div>
 
 
@@ -125,6 +139,7 @@ import { cost_sum } from './assets/store'
 import { bool_reload_anim } from './assets/store'
 import { renderComponent } from './assets/store'
 import LottoAnimation from "./components/LottoAnimation.vue"
+import ElectricBorder from "./components/ElectricBorder.vue";
 
 
 
@@ -261,7 +276,7 @@ div {
 
 h1 {
   padding: 0;
-  color: #cdcd00;
+  color: #ee0;
   font-weight: 800;
 }
 
@@ -359,7 +374,7 @@ span {
 
 /* Custom styling for the whole v-data-table */
 .custom-data-table {
-  color: #ff0;
+  color: #ee0;
   background-color: #111;
   line-height: 0.3em;
 }
