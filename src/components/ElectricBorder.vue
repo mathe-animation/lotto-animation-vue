@@ -154,7 +154,7 @@ const bgGlowStyle = computed<CSSProperties>(() => ({
   ...inheritRadius.value,
   transform: 'scale(1.08)',
   filter: 'blur(32px)',
-  opacity: 0.2,
+  opacity: 0.3,
   zIndex: 10000,
   background: `linear-gradient(-30deg, ${hexToRgba(props.color, 0.8)}, transparent, ${props.color})`
 }));
