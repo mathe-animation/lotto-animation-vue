@@ -93,13 +93,13 @@
     <div class="box yellow-border" style="grid-area: box5; position: relative; height: 280px;">
       <div style="height: 280px; position: absolute; height: 280px;"></div>
       <v-data-table-virtual class="no-padding-table" color="#faf" v-model:sort-by="sortBy" style="background-color: #2d0030; line-height: 0.3em;" :items="experiments" height="260" :headers="headers" density="compact" fixed-header v-model:items-per-page="itemsPerPage"></v-data-table-virtual>
-      <div class="div-e-border" style="position: absolute; z-index: -1; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
+      <div class="div-e-border" :class="{ take_electric_to_front : simulation_just_ended }" style="position: absolute; z-index: -1; width: 100%; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;">
           <transition name="fade-slide"><ElectricBorder
     v-if="simulation_just_ended"
     :color="'#ff0'"
     :speed="0"
-    :chaos="1"
-    :thickness="5"
+    :chaos="0.5"
+    :thickness="4"
     :style="{ borderRadius: '0px'}"
     :class="{ shown : simulation_running}"
   >
@@ -373,6 +373,10 @@ img {
   width: 100%;
   height: 400px;
   object-fit: contain;
+}
+
+.take_electric_to_front {
+  z-index: 1000 !important;
 }
 
 .box {
@@ -715,13 +719,14 @@ span {
 
 .fade-slide-enter-active,
 .fade-slide-leave-active {
-   transition: all 0.2s ease;
+   transition: ease-in 0.05s;
 }
 
 .fade-slide-enter-from,
 .fade-slide-leave-to {
    opacity: 0;
-   transform: translateY(0px);
+   transform: translateY(10px);
+   transform: translateX(-3px);
 }
 
 .fade-slide-enter-to,

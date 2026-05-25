@@ -183,7 +183,7 @@ async function onClick() {
         bool_reload_anim.value = true
         simulation_just_ended.value = true
         status_text.value = "Status: Die Simulation wurde noch nicht gestartet..."
-        await sleep(250)
+        await sleep(400)
         simulation_just_ended.value = false
         simulation_running.value = false
     }
